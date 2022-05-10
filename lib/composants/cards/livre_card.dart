@@ -1,5 +1,6 @@
 import 'package:bible_quiz/services/enums/couleur.dart';
 import 'package:bible_quiz/styles/my_text_style.dart';
+import 'package:bible_quiz/views/jeu/jeu_vue.dart';
 import 'package:flutter/material.dart';
 
 import '../bouttons/small_button.dart';
@@ -61,7 +62,10 @@ class LivreCard extends StatelessWidget {
                       child:
                           Text(livre.toUpperCase(), style: MyTextStyle.titleM)),
                 ),
-                SmallButton(texte: 'Jouer', fonction: () {}),
+                SmallButton(
+                    texte: 'Jouer',
+                    fonction: () => Navigator.pushNamed(context, JeuVue.route,
+                        arguments: livre)),
               ],
             ),
           ),

@@ -5,6 +5,8 @@ import 'package:bible_quiz/views/home/widgets/accueil.dart';
 import 'package:flutter/material.dart';
 
 class HomeVue extends StatefulWidget {
+  static const route = './';
+
   const HomeVue({Key? key}) : super(key: key);
 
   @override

@@ -2,6 +2,7 @@ import 'package:bible_quiz/services/enums/couleur.dart';
 import 'package:bible_quiz/styles/my_appbar_style.dart';
 import 'package:bible_quiz/styles/my_bottom_bar_style.dart';
 import 'package:bible_quiz/views/home/home_vue.dart';
+import 'package:bible_quiz/views/jeu/jeu_vue.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -23,8 +24,19 @@ class MyApp extends StatelessWidget {
         appBarTheme: MyAppbarStyle.appbarStyle,
         bottomNavigationBarTheme: MyBottomBarStyle.bottomStyle,
       ),
+      
       home: const HomeVue(),
+
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case JeuVue.route:
+            final String livre = settings.arguments as String;
+            return MaterialPageRoute(
+              builder: (context) => JeuVue(livre: livre),
+            );
+        }
+        return null;
+      },
     );
   }
 }
-

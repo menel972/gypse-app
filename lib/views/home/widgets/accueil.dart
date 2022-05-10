@@ -1,6 +1,7 @@
 import 'package:bible_quiz/composants/bouttons/primary_button.dart';
 import 'package:bible_quiz/composants/carousels/carousel.dart';
 import 'package:bible_quiz/services/enums/livres.dart';
+import 'package:bible_quiz/views/jeu/jeu_vue.dart';
 import 'package:flutter/material.dart';
 
 import '../../../composants/bouttons/basic_button.dart';
@@ -34,7 +35,10 @@ class Accueil extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 // TODO : Ajouter les navigations pour les bouttons
-                PrimaryButton(texte: 'Commencer une partie', fonction: () {}),
+                PrimaryButton(
+                    texte: 'Commencer une partie',
+                    fonction: () => Navigator.pushNamed(context, JeuVue.route,
+                        arguments: '')),
                 const SizedBox(height: 25),
                 BasicButton(texte: 'Choisir un livre', fonction: () {}),
               ],
