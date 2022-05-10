@@ -1,4 +1,7 @@
-import 'package:bible_quiz/views/jeu/jeu_vue.dart';
+import 'package:bible_quiz/services/enums/couleur.dart';
+import 'package:bible_quiz/styles/my_appbar_style.dart';
+import 'package:bible_quiz/styles/my_bottom_bar_style.dart';
+import 'package:bible_quiz/views/home/home_vue.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,11 +16,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.amber,
-        scaffoldBackgroundColor: const Color.fromARGB(255, 10, 35, 128),
+        primarySwatch: Colors.orange,
+        scaffoldBackgroundColor: Couleur.primary,
+        appBarTheme: MyAppbarStyle.appbarStyle,
+        bottomNavigationBarTheme: MyBottomBarStyle.bottomStyle,
       ),
-      home: const JeuVue(),
+      home: const HomeVue(),
     );
   }
 }

@@ -14,7 +14,6 @@ class _JeuVueState extends State<JeuVue> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: const Color.fromARGB(255, 10, 35, 128),
         leading: const Icon(Icons.arrow_back_ios),
         actions: [
           IconButton(icon: const Icon(Icons.settings), onPressed: () {}),
@@ -22,7 +21,6 @@ class _JeuVueState extends State<JeuVue> {
       ),
       body: const QuestionVue(),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white54,
         showUnselectedLabels: false,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
