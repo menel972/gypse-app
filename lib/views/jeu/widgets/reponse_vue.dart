@@ -39,7 +39,7 @@ class _ReponseVueState extends State<ReponseVue> {
               color: select[i]
                   ? rep.confirme
                       ? Colors.amber[800]
-                      : Colors.red[400]
+                      : const Color(0xFFA70C00)
                   : Colors.white,
               width: MediaQuery.of(context).size.width,
               child: Row(

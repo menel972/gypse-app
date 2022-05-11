@@ -31,7 +31,7 @@ class MyTextStyle {
     fontWeight: FontWeight.w600,
     fontSize: 24,
     letterSpacing: 1.5,
-    color: Colors.white,
+    color: Couleur.textBleu,
   );
 
   static TextStyle textS = const TextStyle();

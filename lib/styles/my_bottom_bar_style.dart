@@ -8,9 +8,9 @@ class MyBottomBarStyle {
     type: BottomNavigationBarType.shifting,
     backgroundColor: Couleur.blanc,
     elevation: 0,
-    selectedItemColor: Couleur.textOrange,
+    selectedItemColor: Couleur.secondary,
     selectedIconTheme: const IconThemeData(
-      color: Couleur.textOrange,
+      color: Couleur.secondary,
       size: 30,
     ),
     selectedLabelStyle: MyTextStyle.labelS,

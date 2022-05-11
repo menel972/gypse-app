@@ -40,7 +40,7 @@ class LivreCard extends StatelessWidget {
           ],
           stops: [
             0,
-            0.44,
+            0.39,
             0.6,
             0.9,
           ],
