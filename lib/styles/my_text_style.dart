@@ -33,8 +33,26 @@ class MyTextStyle {
     letterSpacing: 1.5,
     color: Couleur.textBleu,
   );
+  static TextStyle titleOrangeM = const TextStyle(
+    fontFamily: 'NotoSansDisplay',
+    fontWeight: FontWeight.w600,
+    fontSize: 24,
+    letterSpacing: 1.5,
+    color: Couleur.secondary,
+  );
 
-  static TextStyle textS = const TextStyle();
+  static TextStyle textS = const TextStyle(
+    fontFamily: 'NotoSansDisplay',
+    fontSize: 16,
+    letterSpacing: 1,
+    color: Couleur.blanc,
+  );
+  static TextStyle textDisableS = const TextStyle(
+    fontFamily: 'NotoSansDisplay',
+    fontSize: 16,
+    letterSpacing: 1,
+    color: Colors.black54,
+  );
   static TextStyle textM = const TextStyle();
 
   static TextStyle labelS = const TextStyle(

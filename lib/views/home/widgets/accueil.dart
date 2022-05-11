@@ -2,6 +2,7 @@ import 'package:bible_quiz/composants/bouttons/primary_button.dart';
 import 'package:bible_quiz/composants/carousels/carousel.dart';
 import 'package:bible_quiz/services/enums/livres.dart';
 import 'package:bible_quiz/views/jeu/jeu_vue.dart';
+import 'package:bible_quiz/views/livres/livres_vue.dart';
 import 'package:flutter/material.dart';
 
 import '../../../composants/bouttons/basic_button.dart';
@@ -40,7 +41,10 @@ class Accueil extends StatelessWidget {
                     fonction: () => Navigator.pushNamed(context, JeuVue.route,
                         arguments: '')),
                 const SizedBox(height: 25),
-                BasicButton(texte: 'Choisir un livre', fonction: () {}),
+                BasicButton(
+                    texte: 'Choisir un livre',
+                    fonction: () =>
+                        Navigator.pushNamed(context, LivresVue.route)),
               ],
             ),
           ),

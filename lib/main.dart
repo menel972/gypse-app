@@ -3,6 +3,7 @@ import 'package:bible_quiz/styles/my_appbar_style.dart';
 import 'package:bible_quiz/styles/my_bottom_bar_style.dart';
 import 'package:bible_quiz/views/home/home_vue.dart';
 import 'package:bible_quiz/views/jeu/jeu_vue.dart';
+import 'package:bible_quiz/views/livres/livres_vue.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -29,10 +30,18 @@ class MyApp extends StatelessWidget {
 
       onGenerateRoute: (settings) {
         switch (settings.name) {
+          case HomeVue.route:
+            return MaterialPageRoute(
+              builder: (context) => const HomeVue(),
+            );
           case JeuVue.route:
             final String livre = settings.arguments as String;
             return MaterialPageRoute(
               builder: (context) => JeuVue(livre: livre),
+            );
+          case LivresVue.route:
+            return MaterialPageRoute(
+              builder: (context) => const LivresVue(),
             );
         }
         return null;

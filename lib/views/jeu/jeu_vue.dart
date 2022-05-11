@@ -1,3 +1,4 @@
+import 'package:bible_quiz/views/home/home_vue.dart';
 import 'package:bible_quiz/views/jeu/widgets/question_vue.dart';
 import 'package:flutter/material.dart';
 
@@ -18,12 +19,12 @@ class _JeuVueState extends State<JeuVue> {
       appBar: AppBar(
         elevation: 0,
         leading: IconButton(
-          onPressed: () => Navigator.pop(context),
-          icon: const Icon(Icons.arrow_back_ios),
+          onPressed: () => Navigator.pushNamed(context, HomeVue.route),
+          icon: const Icon(Icons.home_outlined),
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.settings),
+            icon: const Icon(Icons.settings_outlined),
             onPressed: () {},
           ),
         ],
