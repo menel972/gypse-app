@@ -4,11 +4,11 @@ import 'package:flutter/services.dart';
 
 class MyAppbarStyle {
   static AppBarTheme appbarStyle = AppBarTheme(
-      backgroundColor: Couleur.primary,
+      backgroundColor: Colors.transparent,
       elevation: 0,
       centerTitle: true,
       systemOverlayStyle:
-          const SystemUiOverlayStyle(statusBarColor: Couleur.primary),
+          const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
       toolbarHeight: 40.0,
       iconTheme: IconThemeData(
         color: Couleur.secondary.withOpacity(0.8),

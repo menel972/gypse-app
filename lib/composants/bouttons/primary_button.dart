@@ -18,7 +18,8 @@ class PrimaryButton extends StatelessWidget {
       child: Text(texte, style: MyTextStyle.buttonWhiteM),
       style: ButtonStyle(
         padding: MaterialStateProperty.resolveWith(
-            (states) => const EdgeInsets.symmetric(vertical: 20)),
+            (states) =>
+            const EdgeInsets.symmetric(vertical: 20, horizontal: 10)),
         backgroundColor:
             MaterialStateProperty.resolveWith((states) => Couleur.secondary),
         side: MaterialStateProperty.resolveWith((states) => const BorderSide(

@@ -19,7 +19,8 @@ class BasicButton extends StatelessWidget {
       child: Text(texte, style: MyTextStyle.buttonOrangeM),
       style: ButtonStyle(
         padding: MaterialStateProperty.resolveWith(
-            (states) => const EdgeInsets.symmetric(vertical: 20)),
+            (states) =>
+            const EdgeInsets.symmetric(vertical: 20, horizontal: 10)),
         backgroundColor: MaterialStateProperty.resolveWith(
             (states) => Colors.white.withOpacity(0.1)),
         side: MaterialStateProperty.resolveWith((states) => const BorderSide(

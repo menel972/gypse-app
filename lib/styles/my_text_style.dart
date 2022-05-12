@@ -47,13 +47,49 @@ class MyTextStyle {
     letterSpacing: 1,
     color: Couleur.blanc,
   );
+  static TextStyle textOrangeS = const TextStyle(
+    fontFamily: 'NotoSansDisplay',
+    fontSize: 16,
+    letterSpacing: 1,
+    color: Couleur.secondary,
+  );
+  static TextStyle textNoirS = const TextStyle(
+    fontFamily: 'NotoSansDisplay',
+    fontSize: 16,
+    letterSpacing: 1,
+    color: Couleur.noir,
+  );
+  static TextStyle textBleuS = const TextStyle(
+    fontFamily: 'NotoSansDisplay',
+    fontSize: 16,
+    letterSpacing: 1,
+    color: Couleur.primary,
+  );
+  static TextStyle textRougeS = const TextStyle(
+    fontFamily: 'NotoSansDisplay',
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    letterSpacing: 1,
+    color: Colors.red,
+  );
   static TextStyle textDisableS = const TextStyle(
     fontFamily: 'NotoSansDisplay',
     fontSize: 16,
     letterSpacing: 1,
-    color: Colors.black54,
+    color: Colors.white38,
   );
-  static TextStyle textM = const TextStyle();
+  static TextStyle textM = const TextStyle(
+    fontFamily: 'NotoSansDisplay',
+    fontSize: 20,
+    letterSpacing: 1,
+    color: Couleur.blanc,
+  );
+  static TextStyle textBleuM = const TextStyle(
+    fontFamily: 'NotoSansDisplay',
+    fontSize: 20,
+    letterSpacing: 1,
+    color: Couleur.primary,
+  );
 
   static TextStyle labelS = const TextStyle(
     fontFamily: 'NotoSansDisplay',

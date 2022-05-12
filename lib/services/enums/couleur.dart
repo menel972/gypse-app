@@ -16,4 +16,7 @@ class Couleur {
   static const Color orange = Color.fromRGBO(248, 119, 0, 1);
   static const Color blanc2 = Color.fromRGBO(249, 249, 249, 1);
   static const Color textBleu = Color.fromRGBO(196, 207, 249, 1);
+  static const Color bleuClair = Color.fromRGBO(239, 242, 255, 1);
+  static const Color orangeClair = Color.fromRGBO(255, 238, 221, 1);
+  static const Color orangeBorder = Color.fromRGBO(255, 209, 163, 0.5);
 }

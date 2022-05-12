@@ -36,8 +36,10 @@ class _HomeVueState extends State<HomeVue> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       extendBody: true,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         actions: [
           // TODO : Navigation vers les settings
           IconButton(
@@ -48,7 +50,16 @@ class _HomeVueState extends State<HomeVue> {
           ),
         ],
       ),
-      body: switchWidget(),
+      body: Container(
+        padding: const EdgeInsets.only(top: 120),
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/home_bkg.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: switchWidget(),
+      ),
       bottomNavigationBar: HomeBottomBar(
         index: index,
         switchIndex: switchIndex,

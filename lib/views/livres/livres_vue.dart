@@ -11,9 +11,13 @@ class LivresVue extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         leading: IconButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () {
+              FocusScope.of(context).unfocus();
+              Navigator.pop(context);
+            },
             icon: const Icon(Icons.arrow_back_ios)),
         title: Text('Livres', style: MyTextStyle.titleOrangeM),
         actions: [
@@ -26,7 +30,16 @@ class LivresVue extends StatelessWidget {
           ),
         ],
       ),
-      body: const LivresRecherche(),
+      body: Container(
+        padding: const EdgeInsets.only(top: 100),
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/jeu_bkg.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: const LivresRecherche(),
+      ),
     );
   }
 }
