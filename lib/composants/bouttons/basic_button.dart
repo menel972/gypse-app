@@ -22,10 +22,10 @@ class BasicButton extends StatelessWidget {
             (states) =>
             const EdgeInsets.symmetric(vertical: 20, horizontal: 10)),
         backgroundColor: MaterialStateProperty.resolveWith(
-            (states) => Colors.white.withOpacity(0.1)),
-        side: MaterialStateProperty.resolveWith((states) => const BorderSide(
+            (states) => Colors.white.withOpacity(0.2)),
+        side: MaterialStateProperty.resolveWith((states) => BorderSide(
               width: 0.8,
-              color: Couleur.blanc,
+              color: Couleur.blanc2.withOpacity(0.8),
             )),
         shape: MaterialStateProperty.resolveWith(
           (states) =>

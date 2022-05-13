@@ -44,7 +44,7 @@ class Data {
       confirme: true,
       versetRef: 'Genèse 1 : 27-31',
       verset:
-          'Dieu créa l\'homme à son image, il le créa à l\'image de Dieu. Il créa l\'homme et la femme. Dieu les bénit et leur dit: «Reproduisez-vous, devenez nombreux, remplissez la terre et soumettez-la! Dominez sur les poissons de la mer, sur les oiseaux du ciel et sur tout animal qui se déplace sur la terre!» Dieu dit aussi: «Je vous donne toute herbe à graine sur toute la surface de la terre, ainsi que tout arbre portant des fruits avec pépins ou noyau: ce sera votre nourriture. A tout animal de la terre, à tout oiseau du ciel et à tout ce qui se déplace sur la terre, à ce qui est animé de vie, je donne toute herbe verte pour nourriture.» Et cela se passa ainsi. Dieu regarda tout ce qu\'il avait fait, et il constata que c\'était très bon. Il y eut un soir et il y eut un matin. Ce fut le sixième jour.',
+          'Dieu créa l\'homme à son image, il le créa à l\'image de Dieu. Il créa l\'homme et la femme. [...] Dieu regarda tout ce qu\'il avait fait, et il constata que c\'était très bon. Il y eut un soir et il y eut un matin. Ce fut le sixième jour.',
     ),
     Reponse(
       id: 'r6',

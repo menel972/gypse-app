@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../bouttons/small_button.dart';
 
 class LivreCard extends StatelessWidget {
+  // =
   final String livre;
 
   const LivreCard({
@@ -13,6 +14,7 @@ class LivreCard extends StatelessWidget {
     required this.livre,
   }) : super(key: key);
 
+  // <> Build
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -60,7 +62,8 @@ class LivreCard extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: FittedBox(
                       child:
-                          Text(livre.toUpperCase(), style: MyTextStyle.titleM)),
+                          Text(livre.toUpperCase(),
+                          style: MyTextStyle.titleBleuM)),
                 ),
                 SmallButton(
                     texte: 'Jouer',

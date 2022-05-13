@@ -1,4 +1,5 @@
 import 'package:bible_quiz/composants/dialogs/quit_dialog.dart';
+import 'package:bible_quiz/composants/dialogs/settings_modal.dart';
 import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:bible_quiz/views/jeu/widgets/question_vue.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
@@ -8,6 +9,7 @@ import '../../services/data.dart';
 import '../../services/models/question_model.dart';
 
 class JeuVue extends StatefulWidget {
+  // =
   static const route = './jeu';
   final String? livre;
 
@@ -17,25 +19,22 @@ class JeuVue extends StatefulWidget {
   State<JeuVue> createState() => _JeuVueState();
 }
 
+// <> _JeuVueState()
 class _JeuVueState extends State<JeuVue> {
   // {} Modal Quit
-  final CountDownController countDownController = CountDownController();
-
-  void pauseCountDown() => countDownController.pause();
-
-  void resumeCountDown() => countDownController.resume();
-
-  void restartCountDown() => countDownController.restart();
-
   Future confirmQuit(BuildContext context) async {
-    pauseCountDown();
+    countDownController.pause();
     return await showDialog(
         context: context,
         builder: (context) => QuitDialog(
-              resumeCountDown: resumeCountDown,
+              countDownController: countDownController
             ));
   }
 
+  // {} CountDown Controller
+  final CountDownController countDownController = CountDownController();
+
+// = Questions
   List<Question> ques = Data.questions;
 
   int quesIndex = 0;
@@ -46,24 +45,35 @@ class _JeuVueState extends State<JeuVue> {
     });
   }
 
+  // <> Build
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
+      // <> AppBar
       appBar: AppBar(
         elevation: 0,
+        // <!> QuitDialog()
         leading: IconButton(
           onPressed: () => confirmQuit(context),
           icon: const Icon(Icons.home_outlined),
         ),
-        title: Text(ques[quesIndex].livre, style: MyTextStyle.titleOrangeM),
+        title: Text(ques[quesIndex].livre, style: MyTextStyle.titleM),
         actions: [
           IconButton(
             icon: const Icon(Icons.settings_outlined),
-            onPressed: () {},
+            onPressed: () => {
+              countDownController.pause(),
+              SettingsModal.showSettings(
+                context,
+                countDownController,
+              ),
+            },
           ),
         ],
       ),
+
+      // <> Body
       body: Container(
           padding: const EdgeInsets.only(top: 25),
           decoration: const BoxDecoration(
@@ -72,11 +82,10 @@ class _JeuVueState extends State<JeuVue> {
               fit: BoxFit.cover,
             ),
           ),
+          // <!> QuetionVue()
           child: QuestionVue(
             ques: ques[quesIndex],
             countDownController: countDownController,
-            pauseCountDown: pauseCountDown,
-            restartCountDown: restartCountDown,
             swicthIndex: swicthIndex,
           )),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class HomeBottomBar extends StatelessWidget {
+  // =
   final int index;
   final Function(int) switchIndex;
 
@@ -10,6 +11,7 @@ class HomeBottomBar extends StatelessWidget {
     required this.switchIndex,
   }) : super(key: key);
 
+// <> Build
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(

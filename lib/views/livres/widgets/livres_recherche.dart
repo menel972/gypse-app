@@ -10,20 +10,24 @@ class LivresRecherche extends StatefulWidget {
   @override
   State<LivresRecherche> createState() => _LivresRechercheState();
 }
-
+// <> _LivresRechercheState()
 class _LivresRechercheState extends State<LivresRecherche> {
+  // = Search bar Controller
   final TextEditingController _controller = TextEditingController();
+
   List<String> get livres => Data.livres
       .where((livre) =>
           livre.toLowerCase().startsWith(_controller.text.toLowerCase()))
       .toList();
 
+  // <> Build
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
+          // <> SearchBar
           TextFormField(
             style: MyTextStyle.textM,
             controller: _controller,
@@ -47,6 +51,7 @@ class _LivresRechercheState extends State<LivresRecherche> {
 
           ),
           Expanded(
+            // <!> LivresListe()
             child: LivresListe(livres: livres),
           ),
         ],

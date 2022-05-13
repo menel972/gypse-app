@@ -11,11 +11,11 @@ class MyAppbarStyle {
           const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
       toolbarHeight: 40.0,
       iconTheme: IconThemeData(
-        color: Couleur.secondary.withOpacity(0.8),
+        color: Couleur.blanc.withOpacity(0.8),
         size: 30,
       ),
       actionsIconTheme: IconThemeData(
-        color: Couleur.secondary.withOpacity(0.8),
+        color: Couleur.blanc.withOpacity(0.8),
         size: 30,
       ));
 }

@@ -4,6 +4,7 @@ import '../../services/enums/couleur.dart';
 import '../../styles/my_text_style.dart';
 
 class LivresListCard extends StatelessWidget {
+  // =
   final String livre;
   final int nbQ;
   final int nbR;
@@ -16,9 +17,11 @@ class LivresListCard extends StatelessWidget {
     required this.function,
   }) : super(key: key);
 
+  // <> Build
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      // <!> JeuVue()
       onTap: nbQ != 0 ? function : () {},
       child: Stack(children: [
         Container(

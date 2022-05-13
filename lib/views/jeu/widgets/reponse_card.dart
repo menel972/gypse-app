@@ -1,23 +1,30 @@
 import 'package:bible_quiz/services/enums/couleur.dart';
 import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../services/models/reponse_model.dart';
+import '../../../services/models/settings_model.dart';
+import '../../../services/providers/settings_provider.dart';
 
 class ReponseCard extends StatelessWidget {
+  // =
   final Reponse rep;
-  final List<bool> select;
   final int i;
 
   const ReponseCard({
     Key? key,
     required this.i,
     required this.rep,
-    required this.select,
   }) : super(key: key);
 
+  // <> Build
   @override
   Widget build(BuildContext context) {
+    Settings settings = Provider.of<SettingsProvider>(context).settings;
+    List<bool> select =
+        Provider.of<SettingsProvider>(context).getRep(settings.niveau);
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: Card(

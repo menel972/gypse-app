@@ -10,6 +10,7 @@ import '../../../composants/bouttons/basic_button.dart';
 class Accueil extends StatelessWidget {
   const Accueil({Key? key}) : super(key: key);
 
+  // = Livres du Carousel
   static final List<String> livres = [
     Livres.gen,
     Livres.apo,
@@ -17,6 +18,7 @@ class Accueil extends StatelessWidget {
     Livres.jean,
   ];
 
+  // <> Build
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -25,6 +27,7 @@ class Accueil extends StatelessWidget {
           height: MediaQuery.of(context).size.height * 0.4,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 0),
+            // <!> Carousel()
             child: Carousel(items: livres),
           ),
         ),
@@ -35,12 +38,13 @@ class Accueil extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                // TODO : Ajouter les navigations pour les bouttons
+                // <!> JeuVue()
                 PrimaryButton(
                     texte: 'Commencer une partie',
                     fonction: () => Navigator.pushNamed(context, JeuVue.route,
                         arguments: '')),
                 const SizedBox(height: 25),
+                // <!> LivresVue()
                 BasicButton(
                     texte: 'Choisir un livre',
                     fonction: () =>

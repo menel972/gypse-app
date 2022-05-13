@@ -2,7 +2,13 @@ import 'package:bible_quiz/services/enums/couleur.dart';
 import 'package:flutter/material.dart';
 
 class MyTextStyle {
-  static TextStyle buttonS = const TextStyle();
+  static TextStyle buttonS = const TextStyle(
+    fontFamily: 'NotoSansDisplay',
+    fontSize: 14,
+    letterSpacing: 0.5,
+    fontWeight: FontWeight.w500,
+    color: Couleur.blanc,
+  );
   static TextStyle buttonOrangeS = const TextStyle(
     fontFamily: 'NotoSansDisplay',
     fontSize: 14,
@@ -15,7 +21,7 @@ class MyTextStyle {
     fontSize: 16,
     letterSpacing: 1,
     fontWeight: FontWeight.w600,
-    color: Colors.white,
+    color: Couleur.blanc,
   );
   static TextStyle buttonOrangeM = const TextStyle(
     fontFamily: 'NotoSansDisplay',
@@ -31,6 +37,13 @@ class MyTextStyle {
     fontWeight: FontWeight.w600,
     fontSize: 24,
     letterSpacing: 1.5,
+    color: Couleur.blanc,
+  );
+  static TextStyle titleBleuM = const TextStyle(
+    fontFamily: 'NotoSansDisplay',
+    fontWeight: FontWeight.w600,
+    fontSize: 24,
+    letterSpacing: 1.5,
     color: Couleur.textBleu,
   );
   static TextStyle titleOrangeM = const TextStyle(
@@ -38,6 +51,7 @@ class MyTextStyle {
     fontWeight: FontWeight.w600,
     fontSize: 24,
     letterSpacing: 1.5,
+    decoration: TextDecoration.none,
     color: Couleur.secondary,
   );
 
@@ -57,6 +71,7 @@ class MyTextStyle {
     fontFamily: 'NotoSansDisplay',
     fontSize: 16,
     letterSpacing: 1,
+    decoration: TextDecoration.none,
     color: Couleur.noir,
   );
   static TextStyle textBleuS = const TextStyle(
