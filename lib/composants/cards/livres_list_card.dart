@@ -42,20 +42,20 @@ class LivresListCard extends StatelessWidget {
                   ]
                 : [],
             borderRadius: BorderRadius.circular(20),
-            gradient: const SweepGradient(
+            gradient: SweepGradient(
               colors: [
-                Couleur.blanc2,
-                Couleur.bleu,
-                Couleur.violet,
-                Couleur.orange,
+                Couleur.blanc2.withOpacity(1),
+                Couleur.bleu.withOpacity(0.2),
+                Couleur.violet.withOpacity(1),
+                Couleur.orange.withOpacity(1),
               ],
-              stops: [
+              stops: const [
                 0,
                 0.39,
                 0.6,
                 0.9,
               ],
-              center: Alignment(1, 0.2),
+              center: const Alignment(1, 0.2),
               startAngle: -0.8,
               endAngle: 6.5,
             ),
