@@ -191,6 +191,7 @@ class _SettingsModalState extends State<SettingsModal> {
                 Expanded(
                   child: BasicButton(
                     texte: 'Annuler',
+                    couleur: 'orange',
                     fonction: () => Navigator.pop(context, false),
                   ),
                 ),

@@ -24,7 +24,7 @@ class Reponse {
         'verset': verset,
       };
 
-  Reponse fromJson(Map<String, dynamic> json) => Reponse(
+  static Reponse fromJson(Map<String, dynamic> json) => Reponse(
         id: json['id'],
         questionId: json['questionId'],
         texte: json['texte'],

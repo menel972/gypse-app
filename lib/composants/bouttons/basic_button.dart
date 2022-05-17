@@ -5,10 +5,12 @@ import '../../services/enums/couleur.dart';
 
 class BasicButton extends StatelessWidget {
   final String texte;
+  final String couleur;
   final VoidCallback fonction;
   const BasicButton({
     Key? key,
     required this.texte,
+    required this.couleur,
     required this.fonction,
   }) : super(key: key);
 
@@ -16,10 +18,12 @@ class BasicButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return OutlinedButton(
       onPressed: fonction,
-      child: Text(texte, style: MyTextStyle.buttonOrangeM),
+      child: Text(texte,
+          style: couleur == 'orange'
+              ? MyTextStyle.buttonOrangeM
+              : MyTextStyle.buttonBleuM),
       style: ButtonStyle(
-        padding: MaterialStateProperty.resolveWith(
-            (states) =>
+        padding: MaterialStateProperty.resolveWith((states) =>
             const EdgeInsets.symmetric(vertical: 20, horizontal: 10)),
         backgroundColor: MaterialStateProperty.resolveWith(
             (states) => Colors.white.withOpacity(0.2)),

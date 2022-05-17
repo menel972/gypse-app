@@ -30,6 +30,13 @@ class MyTextStyle {
     fontWeight: FontWeight.w600,
     color: Couleur.secondAccent,
   );
+  static TextStyle buttonBleuM = const TextStyle(
+    fontFamily: 'NotoSansDisplay',
+    fontSize: 16,
+    letterSpacing: 1,
+    fontWeight: FontWeight.w600,
+    color: Couleur.primary,
+  );
 
   static TextStyle titleS = const TextStyle();
   static TextStyle titleM = const TextStyle(
@@ -73,6 +80,14 @@ class MyTextStyle {
     letterSpacing: 1,
     decoration: TextDecoration.none,
     color: Couleur.noir,
+  );
+  static TextStyle textValidS = const TextStyle(
+    fontFamily: 'NotoSansDisplay',
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    letterSpacing: 1,
+    decoration: TextDecoration.none,
+    color: Couleur.orangeClair,
   );
   static TextStyle textBleuS = const TextStyle(
     fontFamily: 'NotoSansDisplay',

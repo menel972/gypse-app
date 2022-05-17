@@ -4,15 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../services/models/reponse_model.dart';
-import '../../../services/models/settings_model.dart';
 import '../../../services/providers/settings_provider.dart';
 
-class ReponseCard extends StatelessWidget {
+class ReponseTrueCard extends StatelessWidget {
   // =
   final Reponse rep;
   final int i;
 
-  const ReponseCard({
+  const ReponseTrueCard({
     Key? key,
     required this.i,
     required this.rep,
@@ -21,26 +20,21 @@ class ReponseCard extends StatelessWidget {
   // <> Build
   @override
   Widget build(BuildContext context) {
-    Settings settings = Provider.of<SettingsProvider>(context).settings;
-    List<bool> select =
-        Provider.of<SettingsProvider>(context).getRep(settings.niveau);
+    List<bool> select = Provider.of<SettingsProvider>(context).reponses;
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: Card(
+        elevation: 0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 8),
           decoration: BoxDecoration(
-            color: select[i]
-                ? rep.confirme
-                    ? Couleur.secondAccent
-                    : Couleur.orangeBorder
-                : Couleur.orangeClair,
+            color: select[i] ? Couleur.secondary : Couleur.orangeClair,
             border: Border.all(
-                color: select[i] && !rep.confirme
-                    ? Colors.red
-                    : Couleur.orangeBorder),
+              width: 2,
+              color: select[i] ? Couleur.blanc : Couleur.orangeBorder,
+            ),
             borderRadius: BorderRadius.circular(10),
           ),
           width: double.infinity,
@@ -48,20 +42,18 @@ class ReponseCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text((i + 1).toString() + '.',
-                  style: select[i] && !rep.confirme
-                      ? MyTextStyle.textRougeS
+                  style: select[i]
+                      ? MyTextStyle.textValidS
                       : MyTextStyle.textBleuS),
               Text(rep.texte,
-                  style: select[i] && !rep.confirme
-                      ? MyTextStyle.textRougeS
+                  style: select[i]
+                      ? MyTextStyle.textValidS
                       : MyTextStyle.textBleuS),
               Visibility(
                 visible: select[i],
-                child: Icon(
-                  select[i] && rep.confirme
-                      ? Icons.check_circle_outline
-                      : Icons.highlight_off,
-                  color: !rep.confirme ? Colors.red : Couleur.primary,
+                child: const Icon(
+                  Icons.check_circle_outline,
+                  color: Couleur.orangeClair,
                 ),
               ),
             ],

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:bible_quiz/services/crud/question_crud.dart';
 import 'package:bible_quiz/services/enums/couleur.dart';
 import 'package:bible_quiz/services/models/question_model.dart';
 import 'package:bible_quiz/services/models/settings_model.dart';
@@ -13,14 +14,12 @@ import 'package:provider/provider.dart';
 
 class QuestionVue extends StatefulWidget {
   // =
-  final Question ques;
   final CountDownController countDownController;
-  final VoidCallback swicthIndex;
+  final String? livre;
   const QuestionVue({
     Key? key,
-    required this.ques,
     required this.countDownController,
-    required this.swicthIndex,
+    this.livre,
   }) : super(key: key);
 
   @override
@@ -61,7 +60,7 @@ class _QuestionVueState extends State<QuestionVue> {
             const Duration(seconds: 1),
             () => setState(() {
                   allRepToFalse(settings.niveau);
-                  widget.swicthIndex();
+                  // TODO : Switch question
                   facteur = 0.35;
 
                   Timer(const Duration(milliseconds: 900), () {
@@ -72,70 +71,90 @@ class _QuestionVueState extends State<QuestionVue> {
       });
     }
 
-    return ListView(
-      physics: const NeverScrollableScrollPhysics(),
-      children: [
-        AnimatedContainer(
-          duration: const Duration(seconds: 1),
-          height: MediaQuery.of(context).size.height * facteur,
-          padding: const EdgeInsets.only(
-            left: 15.0,
-            right: 15.0,
-          ),
-          child: Column(
-            children: [
-              // <> Tire + Difficulté
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Question',
-                    style: MyTextStyle.textM,
+    return StreamBuilder<Question>(
+        stream: QuestionCrud.fetchFirstQuestionByUser([], widget.livre),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return ListView(
+              physics: const NeverScrollableScrollPhysics(),
+              children: [
+                AnimatedContainer(
+                  duration: const Duration(seconds: 1),
+                  height: MediaQuery.of(context).size.height * facteur,
+                  padding: const EdgeInsets.only(
+                    left: 15.0,
+                    right: 15.0,
                   ),
-                  SvgPicture.asset(getNivIcon(settings.niveau)),
-                ],
-              ),
-              const Divider(
-                color: Couleur.blanc,
-                height: 25,
-              ),
-              // <> Question + Timer
-              Row(
-                children: [
-                  Flexible(
-                    flex: 5,
-                    child: Text(
-                      widget.ques.texte,
-                      style: MyTextStyle.textM,
-                    ),
+                  child: Column(
+                    children: [
+                      // <> Tire + Difficulté
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Question',
+                            style: MyTextStyle.textM,
+                          ),
+                          SvgPicture.asset(getNivIcon(settings.niveau)),
+                        ],
+                      ),
+                      const Divider(
+                        color: Couleur.blanc,
+                        height: 25,
+                      ),
+                      // <> Question + Timer
+                      Row(
+                        children: [
+                          Flexible(
+                            flex: 5,
+                            child: Text(
+                              snapshot.data!.texte,
+                              style: MyTextStyle.textM,
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Flexible(
+                            flex: 1,
+                            child: CircularCountDownTimer(
+                              controller: widget.countDownController,
+                              duration: settings.chrono,
+                              width: 60,
+                              height: 60,
+                              ringColor: Colors.transparent,
+                              fillColor: Couleur.secondary,
+                              textStyle: MyTextStyle.textM,
+                              onComplete: () => allRepToTrue(settings.niveau),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                  const SizedBox(width: 10),
-                  Flexible(
-                    flex: 1,
-                    child: CircularCountDownTimer(
-                      controller: widget.countDownController,
-                      duration: settings.chrono,
-                      width: 60,
-                      height: 60,
-                      ringColor: Colors.transparent,
-                      fillColor: Couleur.secondary,
-                      textStyle: MyTextStyle.textM,
-                      onComplete: () => allRepToTrue(settings.niveau),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
+                ),
 
-        // <!> ReponseVue()
-        ReponseVue(
-          questionId: widget.ques.id,
-          switchFacteur: switchFacteur,
-          countDownController: widget.countDownController,
-        ),
-      ],
-    );
+                // <!> ReponseVue()
+                ReponseVue(
+                  questionId: snapshot.data!.id,
+                  switchFacteur: switchFacteur,
+                  countDownController: widget.countDownController,
+                ),
+              ],
+            );
+          } else if (!snapshot.hasData) {
+            return Center(
+              child: Text(
+                'no more data',
+                style: MyTextStyle.textM,
+              ),
+            );
+          } else if (snapshot.hasError) {
+            // ignore: avoid_print
+            print('stream error : ' + snapshot.error.toString());
+          }
+          return const Center(
+              child: CircularProgressIndicator(
+            color: Couleur.secondary,
+          ));
+        });
   }
 }

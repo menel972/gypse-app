@@ -1,15 +1,18 @@
 import 'package:bible_quiz/composants/bouttons/basic_button.dart';
+import 'package:bible_quiz/composants/bouttons/primary_fab_button.dart';
 import 'package:bible_quiz/composants/dialogs/verset_modal.dart';
+import 'package:bible_quiz/services/crud/reponse_crud.dart';
 import 'package:bible_quiz/services/enums/couleur.dart';
 import 'package:bible_quiz/services/models/reponse_model.dart';
 import 'package:bible_quiz/services/models/settings_model.dart';
-import 'package:bible_quiz/views/jeu/widgets/reponse_card.dart';
+import 'package:bible_quiz/styles/my_text_style.dart';
+import 'package:bible_quiz/views/jeu/widgets/reponse_false_card.dart';
+import 'package:bible_quiz/views/jeu/widgets/reponse_true_card.dart';
 import 'package:blur/blur.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../services/data.dart';
 import '../../../services/providers/settings_provider.dart';
 
 class ReponseVue extends StatefulWidget {
@@ -31,102 +34,115 @@ class ReponseVue extends StatefulWidget {
 
 // <> _ReponseVueState()
 class _ReponseVueState extends State<ReponseVue> {
-  // = Reponses
-  List<Reponse> get reps =>
-      Data.reponses.where((r) => r.questionId == widget.questionId).toList();
-
-  int get trueIndex =>
-      reps.indexOf(reps.firstWhere((rep) => rep.confirme == true));
-
   // <> Build
   @override
   Widget build(BuildContext context) {
     Settings settings = Provider.of<SettingsProvider>(context).settings;
-    List<bool> select =
-        Provider.of<SettingsProvider>(context).getRep(settings.niveau);
+    List<bool> select = Provider.of<SettingsProvider>(context).reponses;
 
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.5,
-      // padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
-      decoration: BoxDecoration(
-        color: Couleur.bleuClair.withOpacity(0),
-        border: Border.all(color: Couleur.blanc2.withOpacity(0.7)),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Blur(
-        blur: 3,
-        blurColor: Couleur.bleuClair,
-        colorOpacity: 0.5,
-        borderRadius: BorderRadius.circular(20),
-        child: Container(),
-        overlay: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Expanded(
-                child: ListView.builder(
-                  itemCount: settings.niveau + 1,
-                  itemBuilder: (context, i) {
-                    final rep = reps[i];
-                    return GestureDetector(
-                      onTap: () {
-                        widget.countDownController.pause();
-                        setState(() {
-                          if (rep.confirme == false) {
-                            select[i] = !select[i];
-                            select[trueIndex] = !select[trueIndex];
-                          } else {
-                            select[i] = !select[i];
-                          }
-                        });
-                      },
-                      // <!> ReponseCard()
-                      child: ReponseCard(
-                        i: i,
-                        rep: rep,
-                      ),
-                    );
-                  },
-                ),
+    return StreamBuilder<List<Reponse>>(
+        stream: ReponseCrud.fetchReponseByNiveau(
+            settings.niveau, widget.questionId),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            final reponses = snapshot.data!;
+            final trueReponse = reponses.firstWhere((rep) => rep.confirme);
+            int trueIndex = reponses.indexOf(trueReponse);
+
+            return Container(
+              height: MediaQuery.of(context).size.height * 0.5,
+              decoration: BoxDecoration(
+                color: Couleur.bleuClair.withOpacity(0),
+                border: Border.all(color: Couleur.blanc2.withOpacity(0.7)),
+                borderRadius: const BorderRadius.only(
+                    // TODO : 30 ou 50
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30)),
               ),
-              Visibility(
-                visible: select.contains(true),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+              child: Blur(
+                blur: 3,
+                blurColor: Couleur.bleuClair,
+                colorOpacity: 0.5,
+                borderRadius: const BorderRadius.only(
+                    // TODO : 30 ou 50
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30)),
+                child: Container(),
+                overlay: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 25, horizontal: 15),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Expanded(
-                        child: BasicButton(
-                            fonction: () => VersetModal.showVerset(
-                                context, reps[trueIndex]),
-                            texte: 'Voir le verset'),
-                      ),
-                      const SizedBox(width: 10),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.2,
-                        child: IconButton(
-                          icon: const Icon(
-                            Icons.keyboard_arrow_right,
-                            size: 40,
-                            color: Couleur.secondary,
-                          ),
-                          onPressed: () => widget.switchFacteur(),
+                        child: ListView.builder(
+                          itemCount: reponses.length,
+                          itemBuilder: (context, i) {
+                            final rep = reponses[i];
+                            return GestureDetector(
+                              onTap: () {
+                                widget.countDownController.pause();
+                                setState(() {
+                                  if (rep.confirme == false) {
+                                    select[i] = !select[i];
+                                    select[trueIndex] = !select[trueIndex];
+                                  } else {
+                                    select[i] = !select[i];
+                                  }
+                                });
+                              },
+                              // <!> ReponseCard()
+                              child: rep.confirme == true
+                                  ? ReponseTrueCard(i: i, rep: rep)
+                                  : ReponseFalseCard(i: i, rep: rep),
+                            );
+                          },
                         ),
-
-                        // PrimaryButton(
-                        //     texte: 'Suivant',
-                        //     fonction: () => widget.switchFacteur()),
+                      ),
+                      Visibility(
+                        visible: select.contains(true),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 15),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                child: BasicButton(
+                                  fonction: () => VersetModal.showVerset(
+                                    context,
+                                    reponses[trueIndex],
+                                  ),
+                                  texte: 'Voir le verset',
+                                  couleur: 'bleu',
+                                ),
+                              ),
+                              const SizedBox(width: 10),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.2,
+                                child: PrimaryFabButton(
+                                    icon: Icons.keyboard_arrow_right,
+                                    fonction: () => widget.switchFacteur()),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ],
                   ),
                 ),
               ),
-            ],
-          ),
-        ),
-      ),
-    );
+            );
+          } else if (!snapshot.hasData) {
+            return Center(child: Text('no data', style: MyTextStyle.titleM));
+          } else if (snapshot.hasError) {
+            // ignore: avoid_print
+            print('stream error : ' + snapshot.error.toString());
+          }
+          return const Center(
+            child: CircularProgressIndicator(
+              color: Couleur.secondary,
+            ),
+          );
+        });
   }
 }

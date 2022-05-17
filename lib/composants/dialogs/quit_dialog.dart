@@ -78,6 +78,7 @@ class QuitDialog extends StatelessWidget {
                           Expanded(
                             child: BasicButton(
                               texte: 'Quitter',
+                              couleur: 'orange',
                               // <!> HomeVue()
                               fonction: () => {
                                 Navigator.pushNamed(context, HomeVue.route),

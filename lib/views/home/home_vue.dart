@@ -67,13 +67,13 @@ class _HomeVueState extends State<HomeVue> {
       body: Container(
         padding: const EdgeInsets.only(top: 120),
         decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/home_bkg.png'),
-            fit: BoxFit.cover,
-          ),
+            image: DecorationImage(
+              image: AssetImage('assets/images/home_bkg.png'),
+              fit: BoxFit.cover,
+            ),
         ),
         // <!> Accueil()
-        child: switchWidget(),
+          child: switchWidget()
       ),
 
       // <> BottomBar

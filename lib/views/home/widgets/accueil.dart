@@ -47,6 +47,7 @@ class Accueil extends StatelessWidget {
                 // <!> LivresVue()
                 BasicButton(
                     texte: 'Choisir un livre',
+                    couleur: 'orange',
                     fonction: () =>
                         Navigator.pushNamed(context, LivresVue.route)),
               ],

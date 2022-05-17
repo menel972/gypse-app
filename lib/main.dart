@@ -5,10 +5,17 @@ import 'package:bible_quiz/styles/my_bottom_bar_style.dart';
 import 'package:bible_quiz/views/home/home_vue.dart';
 import 'package:bible_quiz/views/jeu/jeu_vue.dart';
 import 'package:bible_quiz/views/livres/livres_vue.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+import 'firebase_options.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
