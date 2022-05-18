@@ -15,7 +15,7 @@ class Reponse {
     this.verset,
   });
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson(String id) => {
         'id': id,
         'questionId': questionId,
         'texte': texte,
@@ -24,7 +24,7 @@ class Reponse {
         'verset': verset,
       };
 
-  Reponse fromJson(Map<String, dynamic> json) => Reponse(
+  static Reponse fromJson(Map<String, dynamic> json) => Reponse(
         id: json['id'],
         questionId: json['questionId'],
         texte: json['texte'],
