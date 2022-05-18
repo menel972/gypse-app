@@ -2,8 +2,8 @@ import 'package:bible_quiz/composants/bottomBar/home_bottom_bar.dart';
 import 'package:bible_quiz/composants/dialogs/settings_modal.dart';
 import 'package:bible_quiz/services/enums/couleur.dart';
 import 'package:bible_quiz/styles/my_text_style.dart';
+import 'package:bible_quiz/views/compte/mon_compte_vue.dart';
 import 'package:bible_quiz/views/home/widgets/accueil.dart';
-import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 
 class HomeVue extends StatefulWidget {
@@ -32,13 +32,11 @@ class _HomeVueState extends State<HomeVue> {
       case 1:
         return Center(child: Text('Statistiques', style: MyTextStyle.titleM));
       case 2:
-        return Center(child: Text('Mon Compte', style: MyTextStyle.titleM));
+        return const MonCompteVue();
       default:
         return const Accueil();
     }
   }
-
-  final CountDownController _controller = CountDownController();
 
 // <> Build
   @override
@@ -53,8 +51,7 @@ class _HomeVueState extends State<HomeVue> {
         actions: [
           IconButton(
             onPressed: () => SettingsModal.showSettings(
-              context,
-              _controller,
+              context
             ),
             icon: const Icon(Icons.settings_outlined),
             splashRadius: 20,

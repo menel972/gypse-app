@@ -2,10 +2,10 @@ import 'package:bible_quiz/services/enums/couleur.dart';
 import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:flutter/material.dart';
 
-class PrimaryButton extends StatelessWidget {
+class SecondaryButton extends StatelessWidget {
   final String texte;
   final VoidCallback fonction;
-  const PrimaryButton({
+  const SecondaryButton({
     Key? key,
     required this.texte,
     required this.fonction,
@@ -17,14 +17,13 @@ class PrimaryButton extends StatelessWidget {
       onPressed: fonction,
       child: Text(texte, style: MyTextStyle.buttonWhiteM),
       style: ButtonStyle(
-        padding: MaterialStateProperty.resolveWith(
-            (states) =>
+        padding: MaterialStateProperty.resolveWith((states) =>
             const EdgeInsets.symmetric(vertical: 20, horizontal: 10)),
         backgroundColor:
-            MaterialStateProperty.resolveWith((states) => Couleur.primary),
+            MaterialStateProperty.resolveWith((states) => Couleur.secondary),
         side: MaterialStateProperty.resolveWith((states) => const BorderSide(
               width: 0.8,
-              color: Couleur.orangeClair,
+              color: Couleur.blanc,
             )),
         shape: MaterialStateProperty.resolveWith(
           (states) =>

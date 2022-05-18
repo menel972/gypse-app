@@ -1,11 +1,16 @@
-import 'package:bible_quiz/composants/bouttons/primary_button.dart';
 import 'package:bible_quiz/composants/carousels/carousel.dart';
+import 'package:bible_quiz/services/crud/user_crud.dart';
+import 'package:bible_quiz/services/enums/couleur.dart';
 import 'package:bible_quiz/services/enums/livres.dart';
+import 'package:bible_quiz/services/providers/user_provider.dart';
 import 'package:bible_quiz/views/jeu/jeu_vue.dart';
 import 'package:bible_quiz/views/livres/livres_vue.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../composants/bouttons/basic_button.dart';
+import '../../../composants/bouttons/secondary_button.dart';
+import '../../../services/models/user_model.dart';
 
 class Accueil extends StatelessWidget {
   const Accueil({Key? key}) : super(key: key);
@@ -32,27 +37,51 @@ class Accueil extends StatelessWidget {
           ),
         ),
         Expanded(
-          child: Padding(
+          child: StreamBuilder<User>(
+              stream: UserCrud.getConnectedUser('vKuTvYqJEeSZ8ZrLzxAb'),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return Padding(
             padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 20),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 // <!> JeuVue()
-                PrimaryButton(
-                    texte: 'Commencer une partie',
-                    fonction: () => Navigator.pushNamed(context, JeuVue.route,
-                        arguments: '')),
+                        SecondaryButton(
+                            texte: 'Commencer une partie',
+                            fonction: () => {
+                                  Provider.of<UserProvider>(context,
+                                          listen: false)
+                                      .setUser(snapshot.data!),
+                                  Navigator.pushNamed(context, JeuVue.route,
+                                      arguments: ''),
+                                }),
                 const SizedBox(height: 25),
                 // <!> LivresVue()
                 BasicButton(
                     texte: 'Choisir un livre',
                     couleur: 'orange',
                     fonction: () =>
-                        Navigator.pushNamed(context, LivresVue.route)),
+                        {
+                                  Provider.of<UserProvider>(context,
+                                          listen: false)
+                                      .setUser(snapshot.data!),
+                                  Navigator.pushNamed(context, LivresVue.route),
+                                }),
               ],
             ),
-          ),
+                  );
+                } else if (snapshot.hasError) {
+                  // ignore: avoid_print
+                  print('get user error : ' + snapshot.error.toString());
+                }
+                return const Center(
+                  child: CircularProgressIndicator(
+                    color: Couleur.secondary,
+                  ),
+                );
+              }),
         ),
       ],
     );

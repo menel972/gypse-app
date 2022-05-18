@@ -12,6 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
+import '../../../services/providers/user_provider.dart';
+
 class QuestionVue extends StatefulWidget {
   // =
   final CountDownController countDownController;
@@ -46,14 +48,14 @@ class _QuestionVueState extends State<QuestionVue> {
   // <> Build
   @override
   Widget build(BuildContext context) {
-    Settings settings = Provider.of<SettingsProvider>(context).settings;
+    Setting settings = Provider.of<SettingsProvider>(context).settings;
     void allRepToTrue(int niv) =>
         Provider.of<SettingsProvider>(context, listen: false).allRepToTrue(niv);
     void allRepToFalse(int niv) =>
         Provider.of<SettingsProvider>(context, listen: false)
             .allRepToFalse(niv);
 
-    void switchFacteur() {
+    void switchFacteur(String questionId) {
       setState(() {
         facteur = 0.85;
         Timer(
@@ -64,6 +66,8 @@ class _QuestionVueState extends State<QuestionVue> {
                   facteur = 0.35;
 
                   Timer(const Duration(milliseconds: 900), () {
+                    Provider.of<UserProvider>(context, listen: false)
+                        .saveAnsweredQuestion(questionId);
                     widget.countDownController.restart();
                     allRepToFalse(settings.niveau);
                   });
@@ -71,8 +75,12 @@ class _QuestionVueState extends State<QuestionVue> {
       });
     }
 
+    final List<dynamic> userQuestions =
+        Provider.of<UserProvider>(context).userQuestions;
+
     return StreamBuilder<Question>(
-        stream: QuestionCrud.fetchFirstQuestionByUser([], widget.livre),
+        stream:
+            QuestionCrud.fetchFirstQuestionByUser(userQuestions, widget.livre),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return ListView(

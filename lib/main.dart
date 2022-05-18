@@ -1,7 +1,10 @@
+import 'package:bible_quiz/composants/splashscreen/splash_screen.dart';
 import 'package:bible_quiz/services/enums/couleur.dart';
 import 'package:bible_quiz/services/providers/settings_provider.dart';
+import 'package:bible_quiz/services/providers/user_provider.dart';
 import 'package:bible_quiz/styles/my_appbar_style.dart';
 import 'package:bible_quiz/styles/my_bottom_bar_style.dart';
+import 'package:bible_quiz/styles/my_input_style.dart';
 import 'package:bible_quiz/views/home/home_vue.dart';
 import 'package:bible_quiz/views/jeu/jeu_vue.dart';
 import 'package:bible_quiz/views/livres/livres_vue.dart';
@@ -28,6 +31,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider.value(value: SettingsProvider()),
+        ChangeNotifierProvider.value(value: UserProvider()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -37,9 +41,10 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: Couleur.primary,
           appBarTheme: MyAppbarStyle.appbarStyle,
           bottomNavigationBarTheme: MyBottomBarStyle.bottomStyle,
+          inputDecorationTheme: MyInputStyle.inputStyle,
         ),
 
-        home: const HomeVue(),
+        home: const Splashscreen(),
     
         // <> Routes
         onGenerateRoute: (settings) {

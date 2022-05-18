@@ -19,7 +19,7 @@ class ReponseVue extends StatefulWidget {
   // =
   final String questionId;
   final CountDownController countDownController;
-  final VoidCallback switchFacteur;
+  final Function(String) switchFacteur;
 
   const ReponseVue({
     Key? key,
@@ -37,7 +37,7 @@ class _ReponseVueState extends State<ReponseVue> {
   // <> Build
   @override
   Widget build(BuildContext context) {
-    Settings settings = Provider.of<SettingsProvider>(context).settings;
+    Setting settings = Provider.of<SettingsProvider>(context).settings;
     List<bool> select = Provider.of<SettingsProvider>(context).reponses;
 
     return StreamBuilder<List<Reponse>>(
@@ -121,7 +121,8 @@ class _ReponseVueState extends State<ReponseVue> {
                                 width: MediaQuery.of(context).size.width * 0.2,
                                 child: PrimaryFabButton(
                                     icon: Icons.keyboard_arrow_right,
-                                    fonction: () => widget.switchFacteur()),
+                                    fonction: () => widget
+                                        .switchFacteur(widget.questionId)),
                               ),
                             ],
                           ),

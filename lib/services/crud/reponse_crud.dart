@@ -5,6 +5,17 @@ class ReponseCrud {
   static final CollectionReference<Map<String, dynamic>> db =
       FirebaseFirestore.instance.collection('reponses');
 
+  // {} Create
+  static Future addReponse(Reponse reponse) async {
+    final DocumentReference<Map<String, dynamic>> doc = db.doc();
+    final Map<String, dynamic> newReponse = reponse.toJson(doc.id);
+
+    await doc
+        .set(newReponse)
+        // ignore: avoid_print
+        .catchError((e) => print('add reponse error : ' + e.toString()));
+  }
+ 
   // {} Read
   static Stream<List<Reponse>> fetchReponseByNiveau(
       int niv, String questionId) {

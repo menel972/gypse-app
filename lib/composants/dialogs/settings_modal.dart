@@ -1,7 +1,7 @@
 import 'package:bible_quiz/composants/bouttons/basic_button.dart';
 import 'package:bible_quiz/services/providers/settings_provider.dart';
+import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:blur/blur.dart';
-import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -10,13 +10,10 @@ import '../../services/models/settings_model.dart';
 import '../bouttons/primary_button.dart';
 
 class SettingsModal extends StatefulWidget {
-  // =
-  final CountDownController countDownController;
-
   // {} Show Modal Settings
   static Future showSettings(
-      BuildContext context, CountDownController countDownController) async {
-    bool reset = await showModalBottomSheet(
+      BuildContext context) async {
+    return await showModalBottomSheet(
       context: context,
       backgroundColor: Couleur.bleuClair.withOpacity(0.6),
       shape: const RoundedRectangleBorder(
@@ -26,26 +23,12 @@ class SettingsModal extends StatefulWidget {
         ),
       ),
       builder: (context) =>
-          SettingsModal(countDownController: countDownController),
+          const SettingsModal(),
     );
-
-    Settings settings =
-        Provider.of<SettingsProvider>(context, listen: false).settings;
-
-    void allRepToFalse(int niv) =>
-        Provider.of<SettingsProvider>(context, listen: false)
-            .allRepToFalse(niv);
-
-    if (reset) {
-      countDownController.restart();
-      return allRepToFalse(settings.niveau);
-    }
-    return countDownController.resume();
   }
 
   const SettingsModal({
     Key? key,
-    required this.countDownController,
   }) : super(key: key);
 
   @override
@@ -57,7 +40,7 @@ class _SettingsModalState extends State<SettingsModal> {
   // <> Build
   @override
   Widget build(BuildContext context) {
-    Settings preset = Provider.of<SettingsProvider>(context).settings;
+    Setting preset = Provider.of<SettingsProvider>(context).settings;
 
     return Blur(
       blur: 3,
@@ -72,115 +55,181 @@ class _SettingsModalState extends State<SettingsModal> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Couleurs :'),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Flexible(
-                  flex: 1,
-                  child: RadioListTile(
-                    title: const FittedBox(child: Text('jour')),
-                    subtitle: const FittedBox(child: Text('couleurs clairs')),
-                    value: 1,
-                    groupValue: preset.luminosite,
-                    onChanged: (value) => setState(() {
-                      preset.luminosite = 1;
-                    }),
-                  ),
-                ),
-                Flexible(
-                  flex: 1,
-                  child: RadioListTile(
-                    title: const FittedBox(child: Text('nuit')),
-                    subtitle: const FittedBox(child: Text('couleurs sombres')),
-                    value: 2,
-                    groupValue: preset.luminosite,
-                    onChanged: (value) => setState(() {
-                      preset.luminosite = 2;
-                    }),
-                  ),
-                ),
-              ],
+            // TODO : Mode Sombre ou pas ?
+            // const Text('Couleurs :'),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //   children: [
+            //     Flexible(
+            //       flex: 1,
+            //       child: RadioListTile(
+            //         title: const FittedBox(child: Text('jour')),
+            //         subtitle: const FittedBox(child: Text('couleurs clairs')),
+            //         value: 1,
+            //         groupValue: preset.luminosite,
+            //         onChanged: (value) => setState(() {
+            //           preset.luminosite = 1;
+            //         }),
+            //       ),
+            //     ),
+            //     Flexible(
+            //       flex: 1,
+            //       child: RadioListTile(
+            //         title: const FittedBox(child: Text('nuit')),
+            //         subtitle: const FittedBox(child: Text('couleurs sombres')),
+            //         value: 2,
+            //         groupValue: preset.luminosite,
+            //         onChanged: (value) => setState(() {
+            //           preset.luminosite = 2;
+            //         }),
+            //       ),
+            //     ),
+            //   ],
+            // ),
+            Text(
+              'Difficulté :',
+              style: MyTextStyle.textBleuM,
             ),
-            const Text('Difficulté :'),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Flexible(
                   flex: 1,
                   child: RadioListTile(
-                    title: const FittedBox(child: Text('facile')),
-                    subtitle: const FittedBox(child: Text('2 choix')),
+                    title: FittedBox(
+                        child: Text(
+                      'facile',
+                      style: MyTextStyle.textBleuM,
+                    )),
+                    subtitle: FittedBox(
+                        child: Text(
+                      '2 choix',
+                      style: MyTextStyle.textBleuM,
+                    )),
                     value: 1,
                     groupValue: preset.niveau,
                     onChanged: (value) => setState(() {
                       preset.niveau = 1;
                     }),
+                    activeColor: Couleur.bleu,
                   ),
                 ),
                 Flexible(
                   flex: 1,
                   child: RadioListTile(
-                    title: const FittedBox(child: Text('Moyen')),
-                    subtitle: const FittedBox(child: Text('3 choix')),
+                    title: FittedBox(
+                        child: Text(
+                      'Moyen',
+                      style: MyTextStyle.textBleuM,
+                    )),
+                    subtitle: FittedBox(
+                        child: Text(
+                      '3 choix',
+                      style: MyTextStyle.textBleuM,
+                    )),
                     value: 2,
                     groupValue: preset.niveau,
                     onChanged: (value) => setState(() {
                       preset.niveau = 2;
                     }),
+                    activeColor: Couleur.bleu,
+
                   ),
                 ),
                 Flexible(
                   flex: 1,
                   child: RadioListTile(
-                    title: const FittedBox(child: Text('Difficile')),
-                    subtitle: const FittedBox(child: Text('4 choix')),
+                    title: FittedBox(
+                        child: Text(
+                      'Difficile',
+                      style: MyTextStyle.textBleuM,
+                    )),
+                    subtitle: FittedBox(
+                        child: Text(
+                      '4 choix',
+                      style: MyTextStyle.textBleuM,
+                    )),
                     value: 3,
                     groupValue: preset.niveau,
                     onChanged: (value) => setState(() {
                       preset.niveau = 3;
                     }),
+                    activeColor: Couleur.bleu,
+
                   ),
                 ),
               ],
             ),
-            const Text('Chronomètre :'),
+            Text(
+              'Chronomètre :',
+              style: MyTextStyle.textBleuM,
+            ),
             Row(
               children: [
                 Flexible(
                   flex: 1,
                   child: RadioListTile(
-                    title: const FittedBox(child: Text('facile')),
-                    subtitle: const FittedBox(child: Text('40 sec')),
+                    title: FittedBox(
+                        child: Text(
+                      'facile',
+                      style: MyTextStyle.textBleuM,
+                    )),
+                    subtitle: FittedBox(
+                        child: Text(
+                      '40 sec',
+                      style: MyTextStyle.textBleuM,
+                    )),
                     value: 40,
                     groupValue: preset.chrono,
                     onChanged: (value) => setState(() {
                       preset.chrono = 40;
                     }),
+                    activeColor: Couleur.bleu,
+
                   ),
                 ),
                 Flexible(
                   flex: 1,
                   child: RadioListTile(
-                    title: const FittedBox(child: Text('Moyen')),
-                    subtitle: const FittedBox(child: Text('30 sec')),
+                    title: FittedBox(
+                        child: Text(
+                      'Moyen',
+                      style: MyTextStyle.textBleuM,
+                    )),
+                    subtitle: FittedBox(
+                        child: Text(
+                      '30 sec',
+                      style: MyTextStyle.textBleuM,
+                    )),
                     value: 30,
                     groupValue: preset.chrono,
                     onChanged: (value) => setState(() {
                       preset.chrono = 30;
                     }),
+                    activeColor: Couleur.bleu,
+
                   ),
                 ),
                 Flexible(
                   flex: 1,
                   child: RadioListTile(
-                    title: const FittedBox(child: Text('Difficile')),
-                    subtitle: const FittedBox(child: Text('20 sec')),
+                    title: FittedBox(
+                        child: Text(
+                      'Difficile',
+                      style: MyTextStyle.textBleuM,
+                    )),
+                    subtitle: FittedBox(
+                        child: Text(
+                      '20 sec',
+                      style: MyTextStyle.textBleuM,
+                    )),
                     value: 20,
                     groupValue: preset.chrono,
                     onChanged: (value) => setState(() {
                       preset.chrono = 20;
                     }),
+                    activeColor: Couleur.bleu,
+
                   ),
                 ),
               ],
@@ -191,7 +240,7 @@ class _SettingsModalState extends State<SettingsModal> {
                 Expanded(
                   child: BasicButton(
                     texte: 'Annuler',
-                    couleur: 'orange',
+                    couleur: 'bleu',
                     fonction: () => Navigator.pop(context, false),
                   ),
                 ),

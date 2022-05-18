@@ -1,8 +1,12 @@
+import 'package:bible_quiz/services/crud/user_crud.dart';
 import 'package:bible_quiz/services/enums/couleur.dart';
+import 'package:bible_quiz/services/models/user_model.dart';
 import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:bible_quiz/views/jeu/jeu_vue.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../services/providers/user_provider.dart';
 import '../bouttons/small_button.dart';
 
 class LivreCard extends StatelessWidget {
@@ -61,14 +65,34 @@ class LivreCard extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: FittedBox(
-                      child:
-                          Text(livre.toUpperCase(),
+                      child: Text(livre.toUpperCase(),
                           style: MyTextStyle.titleBleuM)),
                 ),
-                SmallButton(
-                    texte: 'Jouer',
-                    fonction: () => Navigator.pushNamed(context, JeuVue.route,
-                        arguments: livre)),
+                StreamBuilder<User>(
+                    stream: UserCrud.getConnectedUser('vKuTvYqJEeSZ8ZrLzxAb'),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return SmallButton(
+                            texte: 'Jouer',
+                            fonction: () => {
+                                  Provider.of<UserProvider>(context,
+                                          listen: false)
+                                      .setUser(snapshot.data!),
+                                  Navigator.pushNamed(context, JeuVue.route,
+                                      arguments: livre),
+                                });
+                      } else if (!snapshot.hasData) {
+                        return const Center(child: Text('no user'));
+                      } else if (snapshot.hasError) {
+                        // ignore: avoid_print
+                        print('get user error : ' + snapshot.error.toString());
+                      }
+                      return const Center(
+                        child: CircularProgressIndicator(
+                          color: Couleur.secondary,
+                        ),
+                      );
+                    }),
               ],
             ),
           ),

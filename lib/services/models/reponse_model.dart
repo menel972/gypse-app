@@ -15,7 +15,7 @@ class Reponse {
     this.verset,
   });
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson(String id) => {
         'id': id,
         'questionId': questionId,
         'texte': texte,

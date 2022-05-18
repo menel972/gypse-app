@@ -17,7 +17,7 @@ class Question {
     this.difficile,
   });
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson(String id) => {
         'id': id,
         'texte': texte,
         'livre': livre,

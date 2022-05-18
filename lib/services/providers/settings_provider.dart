@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 class SettingsProvider with ChangeNotifier {
 // NOTE : Preset
   // = Preset du jeu
-  Settings settings = Settings(
+  Setting settings = Setting(
     luminosite: 2,
     niveau: 3,
     chrono: 30,
   );
 
   // {} Modifie les settings
-  void changeSettings(Settings newSet) {
+  void changeSettings(Setting newSet) {
     settings = newSet;
     notifyListeners();
   }

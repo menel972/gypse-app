@@ -2,6 +2,7 @@ import 'package:bible_quiz/services/enums/couleur.dart';
 import 'package:flutter/material.dart';
 
 class MyTextStyle {
+  // NOTE : Buttons
   static TextStyle buttonS = const TextStyle(
     fontFamily: 'NotoSansDisplay',
     fontSize: 14,
@@ -16,6 +17,7 @@ class MyTextStyle {
     fontWeight: FontWeight.w500,
     color: Couleur.secondAccent,
   );
+  // M
   static TextStyle buttonWhiteM = const TextStyle(
     fontFamily: 'NotoSansDisplay',
     fontSize: 16,
@@ -38,7 +40,15 @@ class MyTextStyle {
     color: Couleur.primary,
   );
 
-  static TextStyle titleS = const TextStyle();
+// NOTE : Titles
+  static TextStyle titleS = const TextStyle(
+    fontFamily: 'NotoSansDisplay',
+    fontWeight: FontWeight.w600,
+    fontSize: 18,
+    letterSpacing: 1.5,
+    color: Couleur.blanc,
+  );
+  // M
   static TextStyle titleM = const TextStyle(
     fontFamily: 'NotoSansDisplay',
     fontWeight: FontWeight.w600,
@@ -51,7 +61,16 @@ class MyTextStyle {
     fontWeight: FontWeight.w600,
     fontSize: 24,
     letterSpacing: 1.5,
+    decoration: TextDecoration.none,
     color: Couleur.textBleu,
+  );
+  static TextStyle titlePrimM = const TextStyle(
+    fontFamily: 'NotoSansDisplay',
+    fontWeight: FontWeight.w600,
+    fontSize: 24,
+    letterSpacing: 1.5,
+    decoration: TextDecoration.none,
+    color: Couleur.primary,
   );
   static TextStyle titleOrangeM = const TextStyle(
     fontFamily: 'NotoSansDisplay',
@@ -62,6 +81,7 @@ class MyTextStyle {
     color: Couleur.secondary,
   );
 
+// NOTE : Texts
   static TextStyle textS = const TextStyle(
     fontFamily: 'NotoSansDisplay',
     fontSize: 16,
@@ -108,6 +128,7 @@ class MyTextStyle {
     letterSpacing: 1,
     color: Colors.white38,
   );
+  // M
   static TextStyle textM = const TextStyle(
     fontFamily: 'NotoSansDisplay',
     fontSize: 20,
@@ -121,10 +142,13 @@ class MyTextStyle {
     color: Couleur.primary,
   );
 
+// NOTE : Labels
   static TextStyle labelS = const TextStyle(
     fontFamily: 'NotoSansDisplay',
     fontSize: 14,
     letterSpacing: 0.5,
+    color: Couleur.blanc,
   );
+  // M
   static TextStyle labelM = const TextStyle();
 }

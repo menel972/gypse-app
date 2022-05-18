@@ -1,13 +1,16 @@
 import 'package:bible_quiz/composants/dialogs/quit_dialog.dart';
-import 'package:bible_quiz/composants/dialogs/settings_modal.dart';
 import 'package:bible_quiz/services/crud/question_crud.dart';
+import 'package:bible_quiz/services/crud/user_crud.dart';
 import 'package:bible_quiz/services/enums/couleur.dart';
+import 'package:bible_quiz/services/models/user_model.dart';
 import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:bible_quiz/views/jeu/widgets/question_vue.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../services/models/question_model.dart';
+import '../../services/providers/user_provider.dart';
 
 class JeuVue extends StatefulWidget {
   // =
@@ -37,8 +40,10 @@ class _JeuVueState extends State<JeuVue> {
   // <> Build
   @override
   Widget build(BuildContext context) {
+    final User user = Provider.of<UserProvider>(context).user;
     return StreamBuilder<Question>(
-        stream: QuestionCrud.fetchFirstQuestionByUser([], widget.livre),
+        stream:
+            QuestionCrud.fetchFirstQuestionByUser(user.questions, widget.livre),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return Scaffold(
@@ -56,18 +61,6 @@ class _JeuVueState extends State<JeuVue> {
                   style: MyTextStyle.textM,
                 ),
 
-                actions: [
-                  IconButton(
-                    icon: const Icon(Icons.settings_outlined),
-                    onPressed: () => {
-                      countDownController.pause(),
-                      SettingsModal.showSettings(
-                        context,
-                        countDownController,
-                      ),
-                    },
-                  ),
-                ],
               ),
 
               // <> Body
@@ -94,7 +87,10 @@ class _JeuVueState extends State<JeuVue> {
                 elevation: 0,
                 // <!> QuitDialog()
                 leading: IconButton(
-                  onPressed: () => Navigator.pop(context),
+                  onPressed: () => {
+                    UserCrud.updateUser(user),
+                    Navigator.pop(context),
+                  },
                   icon: const Icon(Icons.arrow_back_ios),
                 ),
                 title: Text(
@@ -102,18 +98,6 @@ class _JeuVueState extends State<JeuVue> {
                   style: MyTextStyle.textM,
                 ),
 
-                actions: [
-                  IconButton(
-                    icon: const Icon(Icons.settings_outlined),
-                    onPressed: () => {
-                      countDownController.pause(),
-                      SettingsModal.showSettings(
-                        context,
-                        countDownController,
-                      ),
-                    },
-                  ),
-                ],
               ),
 
               // <> Body
