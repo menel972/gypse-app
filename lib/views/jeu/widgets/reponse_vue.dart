@@ -1,3 +1,4 @@
+
 import 'package:bible_quiz/composants/bouttons/basic_button.dart';
 import 'package:bible_quiz/composants/bouttons/primary_fab_button.dart';
 import 'package:bible_quiz/composants/dialogs/verset_modal.dart';
@@ -13,7 +14,7 @@ import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../services/providers/settings_provider.dart';
+import '../../../services/providers/user_provider.dart';
 
 class ReponseVue extends StatefulWidget {
   // =
@@ -37,8 +38,8 @@ class _ReponseVueState extends State<ReponseVue> {
   // <> Build
   @override
   Widget build(BuildContext context) {
-    Setting settings = Provider.of<SettingsProvider>(context).settings;
-    List<bool> select = Provider.of<SettingsProvider>(context).reponses;
+    Setting settings = Provider.of<UserProvider>(context).userSettings;
+    List<bool> select = Provider.of<UserProvider>(context).reponses;
 
     return StreamBuilder<List<Reponse>>(
         stream: ReponseCrud.fetchReponseByNiveau(

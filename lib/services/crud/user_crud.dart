@@ -6,28 +6,28 @@ class UserCrud {
       FirebaseFirestore.instance.collection('user');
 
   // {} Create
-  static Future addUser(User user) async {
+  static Future addUser(MyUser user) async {
     final DocumentReference<Map<String, dynamic>> doc = db.doc();
 
     await doc
-        .set(user.toJson(doc.id))
+        .set(user.toJson())
         // ignore: avoid_print
         .catchError((e) => print('add user error : ' + e.toString()));
   }
 
   // {} Read
-  static Stream<User> getConnectedUser(String userId) {
+  static Stream<MyUser> getConnectedUser(String userId) {
     return db
-        .doc(userId)
-        .snapshots()
-        .map((snap) => User.fromJson(snap.data()!));
+    .snapshots().map((snap) => snap.docs
+        .map((doc) => MyUser.fromJson(doc.data()))
+        .firstWhere((user) => user.id == userId));
   }
 
   // {} Update
-  static Future updateUser(User user) async {
+  static Future updateUser(MyUser user) async {
     await db
         .doc(user.id)
-        .set(user.toJson(user.id))
+        .set(user.toJson())
         // ignore: avoid_print
         .catchError((e) => print('update error : ' + e.toString()));
   }

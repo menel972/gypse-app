@@ -135,11 +135,20 @@ class MyTextStyle {
     letterSpacing: 1,
     color: Couleur.blanc,
   );
+
   static TextStyle textBleuM = const TextStyle(
     fontFamily: 'NotoSansDisplay',
     fontSize: 20,
     letterSpacing: 1,
     color: Couleur.primary,
+  );
+// L
+  static TextStyle textL = const TextStyle(
+    fontFamily: 'NotoSansDisplay',
+    fontSize: 22,
+    letterSpacing: 1,
+    fontWeight: FontWeight.w500,
+    color: Couleur.blanc,
   );
 
 // NOTE : Labels

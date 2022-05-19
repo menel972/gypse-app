@@ -4,7 +4,6 @@ import 'package:bible_quiz/services/crud/question_crud.dart';
 import 'package:bible_quiz/services/enums/couleur.dart';
 import 'package:bible_quiz/services/models/question_model.dart';
 import 'package:bible_quiz/services/models/settings_model.dart';
-import 'package:bible_quiz/services/providers/settings_provider.dart';
 import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:bible_quiz/views/jeu/widgets/reponse_vue.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
@@ -48,11 +47,11 @@ class _QuestionVueState extends State<QuestionVue> {
   // <> Build
   @override
   Widget build(BuildContext context) {
-    Setting settings = Provider.of<SettingsProvider>(context).settings;
+    Setting settings = Provider.of<UserProvider>(context).userSettings;
     void allRepToTrue(int niv) =>
-        Provider.of<SettingsProvider>(context, listen: false).allRepToTrue(niv);
+        Provider.of<UserProvider>(context, listen: false).allRepToTrue(niv);
     void allRepToFalse(int niv) =>
-        Provider.of<SettingsProvider>(context, listen: false)
+        Provider.of<UserProvider>(context, listen: false)
             .allRepToFalse(niv);
 
     void switchFacteur(String questionId) {
@@ -117,7 +116,7 @@ class _QuestionVueState extends State<QuestionVue> {
                             flex: 5,
                             child: Text(
                               snapshot.data!.texte,
-                              style: MyTextStyle.textM,
+                              style: MyTextStyle.textL,
                             ),
                           ),
                           const SizedBox(width: 10),

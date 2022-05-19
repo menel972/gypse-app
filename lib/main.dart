@@ -1,10 +1,9 @@
-import 'package:bible_quiz/composants/splashscreen/splash_screen.dart';
 import 'package:bible_quiz/services/enums/couleur.dart';
-import 'package:bible_quiz/services/providers/settings_provider.dart';
 import 'package:bible_quiz/services/providers/user_provider.dart';
 import 'package:bible_quiz/styles/my_appbar_style.dart';
 import 'package:bible_quiz/styles/my_bottom_bar_style.dart';
 import 'package:bible_quiz/styles/my_input_style.dart';
+import 'package:bible_quiz/views/auth/auth_vue.dart';
 import 'package:bible_quiz/views/home/home_vue.dart';
 import 'package:bible_quiz/views/jeu/jeu_vue.dart';
 import 'package:bible_quiz/views/livres/livres_vue.dart';
@@ -12,6 +11,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'composants/splashscreen/splash_screen.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -19,18 +19,18 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  // await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
+  runApp(const Gypse());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class Gypse extends StatelessWidget {
+  const Gypse({Key? key}) : super(key: key);
 
   // <> Build
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider.value(value: SettingsProvider()),
         ChangeNotifierProvider.value(value: UserProvider()),
       ],
       child: MaterialApp(
@@ -45,7 +45,8 @@ class MyApp extends StatelessWidget {
         ),
 
         home: const Splashscreen(),
-    
+        // home: const Envoi(),
+
         // <> Routes
         onGenerateRoute: (settings) {
           switch (settings.name) {
@@ -61,6 +62,14 @@ class MyApp extends StatelessWidget {
             case LivresVue.route:
               return MaterialPageRoute(
                 builder: (context) => const LivresVue(),
+              );
+            case AuthVue.route:
+              return MaterialPageRoute(
+                builder: (context) => const AuthVue(),
+              );
+            case Splashscreen.route:
+              return MaterialPageRoute(
+                builder: (context) => const Splashscreen(),
               );
           }
           return null;

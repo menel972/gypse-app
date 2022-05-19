@@ -21,6 +21,7 @@ class LivreCard extends StatelessWidget {
   // <> Build
   @override
   Widget build(BuildContext context) {
+    MyUser user = Provider.of<UserProvider>(context).user;
     return Container(
       alignment: Alignment.center,
       decoration: BoxDecoration(
@@ -68,8 +69,8 @@ class LivreCard extends StatelessWidget {
                       child: Text(livre.toUpperCase(),
                           style: MyTextStyle.titleBleuM)),
                 ),
-                StreamBuilder<User>(
-                    stream: UserCrud.getConnectedUser('vKuTvYqJEeSZ8ZrLzxAb'),
+                StreamBuilder<MyUser>(
+                    stream: UserCrud.getConnectedUser(user.id),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         return SmallButton(

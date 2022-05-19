@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../services/models/reponse_model.dart';
-import '../../../services/providers/settings_provider.dart';
+import '../../../services/providers/user_provider.dart';
 
 class ReponseFalseCard extends StatelessWidget {
   // =
@@ -20,7 +20,7 @@ class ReponseFalseCard extends StatelessWidget {
   // <> Build
   @override
   Widget build(BuildContext context) {
-    List<bool> select = Provider.of<SettingsProvider>(context).reponses;
+    List<bool> select = Provider.of<UserProvider>(context).reponses;
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),

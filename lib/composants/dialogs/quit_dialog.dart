@@ -8,7 +8,6 @@ import 'package:provider/provider.dart';
 
 import '../../services/models/settings_model.dart';
 import '../../services/models/user_model.dart';
-import '../../services/providers/settings_provider.dart';
 import '../../styles/my_text_style.dart';
 import '../../views/home/home_vue.dart';
 import '../bouttons/basic_button.dart';
@@ -25,11 +24,11 @@ class QuitDialog extends StatelessWidget {
   // <> Build
   @override
   Widget build(BuildContext context) {
-    Setting settings = Provider.of<SettingsProvider>(context).settings;
+    Setting settings = Provider.of<UserProvider>(context).userSettings;
     void allRepToFalse(int niv) =>
-        Provider.of<SettingsProvider>(context, listen: false)
+        Provider.of<UserProvider>(context, listen: false)
             .allRepToFalse(niv);
-    User user = Provider.of<UserProvider>(context).user;
+    MyUser user = Provider.of<UserProvider>(context).user;
 
     return Center(
       child: Container(

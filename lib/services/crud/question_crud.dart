@@ -16,19 +16,32 @@ class QuestionCrud {
         .catchError((e) => print('add question error : ' + e.toString()));
   }
 
+  static String addQuestionId(Question question) {
+    final DocumentReference<Map<String, dynamic>> doc = db.doc();
+    final Map<String, dynamic> newQuestion = question.toJson(doc.id);
+
+    doc
+        .set(newQuestion)
+        // ignore: avoid_print
+        .catchError((e) => print('add question error : ' + e.toString()));
+
+    return doc.id;
+  }
+
   // {} Read
-  static Stream<List<Question>> fetchQuestionByUser(List<String> userQ) {
-    return db.snapshots().map((snap) => snap.docs
-        .map((doc) => Question.fromJson(doc.data()))
-        .where((question) => !userQ.contains(question.id))
-        .toList());
+  static Stream<List<Question>> fetchAllQuestion() {
+    return db.snapshots().map((snap) =>
+        snap.docs.map((doc) => Question.fromJson(doc.data())).toList());
+  }
+
+  static Stream<List<Question>> fetchQuestionByUser(List<dynamic> userQ) {
+    return fetchAllQuestion().map((questions) =>
+        questions.where((question) => !userQ.contains(question.id)).toList());
   }
 
   static Stream<Question> fetchFirstQuestionByUser(
       List<dynamic> userQ, String? livre) {
-    return db.snapshots().map((snap) => snap.docs
-        .map((doc) => Question.fromJson(doc.data()))
-        .where((question) => !userQ.contains(question.id))
+    return fetchQuestionByUser(userQ).map((questions) => questions
         .where((question) {
           if (livre == null) {
             return true;
@@ -44,17 +57,19 @@ class QuestionCrud {
 
   static Stream<Map<String, int>> fetchQuestionByBook(
       String livre, List<dynamic> userQ) {
-    return db
-        .snapshots()
-        .map((snap) => snap.docs
-            .map((doc) => Question.fromJson(doc.data()))
-            .where((question) => question.livre == livre)
-            .toList())
+    return fetchAllQuestion()
+        .map((questions) =>
+            questions.where((question) => question.livre == livre).toList())
         .map((questions) => {
               'nbQ': questions.length,
               'nbR': questions
                   .where((question) => userQ.contains(question.id))
                   .length,
             });
+  }
+
+// {} Delete
+  static Future removeQuestion(String questonId) async {
+    await db.doc(questonId).delete();
   }
 }

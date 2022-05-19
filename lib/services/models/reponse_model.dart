@@ -1,6 +1,6 @@
 class Reponse {
   final String id;
-  final String questionId;
+  String questionId;
   final String texte;
   final bool confirme;
   final String? versetRef;

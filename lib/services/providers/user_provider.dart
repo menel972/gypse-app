@@ -5,25 +5,47 @@ import '../models/settings_model.dart';
 
 class UserProvider with ChangeNotifier {
   // NOTE : User mock
-  User user = User(
+  MyUser user = MyUser(
     id: 'id',
     questions: [],
     settings: Setting(
-      luminosite: 2,
       niveau: 3,
       chrono: 30,
     ),
   );
 
   List<dynamic> get userQuestions => user.questions;
+  Setting get userSettings => user.settings;
 
-  void setUser(User dbUser) {
+  void setUser(MyUser dbUser) {
     user = dbUser;
     notifyListeners();
   }
 
   void saveAnsweredQuestion(String questionId) {
     user.questions.add(questionId);
+    notifyListeners();
+  }
+
+  void saveNewSettings(Setting newSet) {
+    user.settings = newSet;
+    notifyListeners();
+  }
+
+  // NOTE : Reponse
+  // = reponses
+  List<bool> reponses = [false, false, false, false];
+
+  // {} Set all rep to true
+  void allRepToTrue(int niveau) {
+    reponses = reponses.map((rep) => true).toList();
+    notifyListeners();
+  }
+
+  // {} set all rep to false
+  void allRepToFalse(int niveau) {
+    reponses = reponses.map((rep) => false).toList();
+
     notifyListeners();
   }
 }

@@ -40,7 +40,7 @@ class _JeuVueState extends State<JeuVue> {
   // <> Build
   @override
   Widget build(BuildContext context) {
-    final User user = Provider.of<UserProvider>(context).user;
+    final MyUser user = Provider.of<UserProvider>(context).user;
     return StreamBuilder<Question>(
         stream:
             QuestionCrud.fetchFirstQuestionByUser(user.questions, widget.livre),
