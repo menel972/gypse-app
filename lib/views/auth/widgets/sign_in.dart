@@ -2,10 +2,15 @@ import 'dart:async';
 
 import 'package:bible_quiz/composants/bouttons/secondary_button.dart';
 import 'package:bible_quiz/services/crud/auth_crud.dart';
+import 'package:bible_quiz/services/providers/user_provider.dart';
 import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../../services/crud/user_crud.dart';
 import '../../../services/enums/couleur.dart';
+import '../../../services/models/settings_model.dart';
+import '../../../services/models/user_model.dart';
 import '../../home/home_vue.dart';
 
 class SignIn extends StatefulWidget {
@@ -19,14 +24,18 @@ class SignIn extends StatefulWidget {
   @override
   State<SignIn> createState() => _SignInState();
 }
-
+// <> _SignInState()
 class _SignInState extends State<SignIn> {
   final _mailController = TextEditingController();
   final _mdpController = TextEditingController();
 
   bool hide = true;
+  // <> Build
   @override
   Widget build(BuildContext context) {
+    void setMethod(String method) =>
+        Provider.of<UserProvider>(context, listen: false).setMethod(method);
+
     return Container(
       alignment: Alignment.center,
       decoration: BoxDecoration(
@@ -126,6 +135,21 @@ class _SignInState extends State<SignIn> {
             texte: 'Connexion',
             fonction: () => {
               AuthCrud.loginMailMdp(_mailController.text, _mdpController.text),
+              Timer(const Duration(seconds: 1),
+                  () => Navigator.pushNamed(context, HomeVue.route)),
+            },
+          ),
+          const SizedBox(height: 50),
+          SecondaryButton(
+            texte: 'Google',
+            fonction: () => {
+              setMethod(Method.g),
+              AuthCrud.googleSignIn.signIn().then(
+                    (newUser) => UserCrud.addGoogleUser(MyUser(
+                        id: newUser!.id,
+                        questions: [],
+                        settings: Setting(niveau: 3, chrono: 30))),
+                  ),
               Timer(const Duration(seconds: 1),
                   () => Navigator.pushNamed(context, HomeVue.route)),
             },

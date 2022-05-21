@@ -6,6 +6,7 @@ import 'package:bible_quiz/services/crud/user_crud.dart';
 import 'package:bible_quiz/services/enums/couleur.dart';
 import 'package:bible_quiz/services/models/user_model.dart';
 import 'package:bible_quiz/styles/my_text_style.dart';
+import 'package:bible_quiz/views/auth/auth_vue.dart';
 import 'package:bible_quiz/views/compte/mon_compte_vue.dart';
 import 'package:bible_quiz/views/home/widgets/accueil.dart';
 import 'package:flutter/material.dart';
@@ -52,13 +53,32 @@ class _HomeVueState extends State<HomeVue> {
     }
   }
 
+// = Method User Id
+  String getUserId(BuildContext context, String method) {
+    switch (method) {
+      case Method.mdp:
+        return AuthCrud.userId();
+      case Method.g:
+        return AuthCrud.googleUser!.id;
+      case Method.fb:
+        return '';
+      default:
+        Navigator.pushNamed(context, AuthVue.route);
+        return '';
+    }
+  }
+
 // <> Build
   @override
   Widget build(BuildContext context) {
+    // = Provider
+    String method = Provider.of<UserProvider>(context).userIdMethod;
+
     void setPrivateUser(MyUser dbUser) =>
         Provider.of<UserProvider>(context, listen: false).setUser(dbUser);
+
     return StreamBuilder<MyUser>(
-        stream: UserCrud.getConnectedUser(AuthCrud.userId()),
+        stream: UserCrud.getConnectedUser(getUserId(context, method)),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             setPrivateUser(snapshot.data!);

@@ -51,7 +51,7 @@ class _ReponseVueState extends State<ReponseVue> {
             int trueIndex = reponses.indexOf(trueReponse);
 
             return Container(
-              height: MediaQuery.of(context).size.height * 0.5,
+              height: MediaQuery.of(context).size.height * 0.54,
               decoration: BoxDecoration(
                 color: Couleur.bleuClair.withOpacity(0),
                 border: Border.all(color: Couleur.blanc2.withOpacity(0.7)),

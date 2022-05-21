@@ -3,6 +3,13 @@ import 'package:flutter/material.dart';
 
 import '../models/settings_model.dart';
 
+class Method {
+  static const String mdp = 'Email';
+  static const String g = 'Google';
+  static const String fb = 'Facebook';
+  static const String apl = 'Apple';
+}
+
 class UserProvider with ChangeNotifier {
   // NOTE : User mock
   MyUser user = MyUser(
@@ -16,6 +23,13 @@ class UserProvider with ChangeNotifier {
 
   List<dynamic> get userQuestions => user.questions;
   Setting get userSettings => user.settings;
+
+  String userIdMethod = Method.mdp;
+
+  void setMethod(String method) {
+    userIdMethod = method;
+    notifyListeners();
+  }
 
   void setUser(MyUser dbUser) {
     user = dbUser;

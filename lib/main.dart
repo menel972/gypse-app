@@ -19,7 +19,6 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  // await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
   runApp(const Gypse());
 }
 
@@ -44,6 +43,7 @@ class Gypse extends StatelessWidget {
           inputDecorationTheme: MyInputStyle.inputStyle,
         ),
 
+        // home: const GoogleTest(),
         home: const Splashscreen(),
         // home: const Envoi(),
 

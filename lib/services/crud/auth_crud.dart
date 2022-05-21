@@ -6,6 +6,7 @@ import 'package:bible_quiz/services/crud/user_crud.dart';
 import 'package:bible_quiz/services/models/settings_model.dart';
 import 'package:bible_quiz/services/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthCrud {
   static final auth = FirebaseAuth.instance;
@@ -41,4 +42,8 @@ class AuthCrud {
   static Future<UserCredential> loginMailMdp(String mail, String mdp) async {
     return await auth.signInWithEmailAndPassword(email: mail, password: mdp);
   }
+
+  // {} Google
+  static final GoogleSignIn googleSignIn = GoogleSignIn(scopes: ['email']);
+  static GoogleSignInAccount? googleUser = googleSignIn.currentUser;
 }
