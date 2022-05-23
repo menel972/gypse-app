@@ -1,13 +1,12 @@
 import 'package:bible_quiz/composants/bottomBar/home_bottom_bar.dart';
 import 'package:bible_quiz/composants/dialogs/settings_modal.dart';
-import 'package:bible_quiz/composants/splashscreen/splash_screen.dart';
 import 'package:bible_quiz/services/crud/auth_crud.dart';
 import 'package:bible_quiz/services/crud/user_crud.dart';
 import 'package:bible_quiz/services/enums/couleur.dart';
 import 'package:bible_quiz/services/models/user_model.dart';
-import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:bible_quiz/views/compte/mon_compte_vue.dart';
 import 'package:bible_quiz/views/home/widgets/accueil.dart';
+import 'package:bible_quiz/views/statistiques/stats_vue.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -35,17 +34,10 @@ class _HomeVueState extends State<HomeVue> {
         index = i;
       });
 
-  Widget switchWidget() {
+  Widget switchWidget(MyUser currentUser) {
     switch (index) {
       case 1:
-        return Center(
-            child: TextButton(
-          onPressed: () => {
-            AuthCrud.signOut(),
-            Navigator.pushNamed(context, Splashscreen.route),
-          },
-          child: Text('logout', style: MyTextStyle.titleM),
-        ));
+        return StatsVue(user: currentUser);
       case 2:
         return const MonCompteVue();
       default:
@@ -110,7 +102,7 @@ class _HomeVueState extends State<HomeVue> {
                     ),
                   ),
                   // <!> Accueil()
-                  child: switchWidget()),
+                  child: switchWidget(snapshot.data!)),
 
               // <> BottomBar
               // <!> HomeBottomBar()

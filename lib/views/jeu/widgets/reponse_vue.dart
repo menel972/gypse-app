@@ -125,7 +125,7 @@ class _ReponseVueState extends State<ReponseVue> {
                                       niveau: settings.niveau,
                                       qId: widget.questionId,
                                       valid:
-                                          select.where((e) => true).length == 1,
+                                          select.where((e) => e).length == 1,
                                     );
                                     newUser.questions.add(uQ);
                                     widget.switchFacteur(newUser);
