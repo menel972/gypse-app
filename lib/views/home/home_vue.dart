@@ -1,10 +1,18 @@
 import 'package:bible_quiz/composants/bottomBar/home_bottom_bar.dart';
 import 'package:bible_quiz/composants/dialogs/settings_modal.dart';
+import 'package:bible_quiz/composants/splashscreen/splash_screen.dart';
+import 'package:bible_quiz/services/crud/auth_crud.dart';
+import 'package:bible_quiz/services/crud/user_crud.dart';
 import 'package:bible_quiz/services/enums/couleur.dart';
+import 'package:bible_quiz/services/models/user_model.dart';
 import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:bible_quiz/views/compte/mon_compte_vue.dart';
 import 'package:bible_quiz/views/home/widgets/accueil.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../services/providers/user_provider.dart';
+import '../auth/auth_vue.dart';
 
 class HomeVue extends StatefulWidget {
   // =
@@ -30,7 +38,14 @@ class _HomeVueState extends State<HomeVue> {
   Widget switchWidget() {
     switch (index) {
       case 1:
-        return Center(child: Text('Statistiques', style: MyTextStyle.titleM));
+        return Center(
+            child: TextButton(
+          onPressed: () => {
+            AuthCrud.signOut(),
+            Navigator.pushNamed(context, Splashscreen.route),
+          },
+          child: Text('logout', style: MyTextStyle.titleM),
+        ));
       case 2:
         return const MonCompteVue();
       default:
@@ -38,47 +53,83 @@ class _HomeVueState extends State<HomeVue> {
     }
   }
 
+// = Method User Id
+  String getUserId(BuildContext context, String method) {
+    switch (method) {
+      case Method.mdp:
+        return AuthCrud.userId();
+      case Method.g:
+        return AuthCrud.googleUser!.id;
+      case Method.fb:
+        return '';
+      default:
+        Navigator.pushNamed(context, AuthVue.route);
+        return '';
+    }
+  }
+
 // <> Build
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      extendBody: true,
+    // = Provider
+    String method =
+        Provider.of<UserProvider>(context, listen: true).userIdMethod;
 
-      // <> AppBar
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        actions: [
-          IconButton(
-            onPressed: () => SettingsModal.showSettings(
-              context
+    void setPrivateUser(MyUser dbUser) =>
+        Provider.of<UserProvider>(context, listen: false).setUser(dbUser);
+
+    return StreamBuilder<MyUser>(
+        stream: UserCrud.getConnectedUser(getUserId(context, method)),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            setPrivateUser(snapshot.data!);
+            return Scaffold(
+              extendBodyBehindAppBar: true,
+              extendBody: true,
+
+              // <> AppBar
+              appBar: AppBar(
+                automaticallyImplyLeading: false,
+                actions: [
+                  IconButton(
+                    onPressed: () => SettingsModal.showSettings(context),
+                    icon: const Icon(Icons.settings_outlined),
+                    splashRadius: 20,
+                    splashColor: Couleur.secondary.withOpacity(0.5),
+                  ),
+                ],
+              ),
+
+              // <> Body
+              body: Container(
+                  padding: const EdgeInsets.only(top: 120),
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/home_bkg.png'),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  // <!> Accueil()
+                  child: switchWidget()),
+
+              // <> BottomBar
+              // <!> HomeBottomBar()
+              bottomNavigationBar: HomeBottomBar(
+                index: index,
+                switchIndex: switchIndex,
+              ),
+            );
+          } else if (!snapshot.hasData) {
+            return Center(child: Text(snapshot.error.toString()));
+          } else if (snapshot.hasError) {
+            // ignore: avoid_print
+            print('get connected User error : ' + snapshot.error.toString());
+          }
+          return const Center(
+            child: CircularProgressIndicator(
+              color: Couleur.secondary,
             ),
-            icon: const Icon(Icons.settings_outlined),
-            splashRadius: 20,
-            splashColor: Couleur.secondary.withOpacity(0.5),
-          ),
-        ],
-      ),
-
-      // <> Body
-      body: Container(
-        padding: const EdgeInsets.only(top: 120),
-        decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/home_bkg.png'),
-              fit: BoxFit.cover,
-            ),
-        ),
-        // <!> Accueil()
-          child: switchWidget()
-      ),
-
-      // <> BottomBar
-      // <!> HomeBottomBar()
-      bottomNavigationBar: HomeBottomBar(
-        index: index,
-        switchIndex: switchIndex,
-      ),
-    );
+          );
+        });
   }
 }

@@ -1,25 +1,27 @@
 import 'package:bible_quiz/services/models/settings_model.dart';
+import 'package:bible_quiz/services/models/user_question.dart';
 
-class User {
-  final String id;
-  final List<dynamic> questions;
-  final Setting settings;
+class MyUser {
+  String id;
+  List<dynamic> questions;
+  Setting settings;
 
-  User({
+  MyUser({
     required this.id,
     required this.questions,
     required this.settings,
   });
 
-  Map<String, dynamic> toJson(String id) => {
+  Map<String, dynamic> toJson() => {
         'id': id,
-        'questions': questions,
+        'questions': questions.map((uQ) => uQ.toJson()).toList(),
         'settings': settings.toJson(),
       };
 
-  static User fromJson(Map<String, dynamic> json) => User(
+  static MyUser fromJson(Map<String, dynamic> json) => MyUser(
         id: json['id'],
-        questions: json['questions'],
+        questions:
+            json['questions'].map((e) => UserQuestion.fromJson(e)).toList(),
         settings: Setting.fromJson(json['settings']),
       );
 }

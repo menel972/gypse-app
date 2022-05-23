@@ -1,5 +1,6 @@
 import 'package:bible_quiz/composants/bouttons/basic_button.dart';
-import 'package:bible_quiz/services/providers/settings_provider.dart';
+import 'package:bible_quiz/services/crud/user_crud.dart';
+import 'package:bible_quiz/services/models/user_model.dart';
 import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import 'package:provider/provider.dart';
 
 import '../../services/enums/couleur.dart';
 import '../../services/models/settings_model.dart';
+import '../../services/providers/user_provider.dart';
 import '../bouttons/primary_button.dart';
 
 class SettingsModal extends StatefulWidget {
@@ -40,7 +42,8 @@ class _SettingsModalState extends State<SettingsModal> {
   // <> Build
   @override
   Widget build(BuildContext context) {
-    Setting preset = Provider.of<SettingsProvider>(context).settings;
+    Setting preset = Provider.of<UserProvider>(context).userSettings;
+    MyUser privateUser = Provider.of<UserProvider>(context).user;
 
     return Blur(
       blur: 3,
@@ -249,8 +252,9 @@ class _SettingsModalState extends State<SettingsModal> {
                   child: PrimaryButton(
                     texte: 'Valider',
                     fonction: () => {
-                      Provider.of<SettingsProvider>(context, listen: false)
-                          .changeSettings(preset),
+                      Provider.of<UserProvider>(context, listen: false)
+                          .saveNewSettings(preset),
+                      UserCrud.updateUser(privateUser),
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                             content: Text('les paramètres ont été modifiés.')),

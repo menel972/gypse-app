@@ -1,4 +1,3 @@
-import 'package:bible_quiz/services/crud/user_crud.dart';
 import 'package:bible_quiz/services/enums/couleur.dart';
 import 'package:bible_quiz/services/providers/user_provider.dart';
 import 'package:blur/blur.dart';
@@ -6,9 +5,6 @@ import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../services/models/settings_model.dart';
-import '../../services/models/user_model.dart';
-import '../../services/providers/settings_provider.dart';
 import '../../styles/my_text_style.dart';
 import '../../views/home/home_vue.dart';
 import '../bouttons/basic_button.dart';
@@ -25,11 +21,9 @@ class QuitDialog extends StatelessWidget {
   // <> Build
   @override
   Widget build(BuildContext context) {
-    Setting settings = Provider.of<SettingsProvider>(context).settings;
-    void allRepToFalse(int niv) =>
-        Provider.of<SettingsProvider>(context, listen: false)
-            .allRepToFalse(niv);
-    User user = Provider.of<UserProvider>(context).user;
+    // = Provider
+    void allRepToFalse() =>
+        Provider.of<UserProvider>(context, listen: false).allRepToFalse();
 
     return Center(
       child: Container(
@@ -86,9 +80,8 @@ class QuitDialog extends StatelessWidget {
                               couleur: 'bleu',
                               // <!> HomeVue()
                               fonction: () => {
-                                UserCrud.updateUser(user),
                                 Navigator.pushNamed(context, HomeVue.route),
-                                allRepToFalse(settings.niveau),
+                                allRepToFalse(),
                               },
                             ),
                           ),

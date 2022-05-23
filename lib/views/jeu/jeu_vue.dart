@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:bible_quiz/composants/dialogs/quit_dialog.dart';
 import 'package:bible_quiz/services/crud/question_crud.dart';
 import 'package:bible_quiz/services/crud/user_crud.dart';
@@ -40,91 +42,107 @@ class _JeuVueState extends State<JeuVue> {
   // <> Build
   @override
   Widget build(BuildContext context) {
-    final User user = Provider.of<UserProvider>(context).user;
-    return StreamBuilder<Question>(
-        stream:
-            QuestionCrud.fetchFirstQuestionByUser(user.questions, widget.livre),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return Scaffold(
-              extendBodyBehindAppBar: true,
-              // <> AppBar
-              appBar: AppBar(
-                elevation: 0,
-                // <!> QuitDialog()
-                leading: IconButton(
-                  onPressed: () => confirmQuit(context),
-                  icon: const Icon(Icons.home_outlined),
-                ),
-                title: Text(
-                  snapshot.data!.livre,
-                  style: MyTextStyle.textM,
-                ),
+    // = Provider
+    final MyUser user = Provider.of<UserProvider>(context).user;
 
-              ),
+    return StreamBuilder<MyUser>(
+      stream: UserCrud.getConnectedUser(user.id),
+      builder: (context, snap) {
+        if (snap.hasData) {
+          MyUser dbUser = snap.data!;
+          List<dynamic> uQ = dbUser.questions.map((uQ) => uQ.qId).toList();
+          return StreamBuilder<Question>(
+              stream: QuestionCrud.fetchFirstQuestionByUser(uQ, widget.livre),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return Scaffold(
+                    extendBodyBehindAppBar: true,
+                    // <> AppBar
+                    appBar: AppBar(
+                      elevation: 0,
+                      // <!> QuitDialog()
+                      leading: IconButton(
+                        onPressed: () => confirmQuit(context),
+                        icon: const Icon(Icons.home_outlined),
+                      ),
+                      title: Text(
+                        snapshot.data!.livre,
+                        style: MyTextStyle.textM,
+                      ),
+                    ),
 
-              // <> Body
-              body: Container(
-                padding: const EdgeInsets.only(top: 25),
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/images/jeu_bkg.png'),
-                    fit: BoxFit.cover,
+                    // <> Body
+                    body: Container(
+                      padding: const EdgeInsets.only(top: 25),
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/jeu_bkg.png'),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      // <!> QuetionVue()
+                      child: QuestionVue(
+                        countDownController: countDownController,
+                        question: snapshot.data!,
+                        dbUser: dbUser,
+                      ),
+                    ),
+                  );
+                } else if (!snapshot.hasData) {
+                  return Scaffold(
+                    extendBodyBehindAppBar: true,
+                    // <> AppBar
+                    appBar: AppBar(
+                      elevation: 0,
+                      // <!> QuitDialog()
+                      leading: IconButton(
+                        onPressed: () => {
+                          UserCrud.updateUser(dbUser),
+                          Navigator.pop(context),
+                        },
+                        icon: const Icon(Icons.arrow_back_ios),
+                      ),
+                      title: Text(
+                        widget.livre!,
+                        style: MyTextStyle.textM,
+                      ),
+                    ),
+
+                    // <> Body
+                    body: Container(
+                      padding: const EdgeInsets.only(top: 25),
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/jeu_bkg.png'),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      // <!> QuetionVue()
+                      child: QuestionVue(
+                        countDownController: countDownController,
+                        question: snapshot.data!,
+                        dbUser: dbUser,
+                      ),
+                    ),
+                  );
+                } else if (snapshot.hasError) {
+                  print('stream error : ' + snapshot.error.toString());
+                }
+                return const Center(
+                  child: CircularProgressIndicator(
+                    color: Couleur.secondary,
                   ),
-                ),
-                // <!> QuetionVue()
-                child: QuestionVue(
-                  countDownController: countDownController,
-                  livre: widget.livre!,
-                ),
-              ),
-            );
-          } else if (!snapshot.hasData) {
-            return Scaffold(
-              extendBodyBehindAppBar: true,
-              // <> AppBar
-              appBar: AppBar(
-                elevation: 0,
-                // <!> QuitDialog()
-                leading: IconButton(
-                  onPressed: () => {
-                    UserCrud.updateUser(user),
-                    Navigator.pop(context),
-                  },
-                  icon: const Icon(Icons.arrow_back_ios),
-                ),
-                title: Text(
-                  widget.livre!,
-                  style: MyTextStyle.textM,
-                ),
-
-              ),
-
-              // <> Body
-              body: Container(
-                padding: const EdgeInsets.only(top: 25),
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/images/jeu_bkg.png'),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                // <!> QuetionVue()
-                child: QuestionVue(
-                  countDownController: countDownController,
-                  livre: widget.livre!,
-                ),
-              ),
-            );
-          } else if (snapshot.hasError) {
-            // ignore: avoid_print
-            print('stream error : ' + snapshot.error.toString());
-          }
-          return const Center(
-            child: CircularProgressIndicator(
-              color: Couleur.secondary,
-            ),
-          );
-        });
+                );
+              });
+        } else if (snap.hasError) {
+          print('Get user error : ' + snap.error.toString());
+        }
+        return const Center(
+          child: CircularProgressIndicator(
+            color: Couleur.secondary,
+          ),
+        );
+      },
+    );
   }
 }

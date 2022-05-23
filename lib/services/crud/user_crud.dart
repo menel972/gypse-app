@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:bible_quiz/services/models/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -5,30 +7,39 @@ class UserCrud {
   static final CollectionReference<Map<String, dynamic>> db =
       FirebaseFirestore.instance.collection('user');
 
-  // {} Create
-  static Future addUser(User user) async {
-    final DocumentReference<Map<String, dynamic>> doc = db.doc();
+  static Future<bool> checkExistingUser(String uid) async {
+    return await db.get().then((snapshot) => snapshot.docs
+        .map((doc) => MyUser.fromJson(doc.data()).id)
+        .contains(uid));
+  }
 
-    await doc
-        .set(user.toJson(doc.id))
-        // ignore: avoid_print
+  // {} Create
+  static Future addUser(MyUser user) async {
+    await db
+        .doc(user.id)
+        .set(user.toJson())
         .catchError((e) => print('add user error : ' + e.toString()));
   }
 
+  static Future addGoogleUser(MyUser newUser) async {
+    if (!await checkExistingUser(newUser.id)) {
+      addUser(newUser);
+    }
+  }
+
   // {} Read
-  static Stream<User> getConnectedUser(String userId) {
-    return db
-        .doc(userId)
-        .snapshots()
-        .map((snap) => User.fromJson(snap.data()!));
+  static Stream<MyUser> getConnectedUser(String userId) {
+    return db.snapshots().map((snap) => snap.docs
+        .map((doc) => MyUser.fromJson(doc.data()))
+        .firstWhere((user) => user.id == userId));
   }
 
   // {} Update
-  static Future updateUser(User user) async {
+  static Future updateUser(MyUser user) async {
     await db
         .doc(user.id)
-        .set(user.toJson(user.id))
-        // ignore: avoid_print
+        .set(user.toJson())
+        .then((value) => print('updated'))
         .catchError((e) => print('update error : ' + e.toString()));
   }
 }

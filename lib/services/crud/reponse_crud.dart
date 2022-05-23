@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:bible_quiz/services/models/reponse_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -12,10 +14,19 @@ class ReponseCrud {
 
     await doc
         .set(newReponse)
-        // ignore: avoid_print
         .catchError((e) => print('add reponse error : ' + e.toString()));
   }
- 
+
+  static Future addReponseId(Reponse reponse, String questionId) async {
+    final DocumentReference<Map<String, dynamic>> doc = db.doc();
+    reponse.questionId = questionId;
+    final Map<String, dynamic> newReponse = reponse.toJson(doc.id);
+
+    await doc
+        .set(newReponse)
+        .catchError((e) => print('add reponse error : ' + e.toString()));
+  }
+
   // {} Read
   static Stream<List<Reponse>> fetchReponseByNiveau(
       int niv, String questionId) {
@@ -60,5 +71,18 @@ class ReponseCrud {
 
   static Future updateSelect(String id) async {
     return await db.doc(id).set({'select': true});
+  }
+
+  // {} Delete
+  static Future removeReponses(List<Reponse> reponses) async {
+    return reponses.map((reponse) => db.doc(reponse.id).delete());
+  }
+
+  static Future removeReponse(String id) async {
+    await db
+        .doc(id)
+        .delete()
+        .then((value) => print('RAS'))
+        .catchError((e) => print('ici : ' + e.toString()));
   }
 }
