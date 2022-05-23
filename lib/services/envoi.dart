@@ -20,7 +20,7 @@ class _EnvoiState extends State<Envoi> {
       confirme: false);
 
   final qr = [];
-  
+
   void test(Map<String, Object> qr) {
     String text = QuestionCrud.addQuestionId(qr['question'] as Question);
     ReponseCrud.addReponseId(qr['reponse 1'] as Reponse, text);

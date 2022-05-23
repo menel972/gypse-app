@@ -36,10 +36,10 @@ class UserProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void saveAnsweredQuestion(String questionId) {
-    user.questions.add(questionId);
-    notifyListeners();
-  }
+  // void saveAnsweredQuestion(String questionId) {
+  //   user.questions.add(questionId);
+  //   notifyListeners();
+  // }
 
   void saveNewSettings(Setting newSet) {
     user.settings = newSet;
@@ -51,15 +51,14 @@ class UserProvider with ChangeNotifier {
   List<bool> reponses = [false, false, false, false];
 
   // {} Set all rep to true
-  void allRepToTrue(int niveau) {
+  void allRepToTrue() {
     reponses = reponses.map((rep) => true).toList();
     notifyListeners();
   }
 
   // {} set all rep to false
-  void allRepToFalse(int niveau) {
+  void allRepToFalse() {
     reponses = reponses.map((rep) => false).toList();
-
     notifyListeners();
   }
 }
