@@ -78,3 +78,19 @@ class Gypse extends StatelessWidget {
     );
   }
 }
+
+
+
+// The following RenderObject was being processed when the exception was fired: RenderPointerListener#a5a85 NEEDS-LAYOUT NEEDS-PAINT
+// RenderObject: RenderPointerListener#a5a85 NEEDS-LAYOUT NEEDS-PAINT
+//     parentData: <none> (can use size)
+//     constraints: BoxConstraints(w=196.4, h=196.4)
+//     size: MISSING
+//     behavior: deferToChild
+//     listeners: down
+//     child: ChartContainerRenderObject<String>#9e20a NEEDS-PAINT
+//         parentData: <none> (can use size)
+//         constraints: BoxConstraints(w=196.4, h=196.4)
+//         semantic boundary
+//         size: MISSING
+//         painter: ChartContainerCustomPaint#45506()
