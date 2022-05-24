@@ -99,6 +99,7 @@ class _SettingsModalState extends State<SettingsModal> {
                 Flexible(
                   flex: 1,
                   child: RadioListTile(
+                    contentPadding: const EdgeInsets.all(5),
                     title: FittedBox(
                         child: Text(
                       'facile',
@@ -120,6 +121,7 @@ class _SettingsModalState extends State<SettingsModal> {
                 Flexible(
                   flex: 1,
                   child: RadioListTile(
+                    contentPadding: const EdgeInsets.all(5),
                     title: FittedBox(
                         child: Text(
                       'Moyen',
@@ -142,6 +144,7 @@ class _SettingsModalState extends State<SettingsModal> {
                 Flexible(
                   flex: 1,
                   child: RadioListTile(
+                    contentPadding: const EdgeInsets.all(3),
                     title: FittedBox(
                         child: Text(
                       'Difficile',
@@ -172,6 +175,7 @@ class _SettingsModalState extends State<SettingsModal> {
                 Flexible(
                   flex: 1,
                   child: RadioListTile(
+                    contentPadding: const EdgeInsets.all(5),
                     title: FittedBox(
                         child: Text(
                       'facile',
@@ -194,6 +198,7 @@ class _SettingsModalState extends State<SettingsModal> {
                 Flexible(
                   flex: 1,
                   child: RadioListTile(
+                    contentPadding: const EdgeInsets.all(5),
                     title: FittedBox(
                         child: Text(
                       'Moyen',
@@ -216,6 +221,7 @@ class _SettingsModalState extends State<SettingsModal> {
                 Flexible(
                   flex: 1,
                   child: RadioListTile(
+                    contentPadding: const EdgeInsets.all(3),
                     title: FittedBox(
                         child: Text(
                       'Difficile',
@@ -237,7 +243,7 @@ class _SettingsModalState extends State<SettingsModal> {
                 ),
               ],
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 30),
             Row(
               children: [
                 Expanded(

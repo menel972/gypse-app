@@ -1,6 +1,7 @@
 import 'package:bible_quiz/services/enums/couleur.dart';
 import 'package:bible_quiz/services/models/user_model.dart';
 import 'package:bible_quiz/styles/my_text_style.dart';
+import 'package:bible_quiz/views/statistiques/widgets/stats_gauge.dart';
 import 'package:d_chart/d_chart.dart';
 import 'package:flutter/material.dart';
 
@@ -83,7 +84,7 @@ class StatsVue extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              'Mon activité',
+              uQs.length.toString() + ' questions répondue.s :',
               style: MyTextStyle.textM,
             ),
             const SizedBox(height: 15),
@@ -100,59 +101,11 @@ class StatsVue extends StatelessWidget {
                           height: MediaQuery.of(context).size.width * 0.55,
                           width: MediaQuery.of(context).size.width * 0.55,
                           color: Couleur.blanc2.withOpacity(0.3),
-                          child: Stack(
-                            children: [
-                              DChartGauge(
-                                data: dataNiv3,
-                                fillColor: (pieData, i) {
-                                  switch (pieData['domain']) {
-                                    case 'R':
-                                      return Couleur.secondary;
-                                    case 'P':
-                                      return Colors.red;
-                                    default:
-                                      return Colors.grey;
-                                  }
-                                },
-                                // pieLabel: (pieData, index) {
-                                //   return "${pieData['domain']}";
-                                // },
-                              ),
-                              const Align(
-                                child: Text('Difficile'),
-                              ),
-                              Align(
-                                alignment: Alignment.bottomCenter,
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 5, horizontal: 0),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Text(
-                                        'Réussie : ' + nbRniv3.toString(),
-                                        style: const TextStyle(
-                                          color: Couleur.secondary,
-                                        ),
-                                      ),
-                                      Text(
-                                        'Perdue : ' + nbPniv3.toString(),
-                                        style: const TextStyle(
-                                          color: Colors.red,
-                                        ),
-                                      ),
-                                      Text(
-                                        'Total : ' + uQs.length.toString(),
-                                        style: const TextStyle(
-                                          color: Colors.grey,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
+                          child: StatsGauge(
+                            data: dataNiv3,
+                            legende: 'Difficile',
+                            nbR: nbRniv3,
+                            nbP: nbPniv3,
                           ),
                         ),
                         const SizedBox(width: 15),
@@ -161,59 +114,11 @@ class StatsVue extends StatelessWidget {
                           height: MediaQuery.of(context).size.width * 0.55,
                           width: MediaQuery.of(context).size.width * 0.55,
                           color: Couleur.blanc2.withOpacity(0.3),
-                          child: Stack(
-                            children: [
-                              DChartGauge(
-                                data: dataNiv2,
-                                fillColor: (pieData, i) {
-                                  switch (pieData['domain']) {
-                                    case 'R':
-                                      return Couleur.secondary;
-                                    case 'P':
-                                      return Colors.red;
-                                    default:
-                                      return Colors.grey;
-                                  }
-                                },
-                                pieLabel: (pieData, index) {
-                                  return "${pieData['domain']}";
-                                },
-                              ),
-                              const Align(
-                                child: Text('Moyen'),
-                              ),
-                              Align(
-                                alignment: Alignment.bottomCenter,
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 5, horizontal: 0),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Text(
-                                        'Réussie : ' + nbRniv2.toString(),
-                                        style: const TextStyle(
-                                          color: Couleur.secondary,
-                                        ),
-                                      ),
-                                      Text(
-                                        'Perdue : ' + nbPniv2.toString(),
-                                        style: const TextStyle(
-                                          color: Colors.red,
-                                        ),
-                                      ),
-                                      Text(
-                                        'Total : ' + uQs.length.toString(),
-                                        style: const TextStyle(
-                                          color: Colors.grey,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
+                          child: StatsGauge(
+                            data: dataNiv2,
+                            legende: 'Moyen',
+                            nbR: nbRniv2,
+                            nbP: nbPniv2,
                           ),
                         ),
                         const SizedBox(width: 15),
@@ -222,59 +127,11 @@ class StatsVue extends StatelessWidget {
                           height: MediaQuery.of(context).size.width * 0.55,
                           width: MediaQuery.of(context).size.width * 0.55,
                           color: Couleur.blanc2.withOpacity(0.3),
-                          child: Stack(
-                            children: [
-                              DChartGauge(
-                                data: dataNiv1,
-                                fillColor: (pieData, i) {
-                                  switch (pieData['domain']) {
-                                    case 'R':
-                                      return Couleur.secondary;
-                                    case 'P':
-                                      return Colors.red;
-                                    default:
-                                      return Colors.grey;
-                                  }
-                                },
-                                pieLabel: (pieData, index) {
-                                  return "${pieData['domain']}";
-                                },
-                              ),
-                              const Align(
-                                child: Text('Facile'),
-                              ),
-                              Align(
-                                alignment: Alignment.bottomCenter,
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 5, horizontal: 0),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Text(
-                                        'Réussie : ' + nbRniv1.toString(),
-                                        style: const TextStyle(
-                                          color: Couleur.secondary,
-                                        ),
-                                      ),
-                                      Text(
-                                        'Perdue : ' + nbPniv1.toString(),
-                                        style: const TextStyle(
-                                          color: Colors.red,
-                                        ),
-                                      ),
-                                      Text(
-                                        'Total : ' + uQs.length.toString(),
-                                        style: const TextStyle(
-                                          color: Colors.grey,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
+                          child: StatsGauge(
+                            data: dataNiv1,
+                            legende: 'Facile',
+                            nbR: nbRniv1,
+                            nbP: nbPniv1,
                           ),
                         ),
                         const SizedBox(width: 15),

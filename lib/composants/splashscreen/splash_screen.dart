@@ -37,7 +37,10 @@ class _SplashscreenState extends State<Splashscreen> {
     return Scaffold(
       backgroundColor: Couleur.primary,
       body: Center(
-        child: SvgPicture.asset('assets/images/logo.svg'),
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: SvgPicture.asset('assets/images/logo_gypse.svg'),
+        ),
       ),
     );
   }
