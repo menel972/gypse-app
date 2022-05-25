@@ -72,4 +72,10 @@ class _QuestionAjoutState extends State<QuestionAjout> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    _questionIdController.dispose();
+    super.dispose();
+  }
 }

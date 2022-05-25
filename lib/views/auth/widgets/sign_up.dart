@@ -147,4 +147,11 @@ class _SignUpState extends State<SignUp> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    _mailController.dispose();
+    _mdpController.dispose();
+    super.dispose();
+  }
 }

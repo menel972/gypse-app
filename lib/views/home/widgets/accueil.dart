@@ -13,9 +13,10 @@ class Accueil extends StatelessWidget {
   // = Livres du Carousel
   static final List<String> livres = [
     Livres.gen,
+    Livres.pro,
+    Livres.esa,
+    Livres.luc,
     Livres.apo,
-    Livres.cor1,
-    Livres.jean,
   ];
 
   // <> Build

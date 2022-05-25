@@ -25,7 +25,9 @@ class _MonCompteVueState extends State<MonCompteVue> {
             tabs: [
               Text('Mon compte', style: MyTextStyle.titleS),
               Text('Questions', style: MyTextStyle.titleS),
-              Text('Ajout', style: MyTextStyle.titleS),
+              IgnorePointer(
+                child: Text('Ajout', style: MyTextStyle.titleS),
+              ),
             ],
             isScrollable: true,
           ),
