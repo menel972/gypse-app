@@ -21,55 +21,74 @@ class _QuestionPreviewState extends State<QuestionPreview> {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           final List<Question> questions = snapshot.data!;
-          return ListView.separated(
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 0),
-            itemCount: questions.length,
-            separatorBuilder: (context, i) => const Divider(
-              color: Couleur.blanc,
-            ),
-            itemBuilder: (context, i) {
-              Question question = questions[i];
-              return StreamBuilder<List<Reponse>>(
-                  stream: ReponseCrud.fetchReponseByNiveau(3, question.id),
-                  builder: (context, snap) {
-                    if (snap.hasData) {
-                      List<Reponse> reponses = snap.data!;
-                      return Dismissible(
-                        key: Key(question.id),
-                        direction: DismissDirection.endToStart,
-                        background: Container(color: Couleur.blanc),
-                        secondaryBackground: Container(color: Colors.red),
-                        onDismissed: (_) {
-                          QuestionCrud.removeQuestion(question.id);
-                          ReponseCrud.removeReponse(reponses[0].id);
-                          ReponseCrud.removeReponse(reponses[1].id);
-                          ReponseCrud.removeReponse(reponses[2].id);
-                          ReponseCrud.removeReponse(reponses[3].id);
-                        },
-                        child: ListTile(
-                          leading: Text(
-                            question.livre,
-                            style: MyTextStyle.textS,
-                          ),
-                          title: Text(
-                            question.texte,
-                            style: MyTextStyle.textS,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
-                          ),
-                        ),
-                      );
-                    } else if (!snap.hasError) {
-                      // ignore: avoid_print
-                      print('reponse error : ' + snap.error.toString());
-                    }
-                    return const Center(
-                      child: CircularProgressIndicator(
-                        color: Couleur.secondary,
-                      ),
-                    );
-                  });
-            },
+          return Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Text(
+                  questions.length.toString() + ' questions :',
+                  style: MyTextStyle.textS,
+                ),
+              ),
+              Expanded(
+                child: ListView.separated(
+                  padding: const EdgeInsets.only(
+                    top: 8,
+                    left: 0,
+                    right: 0,
+                    bottom: 80,
+                  ),
+                  itemCount: questions.length,
+                  separatorBuilder: (context, i) => const Divider(
+                    color: Couleur.blanc,
+                  ),
+                  itemBuilder: (context, i) {
+                    Question question = questions[i];
+                    return StreamBuilder<List<Reponse>>(
+                        stream:
+                            ReponseCrud.fetchReponseByNiveau(3, question.id),
+                        builder: (context, snap) {
+                          if (snap.hasData) {
+                            List<Reponse> reponses = snap.data!;
+                            return Dismissible(
+                              key: Key(question.id),
+                              direction: DismissDirection.endToStart,
+                              background: Container(color: Couleur.blanc),
+                              secondaryBackground: Container(color: Colors.red),
+                              onDismissed: (_) {
+                                QuestionCrud.removeQuestion(question.id);
+                                ReponseCrud.removeReponse(reponses[0].id);
+                                ReponseCrud.removeReponse(reponses[1].id);
+                                ReponseCrud.removeReponse(reponses[2].id);
+                                ReponseCrud.removeReponse(reponses[3].id);
+                              },
+                              child: ListTile(
+                                leading: Text(
+                                  (i + 1).toString() + ' - ' + question.livre,
+                                  style: MyTextStyle.textS,
+                                ),
+                                title: Text(
+                                  question.texte,
+                                  style: MyTextStyle.textS,
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 2,
+                                ),
+                              ),
+                            );
+                          } else if (!snap.hasError) {
+                            // ignore: avoid_print
+                            print('reponse error : ' + snap.error.toString());
+                          }
+                          return const Center(
+                            child: CircularProgressIndicator(
+                              color: Couleur.secondary,
+                            ),
+                          );
+                        });
+                  },
+                ),
+              ),
+            ],
           );
         } else if (!snapshot.hasData) {
           return Center(

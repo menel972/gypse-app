@@ -143,16 +143,16 @@ class _SignInState extends State<SignIn> {
           const SizedBox(height: 50),
           SecondaryButton(
             texte: 'Google',
-            fonction: () => {
-              setMethod(Method.g),
-              AuthCrud.googleSignIn.signIn().then(
-                    (newUser) => UserCrud.addGoogleUser(MyUser(
+            fonction: () {
+              setMethod(Method.g);
+              AuthCrud.googleSignIn.signIn().then((newUser) => {
+                    UserCrud.addGoogleUser(MyUser(
                         id: newUser!.id,
                         questions: [],
                         settings: Setting(niveau: 3, chrono: 30))),
-                  ),
+                  });
               Timer(const Duration(seconds: 1),
-                  () => Navigator.pushNamed(context, HomeVue.route)),
+                  () => Navigator.pushNamed(context, HomeVue.route));
             },
           ),
           Row(

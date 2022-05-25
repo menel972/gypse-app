@@ -6,7 +6,11 @@ import 'package:bible_quiz/services/crud/user_crud.dart';
 import 'package:bible_quiz/services/models/settings_model.dart';
 import 'package:bible_quiz/services/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+
+import '../../views/auth/auth_vue.dart';
+import '../providers/user_provider.dart';
 
 class AuthCrud {
   static final auth = FirebaseAuth.instance;
@@ -25,6 +29,23 @@ class AuthCrud {
 
   static String userId() {
     return auth.currentUser!.uid;
+  }
+
+  static User currentUser = auth.currentUser!;
+
+  // = Method User Id
+  static String getUserId(context, String method) {
+    switch (method) {
+      case Method.mdp:
+        return AuthCrud.userId();
+      case Method.g:
+        return AuthCrud.googleUser!.id;
+      case Method.fb:
+        return '';
+      default:
+        Navigator.pushNamed(context, AuthVue.route);
+        return '';
+    }
   }
 
 // {} Email - Password
