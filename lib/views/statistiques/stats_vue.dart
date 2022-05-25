@@ -101,7 +101,7 @@ class StatsVue extends StatelessWidget {
                         // <!> Total()
                         StatsGauge(
                           data: dataTotal,
-                          legende: 'Total',
+                          legende: 'Total : ' + uQs.length.toString(),
                           nbR: nbGood,
                           nbP: nbBad,
                         ),
@@ -109,7 +109,8 @@ class StatsVue extends StatelessWidget {
                         // <!> Niv3()
                         StatsGauge(
                           data: dataNiv3,
-                          legende: 'Difficile',
+                          legende:
+                              'Difficile : ' + (nbPniv3 + nbRniv3).toString(),
                           nbR: nbRniv3,
                           nbP: nbPniv3,
                         ),
@@ -117,7 +118,7 @@ class StatsVue extends StatelessWidget {
                         // <!> Niv2()
                         StatsGauge(
                           data: dataNiv2,
-                          legende: 'Moyen',
+                          legende: 'Moyen : ' + (nbPniv2 + nbRniv2).toString(),
                           nbR: nbRniv2,
                           nbP: nbPniv2,
                         ),
@@ -125,7 +126,7 @@ class StatsVue extends StatelessWidget {
                         // <!> Niv1()
                         StatsGauge(
                           data: dataNiv1,
-                          legende: 'Facile',
+                          legende: 'Facile : ' + (nbPniv1 + nbRniv1).toString(),
                           nbR: nbRniv1,
                           nbP: nbPniv1,
                         ),

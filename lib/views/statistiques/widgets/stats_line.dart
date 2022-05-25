@@ -16,9 +16,10 @@ class StatsLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 80, top: 30, left: 15, right: 15),
+      padding: const EdgeInsets.only(bottom: 80, top: 35, left: 15, right: 15),
       child: Column(
         children: [
+          Text(legende, style: MyTextStyle.textM),
           Expanded(
             child: DChartLine(
               data: data,
@@ -30,7 +31,6 @@ class StatsLine extends StatelessWidget {
               includePoints: true,
             ),
           ),
-          Text(legende, style: MyTextStyle.textM),
         ],
       ),
     );
