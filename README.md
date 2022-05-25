@@ -1,16 +1,41 @@
-# bible_quiz
+# About Gypse Quiz App
 
-A new Flutter project.
+Quiz app to challenge your knowledge about bible with 3 modes of difficulty.
+
+Design by  <a href="https://www.linkedin.com/in/sia-xiong-aa88091b9/">Sia Xiong</a>.
+
+<p align="center">
+<img alt="Flutter" src="https://img.shields.io/badge/Flutter-02569B?style=flat-square&logo=flutter&logoColor=white" />
+<img alt="Flutter" src="https://img.shields.io/badge/D_chart-02569B?style=flat-square&logo=flutter&logoColor=white" />
+<img alt="Flutter" src="https://img.shields.io/badge/circular_countdown_timer-02569B?style=flat-square&logo=flutter&logoColor=white" />
+<img alt="Flutter" src="https://img.shields.io/badge/flutter_carousel_widget-02569B?style=flat-square&logo=flutter&logoColor=white" />
+<img alt="Dart" src="https://img.shields.io/badge/Dart-0175C2?style=flat-square&logo=dart&logoColor=white" />
+<img alt="Firebase" src="https://img.shields.io/badge/Firebase-D19222?style=flat-square&logo=firebase&logoColor=white" />
+<img alt="Firebase_auth" src="https://img.shields.io/badge/Firebase_auth-D19222?style=flat-square&logo=firebase&logoColor=white" />
+<img alt="Google_sign_in" src="https://img.shields.io/badge/Google_sign_in-02569B?style=flat-square&logo=google&logoColor=white" />
+</p>
+
+<!-- <p align="center">
+<img src="screenshots/Screenshot_1.png" height="500" title="list of films">
+<img src="screenshots/Screenshot_2.png" height="500" title="detailed view">
+<img src="screenshots/Screenshot_3.png" height="500" title="remove a film">
+</p> -->
+
+
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+To get a local copy up and running follow these simple steps.
 
-A few resources to get you started if this is your first Flutter project:
+### Prerequisites
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+you need a complete version of flutter installed on your computer and an emulator of ios or android device.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Install
+Clone this repo : https://github.com/menel972/gypse-app.git
+
+run :
+
+$ flutter pub get
+
+$ flutter run
