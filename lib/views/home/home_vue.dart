@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../services/providers/user_provider.dart';
-import '../auth/auth_vue.dart';
 
 class HomeVue extends StatefulWidget {
   // =
@@ -45,20 +44,7 @@ class _HomeVueState extends State<HomeVue> {
     }
   }
 
-// = Method User Id
-  String getUserId(BuildContext context, String method) {
-    switch (method) {
-      case Method.mdp:
-        return AuthCrud.userId();
-      case Method.g:
-        return AuthCrud.googleUser!.id;
-      case Method.fb:
-        return '';
-      default:
-        Navigator.pushNamed(context, AuthVue.route);
-        return '';
-    }
-  }
+
 
 // <> Build
   @override
@@ -71,7 +57,7 @@ class _HomeVueState extends State<HomeVue> {
         Provider.of<UserProvider>(context, listen: false).setUser(dbUser);
 
     return StreamBuilder<MyUser>(
-        stream: UserCrud.getConnectedUser(getUserId(context, method)),
+        stream: UserCrud.getConnectedUser(AuthCrud.getUserId(context, method)),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             setPrivateUser(snapshot.data!);
