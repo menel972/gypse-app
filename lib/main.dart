@@ -33,7 +33,7 @@ class Gypse extends StatelessWidget {
         ChangeNotifierProvider.value(value: UserProvider()),
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Gypse',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.orange,

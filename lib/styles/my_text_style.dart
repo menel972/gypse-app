@@ -158,6 +158,18 @@ class MyTextStyle {
     letterSpacing: 0.5,
     color: Couleur.blanc,
   );
+  static TextStyle labelOrangeS = const TextStyle(
+    fontFamily: 'NotoSansDisplay',
+    fontSize: 14,
+    letterSpacing: 0.5,
+    color: Couleur.secondAccent,
+  );
+  static TextStyle labelRougeS = TextStyle(
+    fontFamily: 'NotoSansDisplay',
+    fontSize: 14,
+    letterSpacing: 0.5,
+    color: Colors.red[700],
+  );
   // M
   static TextStyle labelM = const TextStyle();
 }

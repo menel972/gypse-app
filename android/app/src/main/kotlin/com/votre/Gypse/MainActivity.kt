@@ -1,4 +1,4 @@
-package com.example.bible_quiz
+package com.votre.Gypse
 
 import io.flutter.embedding.android.FlutterActivity
 
