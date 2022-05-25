@@ -15,6 +15,10 @@ class StatsVue extends StatelessWidget {
   int get nbGood => uQs.where((q) => q.valid).length;
   int get nbBad => uQs.where((q) => !q.valid).length;
 
+  List<Map<String, dynamic>> get dataTotal => [
+        {'domain': 'R', 'measure': nbGood},
+        {'domain': 'P', 'measure': nbBad},
+      ];
 // = data Niveau 1
   int get nbRniv1 =>
       uQs.where((q) => q.valid).where((q) => q.niveau == 1).length;
@@ -63,7 +67,6 @@ class StatsVue extends StatelessWidget {
       q.valid ? i++ : i--;
       data.add({'domain': uQs.indexOf(q), 'measure': i});
     }
-
     return data;
   }
 
@@ -95,6 +98,14 @@ class StatsVue extends StatelessWidget {
                     child: ListView(
                       scrollDirection: Axis.horizontal,
                       children: [
+                        // <!> Total()
+                        StatsGauge(
+                          data: dataTotal,
+                          legende: 'Total',
+                          nbR: nbGood,
+                          nbP: nbBad,
+                        ),
+                        const SizedBox(width: 15),
                         // <!> Niv3()
                         StatsGauge(
                           data: dataNiv3,

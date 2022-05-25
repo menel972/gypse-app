@@ -22,10 +22,10 @@ class SmallButton extends StatelessWidget {
             (states) => const EdgeInsets.all(0)),
         backgroundColor: MaterialStateProperty.resolveWith(
             (states) => Colors.white.withOpacity(0.2)),
-        side: MaterialStateProperty.resolveWith((states) => BorderSide(
-              width: 0.8,
-              color: Couleur.blanc2.withOpacity(0.8),
-            )),
+        // side: MaterialStateProperty.resolveWith((states) => BorderSide(
+        //       width: 0.8,
+        //       color: Couleur.blanc2.withOpacity(0.8),
+        //     )),
         shape: MaterialStateProperty.resolveWith(
           (states) =>
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),

@@ -14,8 +14,10 @@ class MyAppbarStyle {
         color: Couleur.blanc.withOpacity(0.8),
         size: 30,
       ),
-      actionsIconTheme: IconThemeData(
-        color: Couleur.blanc.withOpacity(0.8),
+    actionsIconTheme: const IconThemeData(
+      color: Couleur.blanc,
         size: 30,
-      ));
+    ),
+  );
+
 }

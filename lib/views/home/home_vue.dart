@@ -83,11 +83,14 @@ class _HomeVueState extends State<HomeVue> {
               appBar: AppBar(
                 automaticallyImplyLeading: false,
                 actions: [
-                  IconButton(
-                    onPressed: () => SettingsModal.showSettings(context),
-                    icon: const Icon(Icons.settings_outlined),
-                    splashRadius: 20,
-                    splashColor: Couleur.secondary.withOpacity(0.5),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: IconButton(
+                      onPressed: () => SettingsModal.showSettings(context),
+                      icon: const Icon(Icons.settings_outlined),
+                      splashRadius: 20,
+                      splashColor: Couleur.secondary.withOpacity(0.5),
+                    ),
                   ),
                 ],
               ),

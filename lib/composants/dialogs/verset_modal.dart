@@ -56,7 +56,8 @@ class _VersetModalState extends State<VersetModal> {
               widget.rep.texte,
               style: MyTextStyle.textBleuM,
               textAlign: TextAlign.justify,
-              maxLines: 15,
+              maxLines: 1,
+              overflow: TextOverflow.fade,
             ),
             const SizedBox(height: 30),
             AutoSizeText(

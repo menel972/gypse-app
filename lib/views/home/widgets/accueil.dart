@@ -26,7 +26,7 @@ class Accueil extends StatelessWidget {
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.4,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 0),
+            padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
             // <!> Carousel()
             child: Carousel(items: livres),
           ),
