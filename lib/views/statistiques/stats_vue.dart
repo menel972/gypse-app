@@ -1,8 +1,7 @@
-import 'package:bible_quiz/services/enums/couleur.dart';
 import 'package:bible_quiz/services/models/user_model.dart';
 import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:bible_quiz/views/statistiques/widgets/stats_gauge.dart';
-import 'package:d_chart/d_chart.dart';
+import 'package:bible_quiz/views/statistiques/widgets/stats_line.dart';
 import 'package:flutter/material.dart';
 
 class StatsVue extends StatelessWidget {
@@ -85,7 +84,7 @@ class StatsVue extends StatelessWidget {
           children: [
             Text(
               uQs.length.toString() + ' questions répondue.s :',
-              style: MyTextStyle.textM,
+              style: MyTextStyle.titleS,
             ),
             const SizedBox(height: 15),
             SizedBox(
@@ -97,42 +96,27 @@ class StatsVue extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       children: [
                         // <!> Niv3()
-                        Container(
-                          height: MediaQuery.of(context).size.width * 0.55,
-                          width: MediaQuery.of(context).size.width * 0.55,
-                          color: Couleur.blanc2.withOpacity(0.3),
-                          child: StatsGauge(
-                            data: dataNiv3,
-                            legende: 'Difficile',
-                            nbR: nbRniv3,
-                            nbP: nbPniv3,
-                          ),
+                        StatsGauge(
+                          data: dataNiv3,
+                          legende: 'Difficile',
+                          nbR: nbRniv3,
+                          nbP: nbPniv3,
                         ),
                         const SizedBox(width: 15),
                         // <!> Niv2()
-                        Container(
-                          height: MediaQuery.of(context).size.width * 0.55,
-                          width: MediaQuery.of(context).size.width * 0.55,
-                          color: Couleur.blanc2.withOpacity(0.3),
-                          child: StatsGauge(
-                            data: dataNiv2,
-                            legende: 'Moyen',
-                            nbR: nbRniv2,
-                            nbP: nbPniv2,
-                          ),
+                        StatsGauge(
+                          data: dataNiv2,
+                          legende: 'Moyen',
+                          nbR: nbRniv2,
+                          nbP: nbPniv2,
                         ),
                         const SizedBox(width: 15),
                         // <!> Niv1()
-                        Container(
-                          height: MediaQuery.of(context).size.width * 0.55,
-                          width: MediaQuery.of(context).size.width * 0.55,
-                          color: Couleur.blanc2.withOpacity(0.3),
-                          child: StatsGauge(
-                            data: dataNiv1,
-                            legende: 'Facile',
-                            nbR: nbRniv1,
-                            nbP: nbPniv1,
-                          ),
+                        StatsGauge(
+                          data: dataNiv1,
+                          legende: 'Facile',
+                          nbR: nbRniv1,
+                          nbP: nbPniv1,
                         ),
                         const SizedBox(width: 15),
                       ],
@@ -143,20 +127,9 @@ class StatsVue extends StatelessWidget {
             ),
             // <!> Globale()
             Expanded(
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 80, horizontal: 15),
-                child: DChartLine(
-                  data: dataGlobale,
-                  lineColor: (lineData, i, id) => Couleur.secondary,
-                  pointColor: (lineData, i, id) {
-                    return evo[i!]['measure'] >= 0
-                        ? Couleur.primary
-                        : Colors.red;
-                  },
-                  includeArea: true,
-                  includePoints: true,
-                ),
+              child: StatsLine(
+                data: dataGlobale,
+                legende: 'Evolution des résultats',
               ),
             ),
           ],

@@ -20,11 +20,13 @@ class StatsGauge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: MediaQuery.of(context).size.width * 0.55,
+      width: MediaQuery.of(context).size.width * 0.55,
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
             Couleur.primary.withOpacity(0.9),
-            Colors.transparent,
+            Couleur.blanc.withOpacity(0.4),
           ],
           begin: Alignment.bottomCenter,
           end: Alignment.topCenter,
