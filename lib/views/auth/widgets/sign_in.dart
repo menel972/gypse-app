@@ -24,6 +24,7 @@ class SignIn extends StatefulWidget {
   @override
   State<SignIn> createState() => _SignInState();
 }
+
 // <> _SignInState()
 class _SignInState extends State<SignIn> {
   final _mailController = TextEditingController();
@@ -181,5 +182,12 @@ class _SignInState extends State<SignIn> {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _mailController.dispose();
+    _mdpController.dispose();
+    super.dispose();
   }
 }

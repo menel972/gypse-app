@@ -97,4 +97,12 @@ class _ReponseForm1State extends State<ReponseForm1> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    _reponse1Controller.dispose();
+    _verset1Controller.dispose();
+    _versetRef1Controller.dispose();
+    super.dispose();
+  }
 }

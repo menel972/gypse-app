@@ -39,7 +39,10 @@ class _SplashscreenState extends State<Splashscreen> {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
-          child: SvgPicture.asset('assets/images/logo_gypse.svg'),
+          child: SvgPicture.asset(
+            'assets/images/splashicon_gypse.svg',
+            height: 200,
+          ),
         ),
       ),
     );

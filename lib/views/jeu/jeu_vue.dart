@@ -120,7 +120,7 @@ class _JeuVueState extends State<JeuVue> {
                       // <!> QuetionVue()
                       child: QuestionVue(
                         countDownController: countDownController,
-                        question: snapshot.data!,
+                        question: Question(id: '', texte: '', livre: ''),
                         dbUser: dbUser,
                       ),
                     ),

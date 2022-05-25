@@ -4,19 +4,25 @@ import 'package:flutter/material.dart';
 
 import '../../../composants/bouttons/secondary_fab_button.dart';
 
-class QuestionForm extends StatelessWidget {
+class QuestionForm extends StatefulWidget {
   const QuestionForm({Key? key}) : super(key: key);
 
-  static final TextEditingController _questionController =
-      TextEditingController();
-  static final TextEditingController _livreController = TextEditingController();
+  @override
+  State<QuestionForm> createState() => _QuestionFormState();
+}
 
+class _QuestionFormState extends State<QuestionForm> {
+  final TextEditingController _questionController =
+      TextEditingController();
+  final TextEditingController _livreController = TextEditingController();
   void addQuestion() {
     final newQuestion = Question(
         id: '', texte: _questionController.text, livre: _livreController.text);
 
     QuestionCrud.addQuestion(newQuestion);
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -53,5 +59,11 @@ class QuestionForm extends StatelessWidget {
         ],
       ),
     );
+  }
+  @override
+  void dispose() {
+    _questionController.dispose();
+    _livreController.dispose();
+    super.dispose();
   }
 }

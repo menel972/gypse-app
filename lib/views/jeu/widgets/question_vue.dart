@@ -33,7 +33,7 @@ class QuestionVue extends StatefulWidget {
 // <> _QuestionVueState()
 class _QuestionVueState extends State<QuestionVue> {
   // {} Animation
-  double facteur = 0.4;
+  double facteur = 0.35;
 
   // = image niveau
   String getNivIcon(int niv) {
@@ -66,7 +66,7 @@ class _QuestionVueState extends State<QuestionVue> {
           () => {
                 setState(() {
                   allRepToFalse();
-                  facteur = 0.4;
+                  facteur = 0.35;
                   UserCrud.updateUser(newUser);
                 }),
                 Timer(const Duration(milliseconds: 900), () {
@@ -74,6 +74,15 @@ class _QuestionVueState extends State<QuestionVue> {
                   allRepToFalse();
                 }),
               });
+    }
+
+    if (widget.question.texte == '') {
+      return Center(
+        child: Text(
+          'no more data',
+          style: MyTextStyle.textM,
+        ),
+      );
     }
 
     return Container(
@@ -98,7 +107,10 @@ class _QuestionVueState extends State<QuestionVue> {
                       'Question',
                       style: MyTextStyle.textM,
                     ),
-                    SvgPicture.asset(getNivIcon(settings.niveau)),
+                    SvgPicture.asset(
+                      getNivIcon(settings.niveau),
+                      height: 30,
+                    ),
                   ],
                 ),
                 const Divider(

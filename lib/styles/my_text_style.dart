@@ -23,7 +23,7 @@ class MyTextStyle {
     fontSize: 16,
     letterSpacing: 1,
     fontWeight: FontWeight.w600,
-    color: Couleur.blanc,
+    color: Couleur.blanc2,
   );
   static TextStyle buttonOrangeM = const TextStyle(
     fontFamily: 'NotoSansDisplay',

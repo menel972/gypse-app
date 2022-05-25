@@ -15,6 +15,10 @@ class StatsVue extends StatelessWidget {
   int get nbGood => uQs.where((q) => q.valid).length;
   int get nbBad => uQs.where((q) => !q.valid).length;
 
+  List<Map<String, dynamic>> get dataTotal => [
+        {'domain': 'R', 'measure': nbGood},
+        {'domain': 'P', 'measure': nbBad},
+      ];
 // = data Niveau 1
   int get nbRniv1 =>
       uQs.where((q) => q.valid).where((q) => q.niveau == 1).length;
@@ -63,7 +67,6 @@ class StatsVue extends StatelessWidget {
       q.valid ? i++ : i--;
       data.add({'domain': uQs.indexOf(q), 'measure': i});
     }
-
     return data;
   }
 
@@ -95,10 +98,19 @@ class StatsVue extends StatelessWidget {
                     child: ListView(
                       scrollDirection: Axis.horizontal,
                       children: [
+                        // <!> Total()
+                        StatsGauge(
+                          data: dataTotal,
+                          legende: 'Total : ' + uQs.length.toString(),
+                          nbR: nbGood,
+                          nbP: nbBad,
+                        ),
+                        const SizedBox(width: 15),
                         // <!> Niv3()
                         StatsGauge(
                           data: dataNiv3,
-                          legende: 'Difficile',
+                          legende:
+                              'Difficile : ' + (nbPniv3 + nbRniv3).toString(),
                           nbR: nbRniv3,
                           nbP: nbPniv3,
                         ),
@@ -106,7 +118,7 @@ class StatsVue extends StatelessWidget {
                         // <!> Niv2()
                         StatsGauge(
                           data: dataNiv2,
-                          legende: 'Moyen',
+                          legende: 'Moyen : ' + (nbPniv2 + nbRniv2).toString(),
                           nbR: nbRniv2,
                           nbP: nbPniv2,
                         ),
@@ -114,7 +126,7 @@ class StatsVue extends StatelessWidget {
                         // <!> Niv1()
                         StatsGauge(
                           data: dataNiv1,
-                          legende: 'Facile',
+                          legende: 'Facile : ' + (nbPniv1 + nbRniv1).toString(),
                           nbR: nbRniv1,
                           nbP: nbPniv1,
                         ),

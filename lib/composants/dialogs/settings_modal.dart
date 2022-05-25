@@ -99,7 +99,7 @@ class _SettingsModalState extends State<SettingsModal> {
                 Flexible(
                   flex: 1,
                   child: RadioListTile(
-                    contentPadding: const EdgeInsets.all(5),
+                    contentPadding: const EdgeInsets.all(7),
                     title: FittedBox(
                         child: Text(
                       'facile',
@@ -175,33 +175,10 @@ class _SettingsModalState extends State<SettingsModal> {
                 Flexible(
                   flex: 1,
                   child: RadioListTile(
-                    contentPadding: const EdgeInsets.all(5),
+                    contentPadding: const EdgeInsets.all(7),
                     title: FittedBox(
                         child: Text(
                       'facile',
-                      style: MyTextStyle.textBleuM,
-                    )),
-                    subtitle: FittedBox(
-                        child: Text(
-                      '40 sec',
-                      style: MyTextStyle.textBleuM,
-                    )),
-                    value: 40,
-                    groupValue: preset.chrono,
-                    onChanged: (value) => setState(() {
-                      preset.chrono = 40;
-                    }),
-                    activeColor: Couleur.bleu,
-
-                  ),
-                ),
-                Flexible(
-                  flex: 1,
-                  child: RadioListTile(
-                    contentPadding: const EdgeInsets.all(5),
-                    title: FittedBox(
-                        child: Text(
-                      'Moyen',
                       style: MyTextStyle.textBleuM,
                     )),
                     subtitle: FittedBox(
@@ -221,10 +198,10 @@ class _SettingsModalState extends State<SettingsModal> {
                 Flexible(
                   flex: 1,
                   child: RadioListTile(
-                    contentPadding: const EdgeInsets.all(3),
+                    contentPadding: const EdgeInsets.all(5),
                     title: FittedBox(
                         child: Text(
-                      'Difficile',
+                      'Moyen',
                       style: MyTextStyle.textBleuM,
                     )),
                     subtitle: FittedBox(
@@ -236,6 +213,29 @@ class _SettingsModalState extends State<SettingsModal> {
                     groupValue: preset.chrono,
                     onChanged: (value) => setState(() {
                       preset.chrono = 20;
+                    }),
+                    activeColor: Couleur.bleu,
+
+                  ),
+                ),
+                Flexible(
+                  flex: 1,
+                  child: RadioListTile(
+                    contentPadding: const EdgeInsets.all(3),
+                    title: FittedBox(
+                        child: Text(
+                      'Difficile',
+                      style: MyTextStyle.textBleuM,
+                    )),
+                    subtitle: FittedBox(
+                        child: Text(
+                      '10 sec',
+                      style: MyTextStyle.textBleuM,
+                    )),
+                    value: 10,
+                    groupValue: preset.chrono,
+                    onChanged: (value) => setState(() {
+                      preset.chrono = 10;
                     }),
                     activeColor: Couleur.bleu,
 

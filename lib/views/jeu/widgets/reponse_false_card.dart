@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bible_quiz/services/enums/couleur.dart';
 import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:flutter/material.dart';
@@ -41,19 +42,33 @@ class ReponseFalseCard extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text((i + 1).toString() + '.',
+              Flexible(
+                flex: 1,
+                child: Text((i + 1).toString() + '.',
+                    style: select[i]
+                        ? MyTextStyle.textRougeS
+                        : MyTextStyle.textBleuS),
+              ),
+              Flexible(
+                flex: 4,
+                child: AutoSizeText(
+                  rep.texte,
+                  minFontSize: 12,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                   style: select[i]
                       ? MyTextStyle.textRougeS
-                      : MyTextStyle.textBleuS),
-              Text(rep.texte,
-                  style: select[i]
-                      ? MyTextStyle.textRougeS
-                      : MyTextStyle.textBleuS),
-              Visibility(
-                visible: select[i],
-                child: const Icon(
-                  Icons.highlight_off,
-                  color: Colors.red,
+                      : MyTextStyle.textBleuS,
+                ),
+              ),
+              Flexible(
+                flex: 1,
+                child: Visibility(
+                  visible: select[i],
+                  child: const Icon(
+                    Icons.highlight_off,
+                    color: Colors.red,
+                  ),
                 ),
               ),
             ],
