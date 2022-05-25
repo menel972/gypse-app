@@ -107,7 +107,10 @@ class _QuestionVueState extends State<QuestionVue> {
                       'Question',
                       style: MyTextStyle.textM,
                     ),
-                    SvgPicture.asset(getNivIcon(settings.niveau)),
+                    SvgPicture.asset(
+                      getNivIcon(settings.niveau),
+                      height: 30,
+                    ),
                   ],
                 ),
                 const Divider(
