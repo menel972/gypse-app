@@ -6,13 +6,13 @@ Design by  <a href="https://www.linkedin.com/in/sia-xiong-aa88091b9/">Sia Xiong<
 
 <p align="center">
 <img alt="Flutter" src="https://img.shields.io/badge/Flutter-02569B?style=flat-square&logo=flutter&logoColor=white" />
-<img alt="Flutter" src="https://img.shields.io/badge/D_chart-02569B?style=flat-square&logo=flutter&logoColor=white" />
-<img alt="Flutter" src="https://img.shields.io/badge/circular_countdown_timer-02569B?style=flat-square&logo=flutter&logoColor=white" />
-<img alt="Flutter" src="https://img.shields.io/badge/flutter_carousel_widget-02569B?style=flat-square&logo=flutter&logoColor=white" />
+<img alt="Flutter" src="https://img.shields.io/badge/DChart-02569B?style=flat-square&logo=flutter&logoColor=white" />
+<img alt="Flutter" src="https://img.shields.io/badge/CircularCountdownTimer-02569B?style=flat-square&logo=flutter&logoColor=white" />
+<img alt="Flutter" src="https://img.shields.io/badge/FlutterCarouselWidget-02569B?style=flat-square&logo=flutter&logoColor=white" />
 <img alt="Dart" src="https://img.shields.io/badge/Dart-0175C2?style=flat-square&logo=dart&logoColor=white" />
 <img alt="Firebase" src="https://img.shields.io/badge/Firebase-D19222?style=flat-square&logo=firebase&logoColor=white" />
-<img alt="Firebase_auth" src="https://img.shields.io/badge/Firebase_auth-D19222?style=flat-square&logo=firebase&logoColor=white" />
-<img alt="Google_sign_in" src="https://img.shields.io/badge/Google_sign_in-02569B?style=flat-square&logo=google&logoColor=white" />
+<img alt="Firebase_auth" src="https://img.shields.io/badge/FirebaseAuth-D19222?style=flat-square&logo=firebase&logoColor=white" />
+<img alt="Google_sign_in" src="https://img.shields.io/badge/GoogleSignIn-D19222?style=flat-square&logo=google&logoColor=white" />
 </p>
 
 <!-- <p align="center">
