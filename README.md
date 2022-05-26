@@ -15,11 +15,12 @@ Design by  <a href="https://www.linkedin.com/in/sia-xiong-aa88091b9/">Sia Xiong<
 <img alt="Google_sign_in" src="https://img.shields.io/badge/GoogleSignIn-D19222?style=flat-square&logo=google&logoColor=white" />
 </p>
 
-<!-- <p align="center">
+<p align="center">
 <img src="screenshots/Screenshot_1.png" height="500" title="list of films">
 <img src="screenshots/Screenshot_2.png" height="500" title="detailed view">
 <img src="screenshots/Screenshot_3.png" height="500" title="remove a film">
-</p> -->
+<img src="screenshots/Screenshot_4.png" height="500" title="remove a film">
+</p>
 
 
 
