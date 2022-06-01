@@ -123,6 +123,7 @@ class _QuestionVueState extends State<QuestionVue> {
                     Flexible(
                       flex: 5,
                       child: Text(
+                        widget.question.id + ' : ' +
                         widget.question.texte,
                         style: MyTextStyle.textL,
                       ),
