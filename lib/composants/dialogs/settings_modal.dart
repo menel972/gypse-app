@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bible_quiz/composants/bouttons/basic_button.dart';
 import 'package:bible_quiz/services/crud/user_crud.dart';
 import 'package:bible_quiz/services/models/user_model.dart';
@@ -13,8 +14,7 @@ import '../bouttons/primary_button.dart';
 
 class SettingsModal extends StatefulWidget {
   // {} Show Modal Settings
-  static Future showSettings(
-      BuildContext context) async {
+  static Future showSettings(BuildContext context) async {
     return await showModalBottomSheet(
       context: context,
       backgroundColor: Couleur.bleuClair.withOpacity(0.6),
@@ -24,8 +24,7 @@ class SettingsModal extends StatefulWidget {
           topRight: Radius.circular(20),
         ),
       ),
-      builder: (context) =>
-          const SettingsModal(),
+      builder: (context) => const SettingsModal(),
     );
   }
 
@@ -99,17 +98,17 @@ class _SettingsModalState extends State<SettingsModal> {
                 Flexible(
                   flex: 1,
                   child: RadioListTile(
-                    contentPadding: const EdgeInsets.all(7),
-                    title: FittedBox(
-                        child: Text(
+                    contentPadding: const EdgeInsets.all(0),
+                    title: AutoSizeText(
                       'facile',
                       style: MyTextStyle.textBleuM,
-                    )),
-                    subtitle: FittedBox(
-                        child: Text(
+                      maxFontSize: 16,
+                    ),
+                    subtitle: AutoSizeText(
                       '2 choix',
                       style: MyTextStyle.textBleuM,
-                    )),
+                      maxFontSize: 14,
+                    ),
                     value: 1,
                     groupValue: preset.niveau,
                     onChanged: (value) => setState(() {
@@ -121,47 +120,45 @@ class _SettingsModalState extends State<SettingsModal> {
                 Flexible(
                   flex: 1,
                   child: RadioListTile(
-                    contentPadding: const EdgeInsets.all(5),
-                    title: FittedBox(
-                        child: Text(
+                    contentPadding: const EdgeInsets.all(0),
+                    title: AutoSizeText(
                       'Moyen',
                       style: MyTextStyle.textBleuM,
-                    )),
-                    subtitle: FittedBox(
-                        child: Text(
+                      maxFontSize: 16,
+                    ),
+                    subtitle: AutoSizeText(
                       '3 choix',
                       style: MyTextStyle.textBleuM,
-                    )),
+                      maxFontSize: 14,
+                    ),
                     value: 2,
                     groupValue: preset.niveau,
                     onChanged: (value) => setState(() {
                       preset.niveau = 2;
                     }),
                     activeColor: Couleur.bleu,
-
                   ),
                 ),
                 Flexible(
                   flex: 1,
                   child: RadioListTile(
-                    contentPadding: const EdgeInsets.all(3),
-                    title: FittedBox(
-                        child: Text(
+                    contentPadding: const EdgeInsets.all(0),
+                    title: AutoSizeText(
                       'Difficile',
                       style: MyTextStyle.textBleuM,
-                    )),
-                    subtitle: FittedBox(
-                        child: Text(
+                      maxFontSize: 16,
+                    ),
+                    subtitle: AutoSizeText(
                       '4 choix',
                       style: MyTextStyle.textBleuM,
-                    )),
+                      maxFontSize: 14,
+                    ),
                     value: 3,
                     groupValue: preset.niveau,
                     onChanged: (value) => setState(() {
                       preset.niveau = 3;
                     }),
                     activeColor: Couleur.bleu,
-
                   ),
                 ),
               ],
@@ -175,70 +172,67 @@ class _SettingsModalState extends State<SettingsModal> {
                 Flexible(
                   flex: 1,
                   child: RadioListTile(
-                    contentPadding: const EdgeInsets.all(7),
-                    title: FittedBox(
-                        child: Text(
+                    contentPadding: const EdgeInsets.all(0),
+                    title: AutoSizeText(
                       'facile',
                       style: MyTextStyle.textBleuM,
-                    )),
-                    subtitle: FittedBox(
-                        child: Text(
+                      maxFontSize: 16,
+                    ),
+                    subtitle: AutoSizeText(
                       '30 sec',
                       style: MyTextStyle.textBleuM,
-                    )),
+                      maxFontSize: 14,
+                    ),
                     value: 30,
                     groupValue: preset.chrono,
                     onChanged: (value) => setState(() {
                       preset.chrono = 30;
                     }),
                     activeColor: Couleur.bleu,
-
                   ),
                 ),
                 Flexible(
                   flex: 1,
                   child: RadioListTile(
-                    contentPadding: const EdgeInsets.all(5),
-                    title: FittedBox(
-                        child: Text(
+                    contentPadding: const EdgeInsets.all(0),
+                    title: AutoSizeText(
                       'Moyen',
                       style: MyTextStyle.textBleuM,
-                    )),
-                    subtitle: FittedBox(
-                        child: Text(
+                      maxFontSize: 16,
+                    ),
+                    subtitle: AutoSizeText(
                       '20 sec',
                       style: MyTextStyle.textBleuM,
-                    )),
+                      maxFontSize: 14,
+                    ),
                     value: 20,
                     groupValue: preset.chrono,
                     onChanged: (value) => setState(() {
                       preset.chrono = 20;
                     }),
                     activeColor: Couleur.bleu,
-
                   ),
                 ),
                 Flexible(
                   flex: 1,
                   child: RadioListTile(
-                    contentPadding: const EdgeInsets.all(3),
-                    title: FittedBox(
-                        child: Text(
+                    contentPadding: const EdgeInsets.all(0),
+                    title: AutoSizeText(
                       'Difficile',
                       style: MyTextStyle.textBleuM,
-                    )),
-                    subtitle: FittedBox(
-                        child: Text(
+                      maxFontSize: 16,
+                    ),
+                    subtitle: AutoSizeText(
                       '10 sec',
                       style: MyTextStyle.textBleuM,
-                    )),
+                      maxFontSize: 14,
+                    ),
                     value: 10,
                     groupValue: preset.chrono,
                     onChanged: (value) => setState(() {
                       preset.chrono = 10;
                     }),
                     activeColor: Couleur.bleu,
-
                   ),
                 ),
               ],
