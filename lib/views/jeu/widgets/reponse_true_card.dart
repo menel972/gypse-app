@@ -52,7 +52,7 @@ class ReponseTrueCard extends StatelessWidget {
               Flexible(
                 flex: 4,
                 child: AutoSizeText(
-                  rep.id + ' : ' + rep.texte,
+                  rep.texte,
                   minFontSize: 12,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
