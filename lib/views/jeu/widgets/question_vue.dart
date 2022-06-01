@@ -33,7 +33,7 @@ class QuestionVue extends StatefulWidget {
 // <> _QuestionVueState()
 class _QuestionVueState extends State<QuestionVue> {
   // {} Animation
-  double facteur = 0.35;
+  double facteur = 0.34;
 
   // = image niveau
   String getNivIcon(int niv) {
@@ -66,7 +66,7 @@ class _QuestionVueState extends State<QuestionVue> {
           () => {
                 setState(() {
                   allRepToFalse();
-                  facteur = 0.35;
+                  facteur = 0.34;
                   UserCrud.updateUser(newUser);
                 }),
                 Timer(const Duration(milliseconds: 900), () {
@@ -123,7 +123,6 @@ class _QuestionVueState extends State<QuestionVue> {
                     Flexible(
                       flex: 5,
                       child: Text(
-                        widget.question.id + ' : ' +
                         widget.question.texte,
                         style: MyTextStyle.textL,
                       ),
