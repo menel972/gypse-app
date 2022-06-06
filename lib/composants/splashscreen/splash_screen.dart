@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:async';
 
 import 'package:bible_quiz/services/crud/auth_crud.dart';
@@ -6,6 +8,11 @@ import 'package:bible_quiz/views/auth/auth_vue.dart';
 import 'package:bible_quiz/views/home/home_vue.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
+
+import '../../services/crud/user_crud.dart';
+import '../../services/models/user_model.dart';
+import '../../services/providers/user_provider.dart';
 
 class Splashscreen extends StatefulWidget {
   static const String route = '.splashscreen';
@@ -31,9 +38,22 @@ class _SplashscreenState extends State<Splashscreen> {
     super.initState();
   }
 
+  Future<MyUser> myUse() async {
+    return await UserCrud.getConnectedUser(AuthCrud.currentUser.uid).first;
+  }
+
   // <> Build
   @override
   Widget build(BuildContext context) {
+    // print('HERE !! ${AuthCrud.currentUser.uid}');
+    void setPrivateUser() async =>
+        Provider.of<UserProvider>(context, listen: false)
+            .setUser(await myUse());
+    AuthCrud.isConnected().then((value) {
+      if (value) setPrivateUser();
+    });
+    
+
     return Scaffold(
       backgroundColor: Couleur.primary,
       body: Center(

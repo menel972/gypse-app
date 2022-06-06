@@ -1,7 +1,5 @@
 import 'package:bible_quiz/composants/bottomBar/home_bottom_bar.dart';
 import 'package:bible_quiz/composants/dialogs/settings_modal.dart';
-import 'package:bible_quiz/services/crud/auth_crud.dart';
-import 'package:bible_quiz/services/crud/user_crud.dart';
 import 'package:bible_quiz/services/enums/couleur.dart';
 import 'package:bible_quiz/services/models/user_model.dart';
 import 'package:bible_quiz/views/compte/mon_compte_vue.dart';
@@ -50,18 +48,10 @@ class _HomeVueState extends State<HomeVue> {
   @override
   Widget build(BuildContext context) {
     // = Provider
-    String method =
-        Provider.of<UserProvider>(context, listen: true).userIdMethod;
+    MyUser myUser = Provider.of<UserProvider>(context, listen: true).user;
 
-    void setPrivateUser(MyUser dbUser) =>
-        Provider.of<UserProvider>(context, listen: false).setUser(dbUser);
 
-    return StreamBuilder<MyUser>(
-        stream: UserCrud.getConnectedUser(AuthCrud.getUserId(context, method)),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            setPrivateUser(snapshot.data!);
-            return Scaffold(
+    return Scaffold(
               extendBodyBehindAppBar: true,
               extendBody: true,
 
@@ -91,7 +81,7 @@ class _HomeVueState extends State<HomeVue> {
                     ),
                   ),
                   // <!> Accueil()
-                  child: switchWidget(snapshot.data!)),
+          child: switchWidget(myUser)),
 
               // <> BottomBar
               // <!> HomeBottomBar()
@@ -100,17 +90,6 @@ class _HomeVueState extends State<HomeVue> {
                 switchIndex: switchIndex,
               ),
             );
-          } else if (!snapshot.hasData) {
-            return Center(child: Text(snapshot.error.toString()));
-          } else if (snapshot.hasError) {
-            // ignore: avoid_print
-            print('get connected User error : ' + snapshot.error.toString());
-          }
-          return const Center(
-            child: CircularProgressIndicator(
-              color: Couleur.secondary,
-            ),
-          );
-        });
+   
   }
 }

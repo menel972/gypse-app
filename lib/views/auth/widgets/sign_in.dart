@@ -9,7 +9,6 @@ import 'package:provider/provider.dart';
 
 import '../../../services/crud/user_crud.dart';
 import '../../../services/enums/couleur.dart';
-import '../../../services/models/settings_model.dart';
 import '../../../services/models/user_model.dart';
 import '../../home/home_vue.dart';
 
@@ -31,11 +30,16 @@ class _SignInState extends State<SignIn> {
   final _mdpController = TextEditingController();
 
   bool hide = true;
+
+  Future<MyUser> myUse() async {
+    return await UserCrud.getConnectedUser(AuthCrud.currentUser.uid).first;
+  }
   // <> Build
   @override
   Widget build(BuildContext context) {
-    void setMethod(String method) =>
-        Provider.of<UserProvider>(context, listen: false).setMethod(method);
+    void setPrivateUser() async =>
+        Provider.of<UserProvider>(context, listen: false)
+            .setUser(await myUse());
 
     return Container(
       alignment: Alignment.center,
@@ -136,25 +140,26 @@ class _SignInState extends State<SignIn> {
             texte: 'Connexion',
             fonction: () => {
               AuthCrud.loginMailMdp(_mailController.text, _mdpController.text),
+              setPrivateUser(),
               Timer(const Duration(seconds: 1),
                   () => Navigator.pushNamed(context, HomeVue.route)),
             },
           ),
-          const SizedBox(height: 50),
-          SecondaryButton(
-            texte: 'Google',
-            fonction: () {
-              setMethod(Method.g);
-              AuthCrud.googleSignIn.signIn().then((newUser) => {
-                    UserCrud.addGoogleUser(MyUser(
-                        id: newUser!.id,
-                        questions: [],
-                        settings: Setting(niveau: 3, chrono: 30))),
-                  });
-              Timer(const Duration(seconds: 1),
-                  () => Navigator.pushNamed(context, HomeVue.route));
-            },
-          ),
+          // const SizedBox(height: 50),
+          // SecondaryButton(
+          //   texte: 'Google',
+          //   fonction: () {
+          //     setMethod(Method.g);
+          //     AuthCrud.googleSignIn.signIn().then((newUser) => {
+          //           UserCrud.addGoogleUser(MyUser(
+          //               id: newUser!.id,
+          //               questions: [],
+          //               settings: Setting(niveau: 3, chrono: 30))),
+          //         });
+          //     Timer(const Duration(seconds: 1),
+          //         () => Navigator.pushNamed(context, HomeVue.route));
+          //   },
+          // ),
           Row(
             children: [
               Flexible(
