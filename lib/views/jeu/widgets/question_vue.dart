@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:bible_quiz/services/BLoC/bloc_provider.dart';
+import 'package:bible_quiz/services/BLoC/provided/select_reponse_bloc.dart';
 import 'package:bible_quiz/services/crud/user_crud.dart';
 import 'package:bible_quiz/services/enums/couleur.dart';
 import 'package:bible_quiz/services/models/question_model.dart';
@@ -149,12 +151,18 @@ class _QuestionVueState extends State<QuestionVue> {
 
           // <!> ReponseVue()
           Expanded(
-            child: ReponseVue(
+            child: BlocProvider<SelectReponseBloc>(
+              bloc: SelectReponseBloc(),
+              child: ReponseVue(
               questionId: widget.question.id,
               switchFacteur: switchFacteur,
               countDownController: widget.countDownController,
               dbUser: widget.dbUser,
+              ),
             ),
+            
+            
+            
           ),
         ],
       ),
