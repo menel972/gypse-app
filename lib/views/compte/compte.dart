@@ -37,7 +37,7 @@ class _CompteState extends State<Compte> {
             const SizedBox(height: 40),
             InfoCard(
                 icon: Icons.connect_without_contact_outlined,
-                label: 'Connexion :',
+                label: 'Type de connexion :',
                 data: method),
             const SizedBox(height: 15),
             InfoCard(
@@ -49,7 +49,7 @@ class _CompteState extends State<Compte> {
             const InfoCard(
               icon: Icons.lock_outline,
               label: 'Mot de passe :',
-              data: '',
+              data: '***',
             ),
             const SizedBox(height: 30),
             BasicButton(
