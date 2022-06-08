@@ -1,3 +1,5 @@
+import 'package:bible_quiz/services/BLoC/bloc_provider.dart';
+import 'package:bible_quiz/services/BLoC/provided/livre_liste_bloc.dart';
 import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:bible_quiz/views/livres/widgets/livres_recherche.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +34,10 @@ class LivresVue extends StatelessWidget {
           ),
         ),
         // <!> LivresRecherche()
-        child: const LivresRecherche(),
+        child: BlocProvider<LivreListeBloc>(
+          bloc: LivreListeBloc(),
+          child: const LivresRecherche(),
+        ),
       ),
     );
   }

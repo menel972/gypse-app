@@ -2,26 +2,25 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bible_quiz/services/enums/couleur.dart';
 import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../../../services/models/reponse_model.dart';
-import '../../../services/providers/user_provider.dart';
 
 class ReponseFalseCard extends StatelessWidget {
   // =
-  final Reponse rep;
   final int i;
+  final Reponse rep;
+  final bool selected;
 
   const ReponseFalseCard({
     Key? key,
     required this.i,
     required this.rep,
+    required this.selected,
   }) : super(key: key);
 
   // <> Build
   @override
   Widget build(BuildContext context) {
-    List<bool> select = Provider.of<UserProvider>(context).reponses;
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
@@ -34,7 +33,7 @@ class ReponseFalseCard extends StatelessWidget {
             color: Couleur.orangeClair,
             border: Border.all(
               width: 2,
-              color: select[i] ? Colors.red : Couleur.orangeBorder,
+              color: selected ? Colors.red : Couleur.orangeBorder,
             ),
             borderRadius: BorderRadius.circular(10),
           ),
@@ -45,7 +44,7 @@ class ReponseFalseCard extends StatelessWidget {
               Flexible(
                 flex: 1,
                 child: Text((i + 1).toString() + '.',
-                    style: select[i]
+                    style: selected
                         ? MyTextStyle.textRougeS
                         : MyTextStyle.textBleuS),
               ),
@@ -56,7 +55,8 @@ class ReponseFalseCard extends StatelessWidget {
                   minFontSize: 12,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: select[i]
+                  style:
+                      selected
                       ? MyTextStyle.textRougeS
                       : MyTextStyle.textBleuS,
                 ),
@@ -64,7 +64,7 @@ class ReponseFalseCard extends StatelessWidget {
               Flexible(
                 flex: 1,
                 child: Visibility(
-                  visible: select[i],
+                  visible: selected,
                   child: const Icon(
                     Icons.highlight_off,
                     color: Colors.red,

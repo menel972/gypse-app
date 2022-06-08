@@ -1,12 +1,10 @@
+import 'package:bible_quiz/services/BLoC/bloc_router.dart';
 import 'package:bible_quiz/services/enums/couleur.dart';
-import 'package:bible_quiz/services/providers/user_provider.dart';
 import 'package:blur/blur.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../../styles/my_text_style.dart';
-import '../../views/home/home_vue.dart';
 import '../bouttons/basic_button.dart';
 import '../bouttons/primary_button.dart';
 
@@ -21,10 +19,6 @@ class QuitDialog extends StatelessWidget {
   // <> Build
   @override
   Widget build(BuildContext context) {
-    // = Provider
-    void allRepToFalse() =>
-        Provider.of<UserProvider>(context, listen: false).allRepToFalse();
-
     return Center(
       child: Container(
         height: MediaQuery.of(context).size.height * 0.3,
@@ -80,8 +74,10 @@ class QuitDialog extends StatelessWidget {
                               couleur: 'bleu',
                               // <!> HomeVue()
                               fonction: () => {
-                                Navigator.pushNamed(context, HomeVue.route),
-                                allRepToFalse(),
+                                Navigator.push(
+                                  context,
+                                  BlocRouter().homeRoute(),
+                                ),
                               },
                             ),
                           ),

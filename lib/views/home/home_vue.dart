@@ -1,7 +1,7 @@
 import 'package:bible_quiz/composants/bottomBar/home_bottom_bar.dart';
 import 'package:bible_quiz/composants/dialogs/settings_modal.dart';
-import 'package:bible_quiz/services/crud/auth_crud.dart';
-import 'package:bible_quiz/services/crud/user_crud.dart';
+import 'package:bible_quiz/services/BLoC/bloc_provider.dart';
+import 'package:bible_quiz/services/BLoC/provided/bottom_index_bloc.dart';
 import 'package:bible_quiz/services/enums/couleur.dart';
 import 'package:bible_quiz/services/models/user_model.dart';
 import 'package:bible_quiz/views/compte/mon_compte_vue.dart';
@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 
 import '../../services/providers/user_provider.dart';
 
-class HomeVue extends StatefulWidget {
+class HomeVue extends StatelessWidget {
   // =
   static const route = './';
 
@@ -20,20 +20,8 @@ class HomeVue extends StatefulWidget {
     Key? key,
   }) : super(key: key);
 
-  @override
-  State<HomeVue> createState() => _HomeVueState();
-}
 
-// <> _HomeVueState()
-class _HomeVueState extends State<HomeVue> {
-  // {} BottomBar
-  static int index = 0;
-
-  void switchIndex(int i) => setState(() {
-        index = i;
-      });
-
-  Widget switchWidget(MyUser currentUser) {
+  Widget switchWidget(MyUser currentUser, int index) {
     switch (index) {
       case 1:
         return StatsVue(user: currentUser);
@@ -44,71 +32,57 @@ class _HomeVueState extends State<HomeVue> {
     }
   }
 
-
-
 // <> Build
   @override
   Widget build(BuildContext context) {
     // = Provider
-    String method =
-        Provider.of<UserProvider>(context, listen: true).userIdMethod;
+    MyUser myUser = Provider.of<UserProvider>(context, listen: true).user;
 
-    void setPrivateUser(MyUser dbUser) =>
-        Provider.of<UserProvider>(context, listen: false).setUser(dbUser);
+    // = BLoC
+    final _bloc = BlocProvider.of<BottomIndexBloc>(context);
 
-    return StreamBuilder<MyUser>(
-        stream: UserCrud.getConnectedUser(AuthCrud.getUserId(context, method)),
+    return StreamBuilder<int>(
+        stream: _bloc.stream,
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            setPrivateUser(snapshot.data!);
-            return Scaffold(
-              extendBodyBehindAppBar: true,
-              extendBody: true,
+          int _index = snapshot.data!;
+          return Scaffold(
+            extendBodyBehindAppBar: true,
+            extendBody: true,
 
-              // <> AppBar
-              appBar: AppBar(
-                automaticallyImplyLeading: false,
-                actions: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 10),
-                    child: IconButton(
-                      onPressed: () => SettingsModal.showSettings(context),
-                      icon: const Icon(Icons.settings_outlined),
-                      splashRadius: 20,
-                      splashColor: Couleur.secondary.withOpacity(0.5),
-                    ),
+            // <> AppBar
+            appBar: AppBar(
+              automaticallyImplyLeading: false,
+              actions: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 10),
+                  child: IconButton(
+                    onPressed: () =>
+                        SettingsModal.showSettings(context, myUser.settings),
+                    icon: const Icon(Icons.settings_outlined),
+                    splashRadius: 20,
+                    splashColor: Couleur.secondary.withOpacity(0.5),
                   ),
-                ],
-              ),
+                ),
+              ],
+            ),
 
-              // <> Body
-              body: Container(
-                  padding: const EdgeInsets.only(top: 120),
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/home_bkg.png'),
-                      fit: BoxFit.cover,
-                    ),
+            // <> Body
+            body: Container(
+                padding: const EdgeInsets.only(top: 120),
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/home_bkg.png'),
+                    fit: BoxFit.cover,
                   ),
-                  // <!> Accueil()
-                  child: switchWidget(snapshot.data!)),
+                ),
+                // <!> Accueil()
+                child: switchWidget(myUser, _index)),
 
-              // <> BottomBar
-              // <!> HomeBottomBar()
-              bottomNavigationBar: HomeBottomBar(
-                index: index,
-                switchIndex: switchIndex,
-              ),
-            );
-          } else if (!snapshot.hasData) {
-            return Center(child: Text(snapshot.error.toString()));
-          } else if (snapshot.hasError) {
-            // ignore: avoid_print
-            print('get connected User error : ' + snapshot.error.toString());
-          }
-          return const Center(
-            child: CircularProgressIndicator(
-              color: Couleur.secondary,
+            // <> BottomBar
+            // <!> HomeBottomBar()
+            bottomNavigationBar: HomeBottomBar(
+              index: _index,
+              switchIndex: (value) => _bloc.setIndex(value),
             ),
           );
         });

@@ -171,5 +171,10 @@ class MyTextStyle {
     color: Colors.red[700],
   );
   // M
-  static TextStyle labelM = const TextStyle();
+  static TextStyle labelM = const TextStyle(
+    fontFamily: 'NotoSansDisplay',
+    fontSize: 18,
+    letterSpacing: 0.5,
+    color: Couleur.blanc,
+  );
 }

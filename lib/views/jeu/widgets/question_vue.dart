@@ -1,4 +1,9 @@
+// ignore_for_file: avoid_print
+
 import 'dart:async';
+
+import 'package:bible_quiz/composants/stream/loading_data.dart';
+import 'package:bible_quiz/services/BLoC/bloc_provider.dart';
 
 import 'package:bible_quiz/services/crud/user_crud.dart';
 import 'package:bible_quiz/services/enums/couleur.dart';
@@ -11,10 +16,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
+import '../../../services/BLoC/provided/select_reponse_bloc.dart';
 import '../../../services/models/user_model.dart';
 import '../../../services/providers/user_provider.dart';
 
-class QuestionVue extends StatefulWidget {
+class QuestionVue extends StatelessWidget {
   // =
   final CountDownController countDownController;
   final Question question;
@@ -25,15 +31,6 @@ class QuestionVue extends StatefulWidget {
     required this.question,
     required this.dbUser,
   }) : super(key: key);
-
-  @override
-  State<QuestionVue> createState() => _QuestionVueState();
-}
-
-// <> _QuestionVueState()
-class _QuestionVueState extends State<QuestionVue> {
-  // {} Animation
-  double facteur = 0.34;
 
   // = image niveau
   String getNivIcon(int niv) {
@@ -52,31 +49,24 @@ class _QuestionVueState extends State<QuestionVue> {
   Widget build(BuildContext context) {
     // = Provider
     Setting settings = Provider.of<UserProvider>(context).userSettings;
-    void allRepToTrue() =>
-        Provider.of<UserProvider>(context, listen: false).allRepToTrue();
-    void allRepToFalse() =>
-        Provider.of<UserProvider>(context, listen: false).allRepToFalse();
+
+    // = BLoC
+    final bloc = BlocProvider.of<SelectReponseBloc>(context);
 
     void switchFacteur(MyUser newUser) {
-      setState(() {
-        facteur = 0.75;
-      });
+      bloc.increaseFacteur();
       Timer(
           const Duration(milliseconds: 900),
           () => {
-                setState(() {
-                  allRepToFalse();
-                  facteur = 0.34;
-                  UserCrud.updateUser(newUser);
-                }),
+                bloc.clearFacteur(),
+                UserCrud.updateUser(newUser),
                 Timer(const Duration(milliseconds: 900), () {
-                  widget.countDownController.restart();
-                  allRepToFalse();
+                  countDownController.restart();
                 }),
               });
     }
 
-    if (widget.question.texte == '') {
+    if (question.texte == '') {
       return Center(
         child: Text(
           'no more data',
@@ -85,79 +75,97 @@ class _QuestionVueState extends State<QuestionVue> {
       );
     }
 
-    return Container(
-      height: MediaQuery.of(context).size.height,
-      padding: const EdgeInsets.only(top: 50),
-      child: Column(
-        children: [
-          AnimatedContainer(
-            duration: const Duration(milliseconds: 900),
-            height: MediaQuery.of(context).size.height * facteur,
-            padding: const EdgeInsets.only(
-              left: 15.0,
-              right: 15.0,
-            ),
-            child: Column(
-              children: [
-                // <> Tire + Difficulté
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Question',
-                      style: MyTextStyle.textM,
+    return StreamBuilder<double>(
+        stream: bloc.facteurStream,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            double _facteur = snapshot.data!;
+            return Container(
+              height: MediaQuery.of(context).size.height,
+              padding: const EdgeInsets.only(top: 50),
+              child: Column(
+                children: [
+                  AnimatedContainer(
+                    duration: const Duration(milliseconds: 900),
+                    height: MediaQuery.of(context).size.height * _facteur,
+                    padding: const EdgeInsets.only(
+                      left: 15.0,
+                      right: 15.0,
                     ),
-                    SvgPicture.asset(
-                      getNivIcon(settings.niveau),
-                      height: 30,
+                    child: Column(
+                      children: [
+                        // <> Tire + Difficulté
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Question',
+                              style: MyTextStyle.textM,
+                            ),
+                            SvgPicture.asset(
+                              getNivIcon(settings.niveau),
+                              height: 30,
+                            ),
+                          ],
+                        ),
+                        const Divider(
+                          color: Couleur.blanc,
+                          height: 25,
+                        ),
+                        // <> Question + Timer
+                        Row(
+                          children: [
+                            Flexible(
+                              flex: 5,
+                              child: Text(
+                                question.texte,
+                                style: MyTextStyle.textL,
+                              ),
+                            ),
+                            const SizedBox(width: 10),
+                            Flexible(
+                              flex: 1,
+                              child: CircularCountDownTimer(
+                                controller: countDownController,
+                                duration: settings.chrono,
+                                textFormat: 's',
+                                isReverse: true,
+                                width: 60,
+                                height: 60,
+                                ringColor: Colors.transparent,
+                                fillColor: Couleur.secondary,
+                                textStyle: MyTextStyle.textM,
+                                onStart: () => bloc.setAllFalse(),
+                                onComplete: () => bloc.setAllTrue(),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-                const Divider(
-                  color: Couleur.blanc,
-                  height: 25,
-                ),
-                // <> Question + Timer
-                Row(
-                  children: [
-                    Flexible(
-                      flex: 5,
-                      child: Text(
-                        widget.question.texte,
-                        style: MyTextStyle.textL,
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    Flexible(
-                      flex: 1,
-                      child: CircularCountDownTimer(
-                        controller: widget.countDownController,
-                        duration: settings.chrono,
-                        width: 60,
-                        height: 60,
-                        ringColor: Colors.transparent,
-                        fillColor: Couleur.secondary,
-                        textStyle: MyTextStyle.textM,
-                        onComplete: () => allRepToTrue(),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
+                  ),
 
-          // <!> ReponseVue()
-          Expanded(
-            child: ReponseVue(
-              questionId: widget.question.id,
-              switchFacteur: switchFacteur,
-              countDownController: widget.countDownController,
-              dbUser: widget.dbUser,
-            ),
-          ),
-        ],
-      ),
-    );
+                  // <!> ReponseVue()
+                  Expanded(
+                    child: ReponseVue(
+                      bloc: bloc,
+                      questionId: question.id,
+                      switchFacteur: switchFacteur,
+                      countDownController: countDownController,
+                      dbUser: dbUser,
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }
+          if (!snapshot.hasData) {
+            return const LoadingData();
+          }
+          if (snapshot.hasError) {
+            print('Question Vue double error : ${snapshot.error}');
+          }
+          return const LoadingData();
+        });
   }
 }

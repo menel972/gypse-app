@@ -1,10 +1,10 @@
 // ignore_for_file: avoid_print
 
+import 'package:bible_quiz/composants/stream/livres/livre_card_loading.dart';
+import 'package:bible_quiz/services/crud/auth_crud.dart';
 import 'package:bible_quiz/services/crud/question_crud.dart';
 import 'package:bible_quiz/services/crud/user_crud.dart';
-import 'package:bible_quiz/services/providers/user_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../../services/enums/couleur.dart';
 import '../../services/models/user_model.dart';
@@ -25,10 +25,9 @@ class LivresListCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // = Provider
-    final MyUser user = Provider.of<UserProvider>(context).user;
 
     return StreamBuilder<MyUser>(
-        stream: UserCrud.getConnectedUser(user.id),
+        stream: UserCrud.getConnectedUser(AuthCrud.currentUser.uid),
         builder: (context, snap) {
           if (snap.hasData) {
             MyUser dbUser = snap.data!;
@@ -122,20 +121,12 @@ class LivresListCard extends StatelessWidget {
                   } else if (snapshot.hasError) {
                     print('stream error : ' + snapshot.error.toString());
                   }
-                  return const Center(
-                    child: CircularProgressIndicator(
-                      color: Couleur.secondary,
-                    ),
-                  );
+                  return const LivreCardLoading();
                 });
           } else if (snap.hasError) {
             print('get user error : ' + snap.error.toString());
           }
-          return const Center(
-            child: CircularProgressIndicator(
-              color: Couleur.secondary,
-            ),
-          );
+          return const LivreCardLoading();
         });
   }
 }

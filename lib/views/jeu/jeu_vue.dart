@@ -1,6 +1,9 @@
 // ignore_for_file: avoid_print
 
 import 'package:bible_quiz/composants/dialogs/quit_dialog.dart';
+import 'package:bible_quiz/composants/stream/loading_data.dart';
+import 'package:bible_quiz/composants/stream/no_data.dart';
+import 'package:bible_quiz/services/BLoC/bloc_provider.dart';
 import 'package:bible_quiz/services/crud/question_crud.dart';
 import 'package:bible_quiz/services/crud/user_crud.dart';
 import 'package:bible_quiz/services/enums/couleur.dart';
@@ -11,6 +14,7 @@ import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../services/BLoC/provided/select_reponse_bloc.dart';
 import '../../services/models/question_model.dart';
 import '../../services/providers/user_provider.dart';
 
@@ -81,10 +85,13 @@ class _JeuVueState extends State<JeuVue> {
                         ),
                       ),
                       // <!> QuetionVue()
-                      child: QuestionVue(
-                        countDownController: countDownController,
-                        question: snapshot.data!,
-                        dbUser: dbUser,
+                      child: BlocProvider<SelectReponseBloc>(
+                        bloc: SelectReponseBloc(),
+                        child: QuestionVue(
+                          countDownController: countDownController,
+                          question: snapshot.data!,
+                          dbUser: dbUser,
+                        ),
                       ),
                     ),
                   );
@@ -134,8 +141,11 @@ class _JeuVueState extends State<JeuVue> {
                   ),
                 );
               });
+        } else if (!snap.hasData) {
+          return const NoData(texte: 'texte');
         } else if (snap.hasError) {
-          print('Get user error : ' + snap.error.toString());
+          print('Get user errors : ' + snap.error.toString());
+          return const LoadingData();
         }
         return const Center(
           child: CircularProgressIndicator(

@@ -1,10 +1,10 @@
 class Reponse {
-  final String id;
+  String id;
   String questionId;
-  final String texte;
-  final bool confirme;
-  final String? versetRef;
-  final String? verset;
+  String texte;
+  bool confirme;
+  String? versetRef;
+  String? verset;
 
   Reponse({
     required this.id,
