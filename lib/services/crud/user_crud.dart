@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import 'package:bible_quiz/services/models/settings_model.dart';
 import 'package:bible_quiz/services/models/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -40,6 +41,14 @@ class UserCrud {
         .doc(user.id)
         .set(user.toJson())
         .then((value) => print('updated'))
+        .catchError((e) => print('update error : ' + e.toString()));
+  }
+
+  static Future updateSettings(String uid, Setting settings) async {
+    await db
+        .doc(uid)
+        .update({'settings': settings.toJson()})
+        .then((value) => print('settings updated'))
         .catchError((e) => print('update error : ' + e.toString()));
   }
 }

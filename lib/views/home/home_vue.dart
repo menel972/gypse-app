@@ -56,7 +56,8 @@ class HomeVue extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(right: 10),
                   child: IconButton(
-                    onPressed: () => SettingsModal.showSettings(context),
+                    onPressed: () =>
+                        SettingsModal.showSettings(context, myUser.settings),
                     icon: const Icon(Icons.settings_outlined),
                     splashRadius: 20,
                     splashColor: Couleur.secondary.withOpacity(0.5),
