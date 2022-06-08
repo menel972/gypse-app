@@ -1,11 +1,11 @@
 class Question {
-  final String id;
-  final String texte;
-  final String livre;
-  final bool? resultat;
-  final bool? facile;
-  final bool? moyen;
-  final bool? difficile;
+  String id;
+  String texte;
+  String livre;
+  bool? resultat;
+  bool? facile;
+  bool? moyen;
+  bool? difficile;
 
   Question({
     required this.id,

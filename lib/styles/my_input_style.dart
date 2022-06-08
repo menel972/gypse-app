@@ -12,4 +12,20 @@ class MyInputStyle {
     labelStyle: MyTextStyle.labelS,
     counterStyle: MyTextStyle.labelS,
   );
+
+  static InputDecoration ajoutInputStyle(String label, IconData icon) =>
+      InputDecoration(
+        labelText: label,
+        labelStyle: MyTextStyle.labelS,
+        enabledBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Couleur.primAccent)),
+        focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Couleur.secondary, width: 2)),
+        filled: true,
+        fillColor: Couleur.bleuClair.withOpacity(0.1),
+        suffixIcon: Icon(
+          icon,
+          color: Couleur.blanc,
+        ),
+      );
 }
