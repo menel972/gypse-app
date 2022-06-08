@@ -1,3 +1,4 @@
+import 'package:bible_quiz/services/BLoC/bloc_router.dart';
 import 'package:bible_quiz/services/enums/couleur.dart';
 import 'package:bible_quiz/services/providers/user_provider.dart';
 import 'package:blur/blur.dart';
@@ -6,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../styles/my_text_style.dart';
-import '../../views/home/home_vue.dart';
 import '../bouttons/basic_button.dart';
 import '../bouttons/primary_button.dart';
 
@@ -80,8 +80,10 @@ class QuitDialog extends StatelessWidget {
                               couleur: 'bleu',
                               // <!> HomeVue()
                               fonction: () => {
-                                Navigator.pushNamed(context, HomeVue.route),
-                                allRepToFalse(),
+                                Navigator.push(
+                                  context,
+                                  BlocRouter().homeRoute(),
+                                ),
                               },
                             ),
                           ),

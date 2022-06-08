@@ -7,10 +7,10 @@ import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../services/BLoC/bloc_router.dart';
 import '../../../services/crud/user_crud.dart';
 import '../../../services/enums/couleur.dart';
 import '../../../services/models/user_model.dart';
-import '../../home/home_vue.dart';
 
 class SignIn extends StatefulWidget {
   final VoidCallback setHasAccount;
@@ -142,7 +142,7 @@ class _SignInState extends State<SignIn> {
               AuthCrud.loginMailMdp(_mailController.text, _mdpController.text),
               setPrivateUser(),
               Timer(const Duration(seconds: 1),
-                  () => Navigator.pushNamed(context, HomeVue.route)),
+                  () => Navigator.push(context, BlocRouter().homeRoute())),
             },
           ),
           // const SizedBox(height: 50),

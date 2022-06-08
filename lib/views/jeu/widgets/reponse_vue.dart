@@ -2,7 +2,6 @@ import 'package:bible_quiz/composants/bouttons/basic_button.dart';
 import 'package:bible_quiz/composants/bouttons/primary_fab_button.dart';
 import 'package:bible_quiz/composants/dialogs/verset_modal.dart';
 import 'package:bible_quiz/composants/stream/loading_data.dart';
-import 'package:bible_quiz/services/BLoC/bloc_provider.dart';
 import 'package:bible_quiz/services/BLoC/provided/select_reponse_bloc.dart';
 import 'package:bible_quiz/services/crud/reponse_crud.dart';
 import 'package:bible_quiz/services/enums/couleur.dart';
@@ -20,8 +19,9 @@ import 'package:provider/provider.dart';
 
 import '../../../services/providers/user_provider.dart';
 
-class ReponseVue extends StatefulWidget {
+class ReponseVue extends StatelessWidget {
   // =
+  final SelectReponseBloc bloc;
   final String questionId;
   final CountDownController countDownController;
   final Function(MyUser) switchFacteur;
@@ -29,31 +29,21 @@ class ReponseVue extends StatefulWidget {
 
   const ReponseVue({
     Key? key,
+    required this.bloc,
     required this.questionId,
     required this.countDownController,
     required this.switchFacteur,
     required this.dbUser,
   }) : super(key: key);
 
-  @override
-  State<ReponseVue> createState() => _ReponseVueState();
-}
-
-// <> _ReponseVueState()
-class _ReponseVueState extends State<ReponseVue> {
   // <> Build
   @override
   Widget build(BuildContext context) {
     // = Provider
     Setting settings = Provider.of<UserProvider>(context).userSettings;
-    // List<bool> select = Provider.of<UserProvider>(context).reponses;
-
-    // = BLoC
-    final _bloc = BlocProvider.of<SelectReponseBloc>(context);
 
     return StreamBuilder<List<Reponse>>(
-        stream: ReponseCrud.fetchReponseByNiveau(
-            settings.niveau, widget.questionId),
+        stream: ReponseCrud.fetchReponseByNiveau(settings.niveau, questionId),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             final reponses = snapshot.data!;
@@ -73,7 +63,7 @@ class _ReponseVueState extends State<ReponseVue> {
                   padding:
                       const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
                   child: StreamBuilder<List<bool>>(
-                      stream: _bloc.stream,
+                      stream: bloc.selectStream,
                       builder: (context, flux) {
                         final _select = flux.data!;
                         return Column(
@@ -87,16 +77,16 @@ class _ReponseVueState extends State<ReponseVue> {
                                     final rep = reponses[i];
                                     return GestureDetector(
                                       onTap: () {
-                                        widget.countDownController.pause();
+                                        countDownController.pause();
 
                                         if (_select.contains(true)) return;
 
                                         if (!rep.confirme) {
-                                          _bloc.setFalseReponse(i, trueIndex);
+                                          bloc.setFalseReponse(i, trueIndex);
                                         }
 
                                         if (rep.confirme) {
-                                          _bloc.setTrueReponse(i);
+                                          bloc.setTrueReponse(i);
                                         }
                                       },
                                       // <!> ReponseCard()
@@ -139,17 +129,17 @@ class _ReponseVueState extends State<ReponseVue> {
                                       child: PrimaryFabButton(
                                           icon: Icons.keyboard_arrow_right,
                                           fonction: () {
-                                            MyUser newUser = widget.dbUser;
+                                            MyUser newUser = dbUser;
                                             UserQuestion uQ = UserQuestion(
                                               niveau: settings.niveau,
-                                              qId: widget.questionId,
+                                              qId: questionId,
                                               valid: _select
                                                       .where((e) => e)
                                                       .length ==
                                                   1,
                                             );
                                             newUser.questions.add(uQ);
-                                            widget.switchFacteur(newUser);
+                                            switchFacteur(newUser);
                                           }),
                                     ),
                                   ],
