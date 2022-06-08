@@ -5,7 +5,6 @@ import 'dart:async';
 import 'package:bible_quiz/services/BLoC/bloc_router.dart';
 import 'package:bible_quiz/services/crud/auth_crud.dart';
 import 'package:bible_quiz/services/enums/couleur.dart';
-import 'package:bible_quiz/views/auth/auth_vue.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -31,7 +30,7 @@ class _SplashscreenState extends State<Splashscreen> {
         if (value) {
           Navigator.push(context, BlocRouter().homeRoute());
         } else {
-          Navigator.pushNamed(context, AuthVue.route);
+          Navigator.push(context, BlocRouter().authRoute());
         }
       });
     });
