@@ -13,9 +13,11 @@ class AuthVue extends StatelessWidget {
   Widget switchSign(bool hasAccount, VoidCallback function) {
     switch (hasAccount) {
       case true:
-        return SignIn(setHasAccount: function);
+        return BlocProvider<BooleanBloc>(
+            bloc: BooleanBloc(), child: SignIn(setHasAccount: function));
       default:
-        return SignUp(setHasAccount: function);
+        return BlocProvider<BooleanBloc>(
+            bloc: BooleanBloc(), child: SignUp(setHasAccount: function));
     }
   }
 
