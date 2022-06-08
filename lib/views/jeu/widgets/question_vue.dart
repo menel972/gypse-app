@@ -1,5 +1,8 @@
+// ignore_for_file: avoid_print
+
 import 'dart:async';
 
+import 'package:bible_quiz/composants/stream/loading_data.dart';
 import 'package:bible_quiz/services/BLoC/bloc_provider.dart';
 
 import 'package:bible_quiz/services/crud/user_crud.dart';
@@ -28,7 +31,6 @@ class QuestionVue extends StatelessWidget {
     required this.question,
     required this.dbUser,
   }) : super(key: key);
-
 
   // = image niveau
   String getNivIcon(int niv) {
@@ -76,85 +78,94 @@ class QuestionVue extends StatelessWidget {
     return StreamBuilder<double>(
         stream: bloc.facteurStream,
         builder: (context, snapshot) {
-          double _facteur = snapshot.data!;
-          return Container(
-            height: MediaQuery.of(context).size.height,
-            padding: const EdgeInsets.only(top: 50),
-            child: Column(
-              children: [
-                AnimatedContainer(
-                  duration: const Duration(milliseconds: 900),
-                  height: MediaQuery.of(context).size.height * _facteur,
-                  padding: const EdgeInsets.only(
-                    left: 15.0,
-                    right: 15.0,
-                  ),
-                  child: Column(
-                    children: [
-                      // <> Tire + Difficulté
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Question',
-                            style: MyTextStyle.textM,
-                          ),
-                          SvgPicture.asset(
-                            getNivIcon(settings.niveau),
-                            height: 30,
-                          ),
-                        ],
-                      ),
-                      const Divider(
-                        color: Couleur.blanc,
-                        height: 25,
-                      ),
-                      // <> Question + Timer
-                      Row(
-                        children: [
-                          Flexible(
-                            flex: 5,
-                            child: Text(
-                              question.texte,
-                              style: MyTextStyle.textL,
+          if (snapshot.hasData) {
+            double _facteur = snapshot.data!;
+            return Container(
+              height: MediaQuery.of(context).size.height,
+              padding: const EdgeInsets.only(top: 50),
+              child: Column(
+                children: [
+                  AnimatedContainer(
+                    duration: const Duration(milliseconds: 900),
+                    height: MediaQuery.of(context).size.height * _facteur,
+                    padding: const EdgeInsets.only(
+                      left: 15.0,
+                      right: 15.0,
+                    ),
+                    child: Column(
+                      children: [
+                        // <> Tire + Difficulté
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Question',
+                              style: MyTextStyle.textM,
                             ),
-                          ),
-                          const SizedBox(width: 10),
-                          Flexible(
-                            flex: 1,
-                            child: CircularCountDownTimer(
-                              controller: countDownController,
-                              duration: settings.chrono,
-                              textFormat: 's',
-                              isReverse: true,
-                              width: 60,
-                              height: 60,
-                              ringColor: Colors.transparent,
-                              fillColor: Couleur.secondary,
-                              textStyle: MyTextStyle.textM,
-                              onStart: () => bloc.setAllFalse(),
-                              onComplete: () => bloc.setAllTrue(),
+                            SvgPicture.asset(
+                              getNivIcon(settings.niveau),
+                              height: 30,
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
+                          ],
+                        ),
+                        const Divider(
+                          color: Couleur.blanc,
+                          height: 25,
+                        ),
+                        // <> Question + Timer
+                        Row(
+                          children: [
+                            Flexible(
+                              flex: 5,
+                              child: Text(
+                                question.texte,
+                                style: MyTextStyle.textL,
+                              ),
+                            ),
+                            const SizedBox(width: 10),
+                            Flexible(
+                              flex: 1,
+                              child: CircularCountDownTimer(
+                                controller: countDownController,
+                                duration: settings.chrono,
+                                textFormat: 's',
+                                isReverse: true,
+                                width: 60,
+                                height: 60,
+                                ringColor: Colors.transparent,
+                                fillColor: Couleur.secondary,
+                                textStyle: MyTextStyle.textM,
+                                onStart: () => bloc.setAllFalse(),
+                                onComplete: () => bloc.setAllTrue(),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
 
-                // <!> ReponseVue()
-                Expanded(
-                  child: ReponseVue(
-                    bloc: bloc,
-                    questionId: question.id,
-                    switchFacteur: switchFacteur,
-                    countDownController: countDownController,
-                    dbUser: dbUser,
+                  // <!> ReponseVue()
+                  Expanded(
+                    child: ReponseVue(
+                      bloc: bloc,
+                      questionId: question.id,
+                      switchFacteur: switchFacteur,
+                      countDownController: countDownController,
+                      dbUser: dbUser,
+                    ),
                   ),
-                ),
-              ],
-            ),
-          );
+                ],
+              ),
+            );
+          }
+          if (!snapshot.hasData) {
+            return const LoadingData();
+          }
+          if (snapshot.hasError) {
+            print('Question Vue double error : ${snapshot.error}');
+          }
+          return const LoadingData();
         });
   }
 }

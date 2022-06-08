@@ -87,6 +87,7 @@ class _SignUpState extends State<SignUp> {
                           labelText: 'Email',
                         ),
                         keyboardType: TextInputType.emailAddress,
+                        textInputAction: TextInputAction.next,
                       ),
                     ),
                   ],

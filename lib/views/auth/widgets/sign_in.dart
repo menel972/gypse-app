@@ -109,6 +109,7 @@ class _SignInState extends State<SignIn> {
                           labelText: 'Email',
                         ),
                         keyboardType: TextInputType.emailAddress,
+                        textInputAction: TextInputAction.next,
                       ),
                     ),
                   ],
