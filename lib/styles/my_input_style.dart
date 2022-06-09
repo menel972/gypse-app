@@ -28,4 +28,33 @@ class MyInputStyle {
           color: Couleur.blanc,
         ),
       );
+
+  static InputDecoration connexionInputStyle(String label, IconData icon) =>
+      InputDecoration(
+        labelText: label,
+        labelStyle: MyTextStyle.labelS,
+        enabledBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Couleur.primAccent)),
+        focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Couleur.primary, width: 2)),
+        filled: true,
+        fillColor: Couleur.bleuClair.withOpacity(0.2),
+        suffixIcon: Icon(
+          icon,
+          color: Couleur.blanc,
+        ),
+      );
+
+  static InputDecoration mdpInputStyle(String label, Widget icon) =>
+      InputDecoration(
+        labelText: label,
+        labelStyle: MyTextStyle.labelS,
+        enabledBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Couleur.primAccent)),
+        focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Couleur.secondary, width: 2)),
+        filled: true,
+        fillColor: Couleur.bleuClair.withOpacity(0.2),
+        suffixIcon: icon,
+      );
 }
