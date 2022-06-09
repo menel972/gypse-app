@@ -23,7 +23,7 @@ class _MonCompteVueState extends State<MonCompteVue> {
         children: [
           TabBar(
             tabs: [
-              Text('Mon compte', style: MyTextStyle.titleS),
+              Text('Mon profile', style: MyTextStyle.titleS),
               Text('Questions', style: MyTextStyle.titleS),
               IgnorePointer(
                 child: Text('Ajout', style: MyTextStyle.titleS),

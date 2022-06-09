@@ -5,10 +5,15 @@ import 'package:bible_quiz/services/enums/my_size.dart';
 import 'package:bible_quiz/styles/my_input_style.dart';
 import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../../services/BLoC/bloc_router.dart';
 import '../../../services/crud/auth_crud.dart';
+import '../../../services/crud/user_crud.dart';
 import '../../../services/enums/couleur.dart';
 import '../../../services/enums/my_validators.dart';
+import '../../../services/models/user_model.dart';
+import '../../../services/providers/user_provider.dart';
 
 class SignUp extends StatefulWidget {
   final VoidCallback setHasAccount;
@@ -41,9 +46,18 @@ class _SignUpState extends State<SignUp> {
     return await AuthCrud.addUser(credential['mail']!, credential['mdp']!);
   }
 
+  Future<MyUser> myUse() async {
+    return await UserCrud.getConnectedUser(AuthCrud.currentUser.uid).first;
+  }
+
   @override
   Widget build(BuildContext context) {
     Size _size = MySize().size(context);
+    // = Provider
+    void setPrivateUser() async =>
+        Provider.of<UserProvider>(context, listen: false)
+            .setUser(await myUse());
+            
     // = BLoC
     final _bloc = BlocProvider.of<BooleanBloc>(context);
 
@@ -144,13 +158,17 @@ class _SignUpState extends State<SignUp> {
                         );
                       }
                       if (_isValid == null) {
+                        AuthCrud.loginMailMdp(
+                            credential['mail']!, credential['mdp']!);
+                        setPrivateUser();
                         _signUpKey.currentState!.reset();
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
-                              content: Text('Votre profile à été enregistré'),
+                              content: Text(
+                                  'Profile enregistré, vous êtes connecté'),
                               backgroundColor: Couleur.secondary),
                         );
-                        widget.setHasAccount();
+                        Navigator.push(context, BlocRouter().homeRoute());
                       }
                     },
                   ),
