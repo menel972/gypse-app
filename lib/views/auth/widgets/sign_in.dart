@@ -35,8 +35,9 @@ class _SignInState extends State<SignIn> {
 
   Map<String, String> credential = {'mail': '', 'mdp': ''};
 
-  void _submit() {
+  Future<String?> _submit() async {
     bool isValid = _signInKey.currentState!.validate();
+
     if (!isValid) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -44,17 +45,11 @@ class _SignInState extends State<SignIn> {
                 Text('Il y a une erreur dans vos identifiants de connexion'),
             backgroundColor: Colors.red),
       );
+      return '';
     }
-    if (isValid) {
-      _signInKey.currentState!.save();
-      AuthCrud.loginMailMdp(credential['mail']!, credential['mdp']!);
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-            content: Text('Bienvenu'), backgroundColor: Couleur.secondary),
-      );
-      _signInKey.currentState!.reset();
-    }
+    _signInKey.currentState!.save();
+    return await AuthCrud.loginMailMdp(credential['mail']!, credential['mdp']!);
   }
 
   Future<MyUser> myUse() async {
@@ -80,7 +75,7 @@ class _SignInState extends State<SignIn> {
           return Form(
             key: _signInKey,
             child: Container(
-              height: _size.height * 0.5,
+              height: _size.height * 0.55,
               width: _size.width * 0.8,
               alignment: Alignment.center,
               decoration: BoxDecoration(
@@ -122,7 +117,8 @@ class _SignInState extends State<SignIn> {
                 itemCount: 5,
                 separatorBuilder: (context, i) {
                   if (i == 0) return SizedBox(height: _size.height * 0.03);
-                  if (i == 2) return SizedBox(height: _size.height * 0.03);
+                  if (i == 2) return SizedBox(height: _size.height * 0.04);
+                  if (i == 2) return SizedBox(height: _size.height * 0.001);
                   return SizedBox(height: _size.height * 0.01);
                 },
                 itemBuilder: (context, i) => [
@@ -132,7 +128,7 @@ class _SignInState extends State<SignIn> {
                     textAlign: TextAlign.center,
                   ),
                   TextFormField(
-                    decoration: MyInputStyle.connexionInputStyle(
+                    decoration: MyInputStyle.ajoutInputStyle(
                         'E-mail', Icons.alternate_email),
                     keyboardType: TextInputType.emailAddress,
                     textInputAction: TextInputAction.next,
@@ -159,13 +155,27 @@ class _SignInState extends State<SignIn> {
                   ),
                   SecondaryButton(
                     texte: 'Connexion',
-                    fonction: () => {
-                      _submit(),
-                      setPrivateUser(),
-                      Timer(
-                          const Duration(seconds: 1),
-                          () => Navigator.push(
-                              context, BlocRouter().homeRoute())),
+                    fonction: () async {
+                      final String? _isValid = await _submit();
+
+                      if (_isValid != null && _isValid != '') {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                              content: Text(_isValid),
+                              backgroundColor: Colors.red),
+                        );
+                      }
+
+                      if (_isValid == null) {
+                        _signInKey.currentState!.reset();
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                              content: Text('Bienvenue'),
+                              backgroundColor: Couleur.secondary),
+                        );
+                        setPrivateUser();
+                        Navigator.push(context, BlocRouter().homeRoute());
+                      }
                     },
                   ),
                   // const SizedBox(height: 50),

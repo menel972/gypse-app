@@ -49,19 +49,29 @@ class AuthCrud {
   }
 
 // {} Email - Password
-  static Future addUser(String mail, String mdp) async {
-    await auth
-        .createUserWithEmailAndPassword(email: mail, password: mdp)
-        .then((value) => {
-              UserCrud.addUser(MyUser(
-                  id: value.user!.uid,
-                  questions: [],
-                  settings: Setting(niveau: 2, chrono: 30)))
-            });
+  static Future<String?> addUser(String mail, String mdp) async {
+    try {
+      await auth
+          .createUserWithEmailAndPassword(email: mail, password: mdp)
+          .then((value) => {
+                UserCrud.addUser(MyUser(
+                    id: value.user!.uid,
+                    questions: [],
+                    settings: Setting(niveau: 2, chrono: 30)))
+              });
+      return null;
+    } on FirebaseAuthException catch (e) {
+      return e.message;
+    }
   }
 
-  static Future<UserCredential> loginMailMdp(String mail, String mdp) async {
-    return await auth.signInWithEmailAndPassword(email: mail, password: mdp);
+  static Future<String?> loginMailMdp(String mail, String mdp) async {
+    try {
+      await auth.signInWithEmailAndPassword(email: mail, password: mdp);
+      return null;
+    } on FirebaseAuthException catch (e) {
+      return e.message;
+    }
   }
 
   // {} Google
