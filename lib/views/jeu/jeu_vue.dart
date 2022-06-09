@@ -1,12 +1,12 @@
 // ignore_for_file: avoid_print
 
 import 'package:bible_quiz/composants/dialogs/quit_dialog.dart';
+import 'package:bible_quiz/composants/stream/error_stream.dart';
 import 'package:bible_quiz/composants/stream/loading_data.dart';
 import 'package:bible_quiz/composants/stream/no_data.dart';
 import 'package:bible_quiz/services/BLoC/bloc_provider.dart';
 import 'package:bible_quiz/services/crud/question_crud.dart';
 import 'package:bible_quiz/services/crud/user_crud.dart';
-import 'package:bible_quiz/services/enums/couleur.dart';
 import 'package:bible_quiz/services/models/user_model.dart';
 import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:bible_quiz/views/jeu/widgets/question_vue.dart';
@@ -58,7 +58,41 @@ class _JeuVueState extends State<JeuVue> {
           return StreamBuilder<Question>(
               stream: QuestionCrud.fetchFirstQuestionByUser(uQ, widget.livre),
               builder: (context, snapshot) {
-                if (snapshot.hasData) {
+                if (!snapshot.hasData) {
+                  return Scaffold(
+                    extendBodyBehindAppBar: true,
+                    // <> AppBar
+                    appBar: AppBar(
+                      elevation: 0,
+                      // <!> QuitDialog()
+                      leading: IconButton(
+                        onPressed: () => {
+                          UserCrud.updateUser(dbUser),
+                          Navigator.pop(context),
+                        },
+                        icon: const Icon(Icons.arrow_back_ios),
+                      ),
+                      title: Text(
+                        widget.livre!,
+                        style: MyTextStyle.textM,
+                      ),
+                    ),
+
+                    // <> Body
+                    body: Container(
+                      padding: const EdgeInsets.only(top: 25),
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/jeu_bkg.png'),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      // <!> QuetionVue()
+                        child:
+                            const NoData(texte: 'Il n\'y a plus de question')
+                    ),
+                  );
+                } else if (snapshot.hasData) {
                   return Scaffold(
                     extendBodyBehindAppBar: true,
                     // <> AppBar
@@ -95,63 +129,22 @@ class _JeuVueState extends State<JeuVue> {
                       ),
                     ),
                   );
-                } else if (!snapshot.hasData) {
-                  return Scaffold(
-                    extendBodyBehindAppBar: true,
-                    // <> AppBar
-                    appBar: AppBar(
-                      elevation: 0,
-                      // <!> QuitDialog()
-                      leading: IconButton(
-                        onPressed: () => {
-                          UserCrud.updateUser(dbUser),
-                          Navigator.pop(context),
-                        },
-                        icon: const Icon(Icons.arrow_back_ios),
-                      ),
-                      title: Text(
-                        widget.livre!,
-                        style: MyTextStyle.textM,
-                      ),
-                    ),
-
-                    // <> Body
-                    body: Container(
-                      padding: const EdgeInsets.only(top: 25),
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/images/jeu_bkg.png'),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      // <!> QuetionVue()
-                      child: QuestionVue(
-                        countDownController: countDownController,
-                        question: Question(id: '', texte: '', livre: ''),
-                        dbUser: dbUser,
-                      ),
-                    ),
-                  );
                 } else if (snapshot.hasError) {
                   print('stream error : ' + snapshot.error.toString());
+                  return ErrorStream(
+                      message: 'jeu_vue get question ', flux: snapshot);
                 }
-                return const Center(
-                  child: CircularProgressIndicator(
-                    color: Couleur.secondary,
-                  ),
-                );
+                return const LoadingData();
               });
         } else if (!snap.hasData) {
-          return const NoData(texte: 'texte');
+          return const LoadingData(
+            message: 'No User',
+          );
         } else if (snap.hasError) {
           print('Get user errors : ' + snap.error.toString());
-          return const LoadingData();
+          return ErrorStream(message: 'jeu_vue get User', flux: snap);
         }
-        return const Center(
-          child: CircularProgressIndicator(
-            color: Couleur.secondary,
-          ),
-        );
+        return const LoadingData();
       },
     );
   }

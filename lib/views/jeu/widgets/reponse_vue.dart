@@ -1,6 +1,7 @@
 import 'package:bible_quiz/composants/bouttons/basic_button.dart';
 import 'package:bible_quiz/composants/bouttons/primary_fab_button.dart';
 import 'package:bible_quiz/composants/dialogs/verset_modal.dart';
+import 'package:bible_quiz/composants/stream/error_stream.dart';
 import 'package:bible_quiz/composants/stream/loading_data.dart';
 import 'package:bible_quiz/services/BLoC/provided/select_reponse_bloc.dart';
 import 'package:bible_quiz/services/crud/reponse_crud.dart';
@@ -9,7 +10,6 @@ import 'package:bible_quiz/services/models/reponse_model.dart';
 import 'package:bible_quiz/services/models/settings_model.dart';
 import 'package:bible_quiz/services/models/user_model.dart';
 import 'package:bible_quiz/services/models/user_question.dart';
-import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:bible_quiz/views/jeu/widgets/reponse_false_card.dart';
 import 'package:bible_quiz/views/jeu/widgets/reponse_true_card.dart';
 import 'package:blur/blur.dart';
@@ -151,10 +151,12 @@ class ReponseVue extends StatelessWidget {
                       }),
                 ));
           } else if (!snapshot.hasData) {
-            return Center(child: Text('no data', style: MyTextStyle.titleM));
+            return const LoadingData(message: 'No Data');
           } else if (snapshot.hasError) {
             // ignore: avoid_print
             print('stream error : ' + snapshot.error.toString());
+            return ErrorStream(
+                message: 'reponse_vue get reponse ', flux: snapshot);
           }
           return const LoadingData();
         });

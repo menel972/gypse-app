@@ -1,3 +1,6 @@
+import 'package:bible_quiz/composants/stream/error_stream.dart';
+import 'package:bible_quiz/composants/stream/loading_data.dart';
+import 'package:bible_quiz/composants/stream/no_data.dart';
 import 'package:bible_quiz/services/crud/question_crud.dart';
 import 'package:bible_quiz/services/crud/reponse_crud.dart';
 import 'package:bible_quiz/services/enums/couleur.dart';
@@ -78,12 +81,11 @@ class _QuestionPreviewState extends State<QuestionPreview> {
                           } else if (!snap.hasError) {
                             // ignore: avoid_print
                             print('reponse error : ' + snap.error.toString());
+                            return ErrorStream(
+                                message: 'question_preview reponse',
+                                flux: snap);
                           }
-                          return const Center(
-                            child: CircularProgressIndicator(
-                              color: Couleur.secondary,
-                            ),
-                          );
+                          return const LoadingData();
                         });
                   },
                 ),
@@ -91,20 +93,14 @@ class _QuestionPreviewState extends State<QuestionPreview> {
             ],
           );
         } else if (!snapshot.hasData) {
-          return Center(
-              child: Text(
-            'Il n\'y a pas de question',
-            style: MyTextStyle.textM,
-          ));
+          return const NoData(texte: 'Il ny a pas de question');
         } else if (snapshot.hasError) {
           // ignore: avoid_print
           print('all questions error : ' + snapshot.error.toString());
+          return ErrorStream(
+              message: 'question_preview get question', flux: snapshot);
         }
-        return const Center(
-          child: CircularProgressIndicator(
-            color: Couleur.secondary,
-          ),
-        );
+        return const LoadingData();
       },
     );
   }

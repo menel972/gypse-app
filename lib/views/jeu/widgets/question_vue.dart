@@ -47,12 +47,12 @@ class QuestionVue extends StatelessWidget {
   // <> Build
   @override
   Widget build(BuildContext context) {
-    // = Provider
-    Setting settings = Provider.of<UserProvider>(context).userSettings;
 
     // = BLoC
     final bloc = BlocProvider.of<SelectReponseBloc>(context);
 
+    // = Provider
+    Setting settings = Provider.of<UserProvider>(context).userSettings;
     void switchFacteur(MyUser newUser) {
       bloc.increaseFacteur();
       Timer(
@@ -78,6 +78,13 @@ class QuestionVue extends StatelessWidget {
     return StreamBuilder<double>(
         stream: bloc.facteurStream,
         builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return const LoadingData();
+          }
+
+          if (snapshot.hasError) {
+            print('Question Vue double error : ${snapshot.error}');
+          }
           if (snapshot.hasData) {
             double _facteur = snapshot.data!;
             return Container(
@@ -158,12 +165,6 @@ class QuestionVue extends StatelessWidget {
                 ],
               ),
             );
-          }
-          if (!snapshot.hasData) {
-            return const LoadingData();
-          }
-          if (snapshot.hasError) {
-            print('Question Vue double error : ${snapshot.error}');
           }
           return const LoadingData();
         });

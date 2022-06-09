@@ -1,6 +1,8 @@
 // ignore_for_file: avoid_print
 
+import 'package:bible_quiz/composants/stream/error_stream.dart';
 import 'package:bible_quiz/composants/stream/livres/livre_card_loading.dart';
+import 'package:bible_quiz/composants/stream/loading_data.dart';
 import 'package:bible_quiz/services/crud/auth_crud.dart';
 import 'package:bible_quiz/services/crud/question_crud.dart';
 import 'package:bible_quiz/services/crud/user_crud.dart';
@@ -112,19 +114,23 @@ class LivresListCard extends StatelessWidget {
                       ]),
                     );
                   } else if (!snapshot.hasData) {
-                    Center(
-                      child: Text(
-                        snapshot.error.toString(),
-                        style: MyTextStyle.textM,
-                      ),
+                    return LoadingData(
+                      message: snapshot.error.toString(),
                     );
                   } else if (snapshot.hasError) {
                     print('stream error : ' + snapshot.error.toString());
+                    return ErrorStream(
+                        message: 'livres_list_card data  ', flux: snapshot);
                   }
                   return const LivreCardLoading();
                 });
+          } else if (!snap.hasData) {
+            return const LoadingData(
+              message: 'livres_list_card User : No Data',
+            );
           } else if (snap.hasError) {
             print('get user error : ' + snap.error.toString());
+            return ErrorStream(message: 'livres_list_card User ', flux: snap);
           }
           return const LivreCardLoading();
         });
