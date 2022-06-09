@@ -6,7 +6,6 @@ class MyBottomBarStyle {
   static BottomNavigationBarThemeData bottomStyle =
       BottomNavigationBarThemeData(
     type: BottomNavigationBarType.shifting,
-    backgroundColor: Couleur.blanc,
     elevation: 0,
     selectedItemColor: Couleur.secondary,
     selectedIconTheme: const IconThemeData(
@@ -15,7 +14,7 @@ class MyBottomBarStyle {
     ),
     selectedLabelStyle: MyTextStyle.labelS,
     unselectedIconTheme: const IconThemeData(
-      color: Couleur.labelNoir,
+      color: Couleur.primary,
       size: 25,
     ),
     showUnselectedLabels: false,

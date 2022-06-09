@@ -81,7 +81,6 @@ class QuestionVue extends StatelessWidget {
           if (!snapshot.hasData) {
             return const LoadingData();
           }
-
           if (snapshot.hasError) {
             print('Question Vue double error : ${snapshot.error}');
           }
