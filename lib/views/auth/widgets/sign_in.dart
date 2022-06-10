@@ -77,6 +77,8 @@ class _SignInState extends State<SignIn> {
             child: Container(
               height: _size.height * 0.55,
               width: _size.width * 0.8,
+              margin: EdgeInsets.symmetric(
+                  vertical: _size.height * 0.06, horizontal: 0),
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 boxShadow: const [

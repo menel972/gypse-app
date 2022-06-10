@@ -29,7 +29,7 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   final _signUpKey = GlobalKey<FormState>();
 
-  Map<String, String> credential = {'mail': '', 'mdp': ''};
+  Map<String, String> credential = {'mail': '', 'mdp': '', 'userName': ''};
 
   Future<String?> _submit() async {
     bool isValid = _signUpKey.currentState!.validate();
@@ -43,7 +43,10 @@ class _SignUpState extends State<SignUp> {
     }
 
     _signUpKey.currentState!.save();
-    return await AuthCrud.addUser(credential['mail']!, credential['mdp']!);
+    return await AuthCrud.addUser(
+        mail: credential['mail']!,
+        mdp: credential['mdp']!,
+        userName: credential['userName']!);
   }
 
   Future<MyUser> myUse() async {
@@ -57,7 +60,7 @@ class _SignUpState extends State<SignUp> {
     void setPrivateUser() async =>
         Provider.of<UserProvider>(context, listen: false)
             .setUser(await myUse());
-            
+
     // = BLoC
     final _bloc = BlocProvider.of<BooleanBloc>(context);
 
@@ -68,7 +71,7 @@ class _SignUpState extends State<SignUp> {
           return Form(
             key: _signUpKey,
             child: Container(
-              height: _size.height * 0.55,
+              height: _size.height * 0.64,
               width: _size.width * 0.8,
               alignment: Alignment.center,
               decoration: BoxDecoration(
@@ -107,11 +110,11 @@ class _SignUpState extends State<SignUp> {
                   horizontal: _size.width * 0.03,
                   vertical: _size.height * 0.05),
               child: ListView.separated(
-                itemCount: 5,
+                itemCount: 6,
                 separatorBuilder: (context, i) {
                   if (i == 0) return SizedBox(height: _size.height * 0.03);
-                  if (i == 2) return SizedBox(height: _size.height * 0.04);
-                  if (i == 2) return SizedBox(height: _size.height * 0.001);
+                  if (i == 3) return SizedBox(height: _size.height * 0.04);
+                  if (i == 4) return SizedBox(height: _size.height * 0.001);
                   return SizedBox(height: _size.height * 0.01);
                 },
                 itemBuilder: (context, i) => [
@@ -119,6 +122,14 @@ class _SignUpState extends State<SignUp> {
                     'Création du compte',
                     style: MyTextStyle.titleM,
                     textAlign: TextAlign.center,
+                  ),
+                  TextFormField(
+                    decoration: MyInputStyle.ajoutInputStyle(
+                        'Pseudo', Icons.alternate_email),
+                    textInputAction: TextInputAction.next,
+                    validator: (value) =>
+                        MyValidators().isEmpty(value, texte: 'un pseudo'),
+                    onSaved: (value) => credential['userName'] = value!,
                   ),
                   TextFormField(
                     decoration: MyInputStyle.ajoutInputStyle(
@@ -160,6 +171,7 @@ class _SignUpState extends State<SignUp> {
                       if (_isValid == null) {
                         AuthCrud.loginMailMdp(
                             credential['mail']!, credential['mdp']!);
+                        AuthCrud.setUserName(credential['userName']!);
                         setPrivateUser();
                         _signUpKey.currentState!.reset();
                         ScaffoldMessenger.of(context).showSnackBar(

@@ -49,20 +49,35 @@ class AuthCrud {
   }
 
 // {} Email - Password
-  static Future<String?> addUser(String mail, String mdp) async {
+  static Future<String?> addUser(
+      {required String mail,
+      required String mdp,
+      required String userName}) async {
     try {
       await auth
           .createUserWithEmailAndPassword(email: mail, password: mdp)
-          .then((value) => {
-                UserCrud.addUser(MyUser(
-                    id: value.user!.uid,
-                    questions: [],
-                    settings: Setting(niveau: 2, chrono: 30)))
-              });
+          .then((value) {
+        String _suffix = value.user!.uid.substring(0, 4);
+
+        UserCrud.addUser(
+          MyUser(
+            id: value.user!.uid,
+            userName: '$userName#$_suffix',
+            questions: [],
+            settings: Setting(niveau: 2, chrono: 30),
+            isAdmin: false,
+          ),
+        );
+      });
       return null;
-    } on FirebaseAuthException catch (e) {
-      return e.message;
+    } on FirebaseAuthException {
+      return 'Erreur - Cette adresse mail est déjà utilisée par un compte existant';
     }
+  }
+
+  static Future setUserName(String userName) async {
+    String _suffix = auth.currentUser!.uid.substring(0, 4);
+    await auth.currentUser!.updateDisplayName('$userName#$_suffix');
   }
 
   static Future<String?> loginMailMdp(String mail, String mdp) async {
@@ -70,7 +85,14 @@ class AuthCrud {
       await auth.signInWithEmailAndPassword(email: mail, password: mdp);
       return null;
     } on FirebaseAuthException catch (e) {
-      return e.message;
+      switch (e.code) {
+        case 'user-disabled':
+          return 'Erreur - Votre compte est désactivé';
+        case 'user-not-found':
+          return 'Erreur - Aucun compte ne correspond à l\'adresse mail fournie ';
+        default:
+          return 'Erreur - Le mot de passe ne correspond pas à l\'adresse mail fournie';
+      }
     }
   }
 

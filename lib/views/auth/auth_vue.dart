@@ -51,7 +51,7 @@ class AuthVue extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.symmetric(
                         horizontal: _size.width * 0.1,
-                        vertical: _size.height * 0.06),
+                        vertical: _size.height * 0.00),
                     child: switchSign(_hasAccount, _bloc.switchBoolean),
                   ),
                 ],
