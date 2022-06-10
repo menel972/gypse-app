@@ -124,8 +124,9 @@ class _SignUpState extends State<SignUp> {
                     textAlign: TextAlign.center,
                   ),
                   TextFormField(
+                    style: MyTextStyle.labelM,
                     decoration: MyInputStyle.ajoutInputStyle(
-                        'Nom d\'utilisateur', Icons.alternate_email),
+                        'Nom d\'utilisateur', Icons.person_outline),
                     textInputAction: TextInputAction.next,
                     validator: (value) =>
                         MyValidators()
@@ -133,6 +134,7 @@ class _SignUpState extends State<SignUp> {
                     onSaved: (value) => credential['userName'] = value!,
                   ),
                   TextFormField(
+                    style: MyTextStyle.labelM,
                     decoration: MyInputStyle.ajoutInputStyle(
                         'E-mail', Icons.alternate_email),
                     keyboardType: TextInputType.emailAddress,
@@ -141,6 +143,7 @@ class _SignUpState extends State<SignUp> {
                     onSaved: (value) => credential['mail'] = value!,
                   ),
                   TextFormField(
+                    style: MyTextStyle.labelM,
                     decoration: MyInputStyle.mdpInputStyle(
                       'Mot de passe',
                       IconButton(

@@ -14,7 +14,7 @@ import '../../services/models/user_model.dart';
 import '../../services/providers/user_provider.dart';
 
 class Splashscreen extends StatefulWidget {
-  static const String route = '.splashscreen';
+  static const String route = './splashscreen';
   const Splashscreen({Key? key}) : super(key: key);
 
   @override

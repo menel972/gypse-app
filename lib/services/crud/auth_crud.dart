@@ -27,6 +27,11 @@ class AuthCrud {
     await auth.signOut();
   }
 
+  static Future deleteAccount() async {
+    await UserCrud.deleteUser(auth.currentUser!.uid);
+    await auth.currentUser!.delete();
+  }
+
   static String userId() {
     return auth.currentUser!.uid;
   }

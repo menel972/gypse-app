@@ -37,10 +37,10 @@ class UserProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  // void saveAnsweredQuestion(String questionId) {
-  //   user.questions.add(questionId);
-  //   notifyListeners();
-  // }
+  void saveAnsweredQuestion(String questionId) {
+    user.questions.add(questionId);
+    notifyListeners();
+  }
 
   void saveNewSettings(Setting newSet) {
     user.settings = newSet;

@@ -51,4 +51,9 @@ class UserCrud {
         .then((value) => print('settings updated'))
         .catchError((e) => print('update error : ' + e.toString()));
   }
+
+  // {} Delete
+  static Future deleteUser(String uid) async {
+    await db.doc(uid).delete().catchError((e) => print('delete user $e'));
+  }
 }

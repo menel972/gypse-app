@@ -1,5 +1,6 @@
 import 'package:bible_quiz/composants/bouttons/basic_button.dart';
 import 'package:bible_quiz/composants/cards/info_card.dart';
+import 'package:bible_quiz/composants/dialogs/delete_dialog.dart';
 import 'package:bible_quiz/services/BLoC/bloc_router.dart';
 import 'package:bible_quiz/services/crud/auth_crud.dart';
 import 'package:bible_quiz/services/enums/my_size.dart';
@@ -7,18 +8,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
+import '../../composants/bouttons/primary_button.dart';
 import '../../services/providers/user_provider.dart';
 
 
 
-class Compte extends StatefulWidget {
+class Compte extends StatelessWidget {
   const Compte({Key? key}) : super(key: key);
 
-  @override
-  State<Compte> createState() => _CompteState();
-}
+  confirmDelete(BuildContext context) {
+    return showDialog(
+        context: context, builder: (context) => const DeleteDialog());
+  }
 
-class _CompteState extends State<Compte> {
   @override
   Widget build(BuildContext context) {
     Size _size = MySize().size(context);
@@ -66,16 +68,31 @@ class _CompteState extends State<Compte> {
             label: 'Mot de passe :',
             data: 'Changer de mot de passe',
           ),
-          BasicButton(
-            texte: 'Déconnexion',
-            fonction: () => {
-              AuthCrud.signOut(),
-              Navigator.push(
-                context,
-                BlocRouter().authRoute(),
-              )
-            },
-            couleur: 'orange',
+          Row(
+            children: [
+              Expanded(
+                child: BasicButton(
+                  texte: 'Suppression',
+                  fonction: () => {
+                    confirmDelete(context),
+                  },
+                  couleur: 'orange',
+                ),
+              ),
+              SizedBox(width: _size.width * 0.05),
+              Expanded(
+                child: PrimaryButton(
+                  texte: 'Déconnexion',
+                  fonction: () => {
+                    AuthCrud.signOut(),
+                    Navigator.push(
+                      context,
+                      BlocRouter().authRoute(),
+                    )
+                  },
+                ),
+              ),
+            ],
           ),
         ][i],
       ),
