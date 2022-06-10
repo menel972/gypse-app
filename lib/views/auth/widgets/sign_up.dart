@@ -125,10 +125,11 @@ class _SignUpState extends State<SignUp> {
                   ),
                   TextFormField(
                     decoration: MyInputStyle.ajoutInputStyle(
-                        'Pseudo', Icons.alternate_email),
+                        'Nom d\'utilisateur', Icons.alternate_email),
                     textInputAction: TextInputAction.next,
                     validator: (value) =>
-                        MyValidators().isEmpty(value, texte: 'un pseudo'),
+                        MyValidators()
+                        .isEmpty(value, texte: 'un nom d\'utilisateur'),
                     onSaved: (value) => credential['userName'] = value!,
                   ),
                   TextFormField(
