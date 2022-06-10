@@ -130,6 +130,7 @@ class _SignInState extends State<SignIn> {
                     textAlign: TextAlign.center,
                   ),
                   TextFormField(
+                    style: MyTextStyle.labelM,
                     decoration: MyInputStyle.ajoutInputStyle(
                         'E-mail', Icons.alternate_email),
                     keyboardType: TextInputType.emailAddress,
@@ -138,6 +139,7 @@ class _SignInState extends State<SignIn> {
                     onSaved: (value) => credential['mail'] = value!,
                   ),
                   TextFormField(
+                    style: MyTextStyle.labelM,
                     decoration: MyInputStyle.mdpInputStyle(
                       'Mot de passe',
                       IconButton(
