@@ -47,12 +47,14 @@ class QuestionVue extends StatelessWidget {
   // <> Build
   @override
   Widget build(BuildContext context) {
-
     // = BLoC
     final bloc = BlocProvider.of<SelectReponseBloc>(context);
 
     // = Provider
     Setting settings = Provider.of<UserProvider>(context).userSettings;
+    void setPrivateUser(MyUser newUser) =>
+        Provider.of<UserProvider>(context, listen: false).setUser(newUser);
+
     void switchFacteur(MyUser newUser) {
       bloc.increaseFacteur();
       Timer(
@@ -60,6 +62,7 @@ class QuestionVue extends StatelessWidget {
           () => {
                 bloc.clearFacteur(),
                 UserCrud.updateUser(newUser),
+                setPrivateUser(newUser),
                 Timer(const Duration(milliseconds: 900), () {
                   countDownController.restart();
                 }),
