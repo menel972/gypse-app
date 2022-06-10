@@ -31,6 +31,7 @@ class _GoogleTestState extends State<GoogleTest> {
                     UserCrud.addGoogleUser(MyUser(
                         id: newUser!.id,
                         questions: [],
+                        isAdmin: false,
                         settings: Setting(niveau: 3, chrono: 30))));
                 setState(() {});
               },

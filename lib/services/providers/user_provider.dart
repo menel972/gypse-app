@@ -19,6 +19,7 @@ class UserProvider with ChangeNotifier {
       niveau: 3,
       chrono: 30,
     ),
+    isAdmin: false,
   );
 
   List<dynamic> get userQuestions => user.questions;

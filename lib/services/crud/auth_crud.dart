@@ -49,19 +49,51 @@ class AuthCrud {
   }
 
 // {} Email - Password
-  static Future addUser(String mail, String mdp) async {
-    await auth
-        .createUserWithEmailAndPassword(email: mail, password: mdp)
-        .then((value) => {
-              UserCrud.addUser(MyUser(
-                  id: value.user!.uid,
-                  questions: [],
-                  settings: Setting(niveau: 2, chrono: 30)))
-            });
+  static Future<String?> addUser(
+      {required String mail,
+      required String mdp,
+      required String userName}) async {
+    try {
+      await auth
+          .createUserWithEmailAndPassword(email: mail, password: mdp)
+          .then((value) {
+        String _suffix = value.user!.uid.substring(0, 4);
+
+        UserCrud.addUser(
+          MyUser(
+            id: value.user!.uid,
+            userName: '$userName#$_suffix',
+            questions: [],
+            settings: Setting(niveau: 2, chrono: 30),
+            isAdmin: false,
+          ),
+        );
+      });
+      return null;
+    } on FirebaseAuthException {
+      return 'Erreur - Cette adresse mail est déjà utilisée par un compte existant';
+    }
   }
 
-  static Future<UserCredential> loginMailMdp(String mail, String mdp) async {
-    return await auth.signInWithEmailAndPassword(email: mail, password: mdp);
+  static Future setUserName(String userName) async {
+    String _suffix = auth.currentUser!.uid.substring(0, 4);
+    await auth.currentUser!.updateDisplayName('$userName#$_suffix');
+  }
+
+  static Future<String?> loginMailMdp(String mail, String mdp) async {
+    try {
+      await auth.signInWithEmailAndPassword(email: mail, password: mdp);
+      return null;
+    } on FirebaseAuthException catch (e) {
+      switch (e.code) {
+        case 'user-disabled':
+          return 'Erreur - Votre compte est désactivé';
+        case 'user-not-found':
+          return 'Erreur - Aucun compte ne correspond à l\'adresse mail fournie ';
+        default:
+          return 'Erreur - Le mot de passe ne correspond pas à l\'adresse mail fournie';
+      }
+    }
   }
 
   // {} Google

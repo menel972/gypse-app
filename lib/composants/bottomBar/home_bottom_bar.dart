@@ -23,7 +23,7 @@ class HomeBottomBar extends StatelessWidget {
         BottomNavigationBarItem(
             icon: Icon(Icons.bar_chart_outlined), label: 'Statistiques'),
         BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline), label: 'Mon Compte'),
+            icon: Icon(Icons.person_outline), label: 'Mon Profile'),
       ],
     );
   }

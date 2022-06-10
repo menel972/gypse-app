@@ -9,7 +9,6 @@ class AuthVue extends StatelessWidget {
   static const String route = './auth';
   const AuthVue({Key? key}) : super(key: key);
 
-
   Widget switchSign(bool hasAccount, VoidCallback function) {
     switch (hasAccount) {
       case true:
@@ -23,6 +22,10 @@ class AuthVue extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size _size = Size(
+      MediaQuery.of(context).size.width,
+      MediaQuery.of(context).size.height,
+    );
     // = BLoC
     final _bloc = BlocProvider.of<BooleanBloc>(context);
 
@@ -41,10 +44,14 @@ class AuthVue extends StatelessWidget {
               ),
               child: ListView(
                 children: [
-                  SvgPicture.asset('assets/images/logo.svg'),
+                  SvgPicture.asset(
+                    'assets/images/splashicon_gypse.svg',
+                    height: _size.height * 0.28,
+                  ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 40, vertical: 50),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: _size.width * 0.1,
+                        vertical: _size.height * 0.00),
                     child: switchSign(_hasAccount, _bloc.switchBoolean),
                   ),
                 ],
