@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "635658051968-pm7m6md7q1sgo0vibb8te814issr8ka1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bible_quiz",
+            "certificate_hash": "be15beeaa1529460d252d4e951bd6887b90bf0ef"
+          }
+        },
+        {
           "client_id": "635658051968-l3l9vu2q931rvpjs2ro7cg92dv6fkv16.apps.googleusercontent.com",
           "client_type": 3
         }

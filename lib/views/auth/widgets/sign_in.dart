@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:async';
 
 import 'package:bible_quiz/composants/bouttons/secondary_button.dart';
@@ -10,6 +12,7 @@ import 'package:bible_quiz/services/providers/user_provider.dart';
 import 'package:bible_quiz/styles/my_input_style.dart';
 import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 import '../../../services/BLoC/bloc_router.dart';
@@ -75,10 +78,10 @@ class _SignInState extends State<SignIn> {
           return Form(
             key: _signInKey,
             child: Container(
-              height: _size.height * 0.55,
+              height: _size.height * 0.65,
               width: _size.width * 0.8,
               margin: EdgeInsets.symmetric(
-                  vertical: _size.height * 0.06, horizontal: 0),
+                  vertical: _size.height * 0.00, horizontal: 0),
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 boxShadow: const [
@@ -116,7 +119,7 @@ class _SignInState extends State<SignIn> {
                   horizontal: _size.width * 0.03,
                   vertical: _size.height * 0.05),
               child: ListView.separated(
-                itemCount: 5,
+                itemCount: 7,
                 separatorBuilder: (context, i) {
                   if (i == 0) return SizedBox(height: _size.height * 0.03);
                   if (i == 2) return SizedBox(height: _size.height * 0.04);
@@ -182,21 +185,24 @@ class _SignInState extends State<SignIn> {
                       }
                     },
                   ),
-                  // const SizedBox(height: 50),
-                  // SecondaryButton(
-                  //   texte: 'Google',
-                  //   fonction: () {
-                  //     setMethod(Method.g);
-                  //     AuthCrud.googleSignIn.signIn().then((newUser) => {
-                  //           UserCrud.addGoogleUser(MyUser(
-                  //               id: newUser!.id,
-                  //               questions: [],
-                  //               settings: Setting(niveau: 3, chrono: 30))),
-                  //         });
-                  //     Timer(const Duration(seconds: 1),
-                  //         () => Navigator.pushNamed(context, HomeVue.route));
-                  //   },
-                  // ),
+                  Text(
+                    'ou connectez-vous avec',
+                    style: MyTextStyle.textS,
+                    textAlign: TextAlign.center,
+                  ),
+                  Row(
+                    children: [
+                      IconButton(
+                          onPressed: () async {
+                            print(1);
+                            // print(await AuthCrud.googleSignIn.isSignedIn());
+                            await AuthCrud.googleSignIn
+                                .signIn()
+                                .catchError((e) => print(e));
+                          },
+                          icon: const Icon(FontAwesomeIcons.google)),
+                    ],
+                  ),
                   Row(
                     children: [
                       Flexible(

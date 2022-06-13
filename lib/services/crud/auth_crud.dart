@@ -102,6 +102,9 @@ class AuthCrud {
   }
 
   // {} Google
-  static final GoogleSignIn googleSignIn = GoogleSignIn(scopes: ['email']);
+  static final GoogleSignIn googleSignIn = GoogleSignIn(scopes: [
+    'email',
+    'https://www.googleapis.com/auth/contacts.readonly',
+  ]);
   static GoogleSignInAccount? googleUser = googleSignIn.currentUser;
 }
