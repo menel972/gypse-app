@@ -191,16 +191,31 @@ class _SignInState extends State<SignIn> {
                     textAlign: TextAlign.center,
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       IconButton(
-                          onPressed: () async {
-                            print(1);
-                            // print(await AuthCrud.googleSignIn.isSignedIn());
-                            await AuthCrud.googleSignIn
-                                .signIn()
-                                .catchError((e) => print(e));
-                          },
-                          icon: const Icon(FontAwesomeIcons.google)),
+                        onPressed: () async {
+                          await AuthCrud().gglSignIn();
+                        },
+                        icon: const Icon(
+                          FontAwesomeIcons.google,
+                          color: Couleur.secondary,
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () => AuthCrud().fb(),
+                        icon: const Icon(
+                          FontAwesomeIcons.facebookF,
+                          color: Couleur.secondary,
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () => AuthCrud().fbSignIn(),
+                        icon: const Icon(
+                          FontAwesomeIcons.facebook,
+                          color: Couleur.secondary,
+                        ),
+                      ),
                     ],
                   ),
                   Row(
