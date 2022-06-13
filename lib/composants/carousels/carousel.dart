@@ -29,6 +29,7 @@ class _CarouselState extends State<Carousel> {
   // <> Build
   @override
   Widget build(BuildContext context) {
+    
     return FlutterCarousel.builder(
       carouselController: _controller,
       itemCount: widget.items.length,

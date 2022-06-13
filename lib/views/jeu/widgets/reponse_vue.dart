@@ -16,6 +16,7 @@ import 'package:blur/blur.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../services/providers/user_provider.dart';
 
@@ -39,6 +40,8 @@ class ReponseVue extends StatelessWidget {
   // <> Build
   @override
   Widget build(BuildContext context) {
+    final _trad = AppLocalizations.of(context)!;
+
     // = Provider
     Setting settings = Provider.of<UserProvider>(context).userSettings;
 
@@ -118,7 +121,7 @@ class ReponseVue extends StatelessWidget {
                                           context,
                                           reponses[trueIndex],
                                         ),
-                                        texte: 'Voir le verset',
+                                        texte: _trad.btn_verset,
                                         couleur: 'bleu',
                                       ),
                                     ),

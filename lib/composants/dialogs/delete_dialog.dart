@@ -6,6 +6,7 @@ import 'package:bible_quiz/services/enums/my_size.dart';
 import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../bouttons/basic_button.dart';
 
@@ -14,6 +15,7 @@ class DeleteDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _trad = AppLocalizations.of(context)!;
     Size _size = MySize().size(context);
 
     return Center(
@@ -43,12 +45,12 @@ class DeleteDialog extends StatelessWidget {
                   SizedBox(height: _size.height * 0.03),
               itemBuilder: (context, i) => [
                 Text(
-                  'SUPPRESSION DU PROFILE',
+                  _trad.title_suppr.toUpperCase(),
                   style: MyTextStyle.titlePrimM,
                   textAlign: TextAlign.center,
                 ),
                 Text(
-                  'Êtes-vous sûr.e de vouloir supprimer votre profile GYPSE. Cette action est définitive.',
+                  _trad.txt_confirm_suppr,
                   style: MyTextStyle.textNoirS,
                   textAlign: TextAlign.center,
                 ),
@@ -56,7 +58,7 @@ class DeleteDialog extends StatelessWidget {
                   children: [
                     Expanded(
                       child: PrimaryButton(
-                        texte: 'Supprimer',
+                        texte: _trad.btn_supprim,
                         fonction: () => {
                           AuthCrud.deleteAccount(),
                           Navigator.pushNamed(context, Splashscreen.route),
@@ -66,7 +68,7 @@ class DeleteDialog extends StatelessWidget {
                     SizedBox(width: _size.width * 0.05),
                     Expanded(
                       child: BasicButton(
-                        texte: 'Annuler',
+                        texte: _trad.btn_annule,
                         couleur: 'bleu',
                         fonction: () => Navigator.pop(context),
                       ),

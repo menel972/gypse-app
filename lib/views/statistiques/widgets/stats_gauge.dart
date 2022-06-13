@@ -1,6 +1,7 @@
 import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:d_chart/d_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../services/enums/couleur.dart';
 
@@ -19,6 +20,8 @@ class StatsGauge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _trad = AppLocalizations.of(context)!;
+
     return Container(
       height: MediaQuery.of(context).size.width * 0.55,
       width: MediaQuery.of(context).size.width * 0.55,
@@ -64,11 +67,11 @@ class StatsGauge extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    'Réussie : ' + nbR.toString(),
+                    '${_trad.txt_true} : $nbR',
                     style: MyTextStyle.labelOrangeS,
                   ),
                   Text(
-                    'Perdue : ' + nbP.toString(),
+                    '${_trad.txt_false} : $nbP',
                     style: MyTextStyle.labelRougeS,
                   ),
                 ],

@@ -10,6 +10,7 @@ import 'package:bible_quiz/views/livres/livres_vue.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'composants/splashscreen/splash_screen.dart';
 import 'firebase_options.dart';
@@ -33,6 +34,8 @@ class Gypse extends StatelessWidget {
         ChangeNotifierProvider.value(value: UserProvider()),
       ],
       child: MaterialApp(
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
         title: 'Gypse',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(

@@ -4,6 +4,8 @@ import 'package:bible_quiz/services/enums/couleur.dart';
 import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:bible_quiz/views/livres/widgets/livres_liste.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class LivresRecherche extends StatefulWidget {
   const LivresRecherche({Key? key}) : super(key: key);
@@ -22,6 +24,8 @@ class _LivresRechercheState extends State<LivresRecherche> {
   // <> Build
   @override
   Widget build(BuildContext context) {
+    final _trad = AppLocalizations.of(context)!;
+
     // = BLoC
     final _bloc = BlocProvider.of<LivreListeBloc>(context);
 
@@ -39,7 +43,8 @@ class _LivresRechercheState extends State<LivresRecherche> {
                   controller: _controller,
                   onChanged: (value) => _bloc.filtre(value),
                   decoration: InputDecoration(
-                    label: Text('Livre...', style: MyTextStyle.textS),
+                    label: Text('${_trad.title_book}...',
+                        style: MyTextStyle.textS),
                     suffixIcon: _controller.text != ''
                         ? IconButton(
                             onPressed: () => {

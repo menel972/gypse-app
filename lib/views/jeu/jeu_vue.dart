@@ -13,6 +13,7 @@ import 'package:bible_quiz/views/jeu/widgets/question_vue.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../services/BLoC/provided/select_reponse_bloc.dart';
 import '../../services/models/question_model.dart';
@@ -46,6 +47,7 @@ class _JeuVueState extends State<JeuVue> {
   // <> Build
   @override
   Widget build(BuildContext context) {
+    final _trad = AppLocalizations.of(context)!;
     // = Provider
     final MyUser user = Provider.of<UserProvider>(context).user;
 
@@ -89,7 +91,7 @@ class _JeuVueState extends State<JeuVue> {
                       ),
                       // <!> QuetionVue()
                         child:
-                            const NoData(texte: 'Il n\'y a plus de question')
+                            NoData(texte: _trad.err_no_que)
                     ),
                   );
                 } else if (snapshot.hasData) {
