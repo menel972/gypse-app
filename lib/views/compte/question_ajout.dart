@@ -3,6 +3,7 @@ import 'package:bible_quiz/services/models/qr_model.dart';
 import 'package:bible_quiz/services/models/question_model.dart';
 import 'package:bible_quiz/services/models/reponse_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../composants/bouttons/primary_button.dart';
 import '../../services/crud/question_crud.dart';
@@ -73,8 +74,8 @@ class _QuestionAjoutState extends State<QuestionAjout> {
       ReponseCrud.addReponseId(newQr.reponse4, qId);
 
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-            content: Text('La question est enregistrée'),
+        SnackBar(
+            content: Text(AppLocalizations.of(context)!.snack_save_que),
             backgroundColor: Couleur.secondary),
       );
       _formKey.currentState!.reset();
@@ -83,6 +84,8 @@ class _QuestionAjoutState extends State<QuestionAjout> {
 
   @override
   Widget build(BuildContext context) {
+    final _trad = AppLocalizations.of(context)!;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5),
       child: Form(
@@ -103,7 +106,7 @@ class _QuestionAjoutState extends State<QuestionAjout> {
           itemCount: 10,
           itemBuilder: (context, i) => [
             Text(
-              'Ajouter une question',
+              _trad.title_add_que,
               style: MyTextStyle.titleS,
               textAlign: TextAlign.center,
             ),
@@ -111,7 +114,7 @@ class _QuestionAjoutState extends State<QuestionAjout> {
             TextFormField(
               style: MyTextStyle.labelM,
               decoration: MyInputStyle.ajoutInputStyle(
-                'Livre',
+                _trad.title_book,
                 Icons.menu_book_outlined,
               ),
               textInputAction: TextInputAction.next,
@@ -122,84 +125,84 @@ class _QuestionAjoutState extends State<QuestionAjout> {
             TextFormField(
               style: MyTextStyle.labelM,
               decoration: MyInputStyle.ajoutInputStyle(
-                'Question',
+                _trad.title_que,
                 Icons.contact_support_outlined,
               ),
               textInputAction: TextInputAction.next,
               validator: (value) => MyValidators()
-                  .limiteValidator(value, texte: 'une question', limite: 130),
+                  .limiteValidator(value, limite: 130),
               onSaved: (value) => newQr.question.texte = value!,
             ),
             // NOTE : Reference
             TextFormField(
               style: MyTextStyle.labelM,
               decoration: MyInputStyle.ajoutInputStyle(
-                'Référence',
+                _trad.label_ref,
                 Icons.insert_link_outlined,
               ),
               textInputAction: TextInputAction.next,
               validator: (value) =>
-                  MyValidators().isEmpty(value, texte: 'une référence'),
+                  MyValidators().isEmpty(value),
               onSaved: (value) => newQr.reponse1.versetRef = value!,
             ),
             // NOTE : Verset
             TextFormField(
               style: MyTextStyle.labelM,
               decoration: MyInputStyle.ajoutInputStyle(
-                'Verset',
+                _trad.label_verset,
                 Icons.short_text_outlined,
               ),
               textInputAction: TextInputAction.next,
               validator: (value) => MyValidators()
-                  .limiteValidator(value, texte: 'un verset', limite: 200),
+                  .limiteValidator(value, limite: 200),
               onSaved: (value) => newQr.reponse1.verset = value!,
             ),
             // NOTE : Bonne reponse
             TextFormField(
               style: MyTextStyle.labelM,
               decoration: MyInputStyle.ajoutInputStyle(
-                'Bonne réponse',
+                _trad.label_true,
                 Icons.add_task_outlined,
               ),
               textInputAction: TextInputAction.next,
-              validator: (value) => MyValidators().limiteValidator(value,
-                  texte: 'une bonne réponse', limite: 200),
+              validator: (value) =>
+                  MyValidators().limiteValidator(value, limite: 200),
               onSaved: (value) => newQr.reponse1.texte = value!,
             ),
             TextFormField(
               style: MyTextStyle.labelM,
               decoration: MyInputStyle.ajoutInputStyle(
-                'Réponse 2',
+                '${_trad.label_rep} 2',
                 Icons.question_answer_outlined,
               ),
               textInputAction: TextInputAction.next,
               validator: (value) => MyValidators()
-                  .limiteValidator(value, texte: 'une réponse', limite: 200),
+                  .limiteValidator(value, limite: 200),
               onSaved: (value) => newQr.reponse2.texte = value!,
             ),
             TextFormField(
               style: MyTextStyle.labelM,
               decoration: MyInputStyle.ajoutInputStyle(
-                'Réponse 3',
+                '${_trad.label_rep} 3',
                 Icons.question_answer_outlined,
               ),
               textInputAction: TextInputAction.next,
               validator: (value) => MyValidators()
-                  .limiteValidator(value, texte: 'une réponse', limite: 200),
+                  .limiteValidator(value, limite: 200),
               onSaved: (value) => newQr.reponse3.texte = value!,
             ),
             TextFormField(
               style: MyTextStyle.labelM,
               decoration: MyInputStyle.ajoutInputStyle(
-                'Réponse 4',
+                '${_trad.label_rep} 4',
                 Icons.question_answer_outlined,
               ),
               textInputAction: TextInputAction.done,
               validator: (value) => MyValidators()
-                  .limiteValidator(value, texte: 'une réponse', limite: 200),
+                  .limiteValidator(value, limite: 200),
               onSaved: (value) => newQr.reponse4.texte = value!,
             ),
-            PrimaryButton(texte: 'Enregistrer', fonction: () => _submit()),
+            PrimaryButton(texte: _trad.btn_save, fonction: () => _submit()),
           ][i],
         ),
       ),

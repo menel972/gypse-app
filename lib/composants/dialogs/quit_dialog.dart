@@ -3,6 +3,7 @@ import 'package:bible_quiz/services/enums/couleur.dart';
 import 'package:blur/blur.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../styles/my_text_style.dart';
 import '../bouttons/basic_button.dart';
@@ -19,6 +20,8 @@ class QuitDialog extends StatelessWidget {
   // <> Build
   @override
   Widget build(BuildContext context) {
+    final _trad = AppLocalizations.of(context)!;
+
     return Center(
       child: Container(
         height: MediaQuery.of(context).size.height * 0.3,
@@ -40,7 +43,7 @@ class QuitDialog extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'QUITTER LA PARTIE',
+                  _trad.title_quit.toUpperCase(),
                   style: MyTextStyle.titlePrimM,
                   textAlign: TextAlign.center,
                 ),
@@ -50,7 +53,7 @@ class QuitDialog extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text('Êtes-vous sûr.e de vouloir quitter la partie ?',
+                      Text(_trad.txt_confirm_quit,
                           textAlign: TextAlign.center,
                           style: MyTextStyle.textNoirS),
                       const SizedBox(height: 40),
@@ -59,7 +62,7 @@ class QuitDialog extends StatelessWidget {
                         children: [
                           Expanded(
                             child: PrimaryButton(
-                              texte: 'Reprendre',
+                              texte: _trad.btn_resume,
                               // <!> JeuVue()
                               fonction: () {
                                 Navigator.pop(context);
@@ -70,7 +73,7 @@ class QuitDialog extends StatelessWidget {
                           const SizedBox(width: 10),
                           Expanded(
                             child: BasicButton(
-                              texte: 'Quitter',
+                              texte: _trad.btn_quit,
                               couleur: 'bleu',
                               // <!> HomeVue()
                               fonction: () => {

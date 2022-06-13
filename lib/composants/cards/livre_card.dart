@@ -1,6 +1,8 @@
 import 'package:bible_quiz/services/enums/couleur.dart';
 import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 import '../../views/jeu/jeu_vue.dart';
 import '../bouttons/small_button.dart';
@@ -17,6 +19,8 @@ class LivreCard extends StatelessWidget {
   // <> Build
   @override
   Widget build(BuildContext context) {
+    final _trad = AppLocalizations.of(context)!;
+
     return GestureDetector(
       onTap: () => {
         Navigator.pushNamed(context, JeuVue.route, arguments: livre),
@@ -69,7 +73,7 @@ class LivreCard extends StatelessWidget {
                             style: MyTextStyle.titleBleuM)),
                   ),
                   SmallButton(
-                      texte: 'Jouer',
+                      texte: _trad.btn_jouer,
                       fonction: () => {
                             Navigator.pushNamed(context, JeuVue.route,
                                 arguments: livre),

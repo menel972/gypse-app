@@ -7,6 +7,7 @@ import 'package:bible_quiz/services/enums/my_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../composants/bouttons/primary_button.dart';
 import '../../services/providers/user_provider.dart';
@@ -23,6 +24,7 @@ class Compte extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _trad = AppLocalizations.of(context)!;
     Size _size = MySize().size(context);
     // = Provider
     String method =
@@ -50,29 +52,29 @@ class Compte extends StatelessWidget {
           ),
           InfoCard(
             icon: Icons.person_outline,
-            label: 'Nom d\'utilisateur :',
+            label: '${_trad.label_name} :',
             data: AuthCrud.currentUser.displayName!,
           ),
           InfoCard(
             icon: Icons.connect_without_contact_outlined,
-            label: 'Type de connexion :',
+            label: '${_trad.label_connect_type} :',
             data: method,
           ),
           InfoCard(
             icon: Icons.alternate_email_outlined,
-            label: 'Adresse mail :',
+            label: '${_trad.label_mail} :',
             data: AuthCrud.currentUser.email!,
           ),
-          const InfoCard(
+          InfoCard(
             icon: Icons.lock_outline,
-            label: 'Mot de passe :',
-            data: 'Changer de mot de passe',
+            label: '${_trad.label_mdp} :',
+            data: _trad.txt_change_mdp,
           ),
           Row(
             children: [
               Expanded(
                 child: BasicButton(
-                  texte: 'Suppression',
+                  texte: _trad.btn_suppr,
                   fonction: () => {
                     confirmDelete(context),
                   },
@@ -82,7 +84,7 @@ class Compte extends StatelessWidget {
               SizedBox(width: _size.width * 0.05),
               Expanded(
                 child: PrimaryButton(
-                  texte: 'Déconnexion',
+                  texte: _trad.btn_logout,
                   fonction: () => {
                     AuthCrud.signOut(),
                     Navigator.push(

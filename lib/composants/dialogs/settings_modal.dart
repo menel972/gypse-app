@@ -8,6 +8,7 @@ import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../services/enums/couleur.dart';
 import '../../services/models/settings_model.dart';
@@ -35,10 +36,11 @@ class SettingsModal extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-
   // <> Build
   @override
   Widget build(BuildContext context) {
+    final _trad = AppLocalizations.of(context)!;
+
     // = BLoC
     final _bloc = BlocProvider.of<SettingsBloc>(context);
 
@@ -60,7 +62,7 @@ class SettingsModal extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Difficulté :',
+                    '${_trad.title_diff} :',
                     style: MyTextStyle.textBleuM,
                   ),
                   Row(
@@ -71,12 +73,12 @@ class SettingsModal extends StatelessWidget {
                         child: RadioListTile(
                           contentPadding: const EdgeInsets.all(0),
                           title: AutoSizeText(
-                            'facile',
+                            _trad.label_easy,
                             style: MyTextStyle.textBleuM,
                             maxFontSize: 16,
                           ),
                           subtitle: AutoSizeText(
-                            '2 choix',
+                            '2 ${_trad.sub_choix}',
                             style: MyTextStyle.textBleuM,
                             maxFontSize: 14,
                           ),
@@ -91,12 +93,12 @@ class SettingsModal extends StatelessWidget {
                         child: RadioListTile(
                           contentPadding: const EdgeInsets.all(0),
                           title: AutoSizeText(
-                            'Moyen',
+                            _trad.label_medium,
                             style: MyTextStyle.textBleuM,
                             maxFontSize: 16,
                           ),
                           subtitle: AutoSizeText(
-                            '3 choix',
+                            '3 ${_trad.sub_choix}',
                             style: MyTextStyle.textBleuM,
                             maxFontSize: 14,
                           ),
@@ -111,12 +113,12 @@ class SettingsModal extends StatelessWidget {
                         child: RadioListTile(
                           contentPadding: const EdgeInsets.all(0),
                           title: AutoSizeText(
-                            'Difficile',
+                            _trad.label_hard,
                             style: MyTextStyle.textBleuM,
                             maxFontSize: 16,
                           ),
                           subtitle: AutoSizeText(
-                            '4 choix',
+                            '4 ${_trad.sub_choix}',
                             style: MyTextStyle.textBleuM,
                             maxFontSize: 14,
                           ),
@@ -129,7 +131,7 @@ class SettingsModal extends StatelessWidget {
                     ],
                   ),
                   Text(
-                    'Chronomètre :',
+                    '${_trad.title_chrono} :',
                     style: MyTextStyle.textBleuM,
                   ),
                   Row(
@@ -139,12 +141,12 @@ class SettingsModal extends StatelessWidget {
                         child: RadioListTile(
                           contentPadding: const EdgeInsets.all(0),
                           title: AutoSizeText(
-                            'facile',
+                            _trad.label_easy,
                             style: MyTextStyle.textBleuM,
                             maxFontSize: 16,
                           ),
                           subtitle: AutoSizeText(
-                            '30 sec',
+                            '30 ${_trad.sub_time}',
                             style: MyTextStyle.textBleuM,
                             maxFontSize: 14,
                           ),
@@ -159,12 +161,12 @@ class SettingsModal extends StatelessWidget {
                         child: RadioListTile(
                           contentPadding: const EdgeInsets.all(0),
                           title: AutoSizeText(
-                            'Moyen',
+                            _trad.label_medium,
                             style: MyTextStyle.textBleuM,
                             maxFontSize: 16,
                           ),
                           subtitle: AutoSizeText(
-                            '20 sec',
+                            '20 ${_trad.sub_time}',
                             style: MyTextStyle.textBleuM,
                             maxFontSize: 14,
                           ),
@@ -179,12 +181,12 @@ class SettingsModal extends StatelessWidget {
                         child: RadioListTile(
                           contentPadding: const EdgeInsets.all(0),
                           title: AutoSizeText(
-                            'Difficile',
+                            _trad.label_hard,
                             style: MyTextStyle.textBleuM,
                             maxFontSize: 16,
                           ),
                           subtitle: AutoSizeText(
-                            '10 sec',
+                            '10 ${_trad.sub_time}',
                             style: MyTextStyle.textBleuM,
                             maxFontSize: 14,
                           ),
@@ -201,7 +203,7 @@ class SettingsModal extends StatelessWidget {
                     children: [
                       Expanded(
                         child: BasicButton(
-                          texte: 'Annuler',
+                          texte: _trad.btn_annule,
                           couleur: 'bleu',
                           fonction: () => Navigator.pop(context, false),
                         ),
@@ -209,16 +211,18 @@ class SettingsModal extends StatelessWidget {
                       const SizedBox(width: 10),
                       Expanded(
                         child: PrimaryButton(
-                          texte: 'Valider',
+                          texte: _trad.btn_valide,
                           fonction: () => {
                             Provider.of<UserProvider>(context, listen: false)
                                 .saveNewSettings(_preset),
                             UserCrud.updateSettings(
                                 AuthCrud.currentUser.uid, _preset),
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
+                              SnackBar(
                                   content:
-                                      Text('les paramètres ont été modifiés.')),
+                                      Text(_trad.snack_settings),
+                                backgroundColor: Couleur.secondary,
+                              ),
                             ),
                             Navigator.pop(context, true),
                           },

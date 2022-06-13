@@ -8,6 +8,7 @@ import 'package:bible_quiz/services/models/question_model.dart';
 import 'package:bible_quiz/services/models/reponse_model.dart';
 import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class QuestionPreview extends StatefulWidget {
   const QuestionPreview({Key? key}) : super(key: key);
@@ -19,6 +20,8 @@ class QuestionPreview extends StatefulWidget {
 class _QuestionPreviewState extends State<QuestionPreview> {
   @override
   Widget build(BuildContext context) {
+    final _trad = AppLocalizations.of(context)!;
+
     return StreamBuilder<List<Question>>(
       stream: QuestionCrud.fetchAllQuestion(),
       builder: (context, snapshot) {
@@ -29,7 +32,7 @@ class _QuestionPreviewState extends State<QuestionPreview> {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Text(
-                  questions.length.toString() + ' questions :',
+                  '${questions.length}  ${_trad.title_ques.toLowerCase()} :',
                   style: MyTextStyle.textS,
                 ),
               ),

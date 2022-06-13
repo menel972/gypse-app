@@ -1,8 +1,8 @@
 import 'livres.dart';
 
 class MyValidators {
-  String? isEmpty(value, {required String texte}) {
-    if (value!.isEmpty) return 'Vous devez entrer $texte';
+  String? isEmpty(value) {
+    if (value!.isEmpty) return 'Vous devez entrer une valeur';
     return null;
   }
 
@@ -14,8 +14,8 @@ class MyValidators {
     return null;
   }
 
-  String? limiteValidator(value, {required String texte, required int limite}) {
-    if (value!.isEmpty) return 'Vous devez entrer $texte';
+  String? limiteValidator(value, {required int limite}) {
+    if (value!.isEmpty) return 'Vous devez entrer une valeur';
     if (value.length > limite) {
       return 'Votre question est trop longue (max $limite car)';
     }
