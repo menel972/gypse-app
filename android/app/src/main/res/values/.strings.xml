@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">Gypse</string>
-    <string name="facebook_app_id">571049607750561</string>
-    <string name="fb_login_protocol_scheme">fb571049607750561</string>
-    <string name="facebook_client_token">312eded7b4cd3a07304c2fdc8fe555b1</string>
-</resources>
