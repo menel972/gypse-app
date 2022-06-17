@@ -60,9 +60,9 @@ class Question {
         es: json['es'] != null ? QLang.fromJson(json['es']) : null,
       );
 
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "fr": fr,
+  Map<String, dynamic> toJson(String qid) => {
+        "id": qid,
+        "fr": fr.toJson(),
         "en": en != null ? en!.toJson() : null,
         "es": en != null ? es!.toJson() : null
       };

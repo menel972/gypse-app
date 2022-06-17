@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ReponseCrud {
   static final CollectionReference<Map<String, dynamic>> db =
-      FirebaseFirestore.instance.collection('reponses');
+      FirebaseFirestore.instance.collection('reponse');
 
   // {} Create
   static Future addReponse(Reponse reponse) async {

@@ -1,6 +1,8 @@
 import 'package:bible_quiz/services/enums/couleur.dart';
+import 'package:bible_quiz/services/models/q_lang.dart';
 import 'package:bible_quiz/services/models/qr_model.dart';
 import 'package:bible_quiz/services/models/question_model.dart';
+import 'package:bible_quiz/services/models/r_lang.dart';
 import 'package:bible_quiz/services/models/reponse_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -25,34 +27,37 @@ class _QuestionAjoutState extends State<QuestionAjout> {
   Qr newQr = Qr(
     question: Question(
       id: '',
-      texte: '',
-      livre: '',
+      fr: QLang(texte: '', livre: ''),
     ),
     reponse1: Reponse(
       id: '',
       questionId: '',
-      texte: '',
       confirme: true,
-      versetRef: '',
-      verset: '',
+      fr: RLang(
+        texte: '',
+        link: '',
+        verset: '',
+        versetRef: '',
+      ),
+
     ),
     reponse2: Reponse(
       id: '',
       questionId: '',
-      texte: '',
       confirme: false,
+      fr: RLang(texte: ''),
     ),
     reponse3: Reponse(
       id: '',
       questionId: '',
-      texte: '',
       confirme: false,
+      fr: RLang(texte: ''),
     ),
     reponse4: Reponse(
       id: '',
       questionId: '',
-      texte: '',
       confirme: false,
+      fr: RLang(texte: ''),
     ),
   );
 
@@ -119,7 +124,7 @@ class _QuestionAjoutState extends State<QuestionAjout> {
               ),
               textInputAction: TextInputAction.next,
               validator: (value) => MyValidators().livreValidator(value),
-              onSaved: (value) => newQr.question.livre = value!,
+              onSaved: (value) => newQr.question.fr.livre = value!,
             ),
             // NOTE : Question
             TextFormField(
@@ -131,7 +136,7 @@ class _QuestionAjoutState extends State<QuestionAjout> {
               textInputAction: TextInputAction.next,
               validator: (value) => MyValidators()
                   .limiteValidator(value, limite: 130),
-              onSaved: (value) => newQr.question.texte = value!,
+              onSaved: (value) => newQr.question.fr.texte = value!,
             ),
             // NOTE : Reference
             TextFormField(
@@ -143,7 +148,7 @@ class _QuestionAjoutState extends State<QuestionAjout> {
               textInputAction: TextInputAction.next,
               validator: (value) =>
                   MyValidators().isEmpty(value),
-              onSaved: (value) => newQr.reponse1.versetRef = value!,
+              onSaved: (value) => newQr.reponse1.fr.versetRef = value!,
             ),
             // NOTE : Verset
             TextFormField(
@@ -155,7 +160,7 @@ class _QuestionAjoutState extends State<QuestionAjout> {
               textInputAction: TextInputAction.next,
               validator: (value) => MyValidators()
                   .limiteValidator(value, limite: 200),
-              onSaved: (value) => newQr.reponse1.verset = value!,
+              onSaved: (value) => newQr.reponse1.fr.verset = value!,
             ),
             // NOTE : Bonne reponse
             TextFormField(
@@ -167,7 +172,7 @@ class _QuestionAjoutState extends State<QuestionAjout> {
               textInputAction: TextInputAction.next,
               validator: (value) =>
                   MyValidators().limiteValidator(value, limite: 200),
-              onSaved: (value) => newQr.reponse1.texte = value!,
+              onSaved: (value) => newQr.reponse1.fr.texte = value!,
             ),
             TextFormField(
               style: MyTextStyle.labelM,
@@ -178,7 +183,7 @@ class _QuestionAjoutState extends State<QuestionAjout> {
               textInputAction: TextInputAction.next,
               validator: (value) => MyValidators()
                   .limiteValidator(value, limite: 200),
-              onSaved: (value) => newQr.reponse2.texte = value!,
+              onSaved: (value) => newQr.reponse2.fr.texte = value!,
             ),
             TextFormField(
               style: MyTextStyle.labelM,
@@ -189,7 +194,7 @@ class _QuestionAjoutState extends State<QuestionAjout> {
               textInputAction: TextInputAction.next,
               validator: (value) => MyValidators()
                   .limiteValidator(value, limite: 200),
-              onSaved: (value) => newQr.reponse3.texte = value!,
+              onSaved: (value) => newQr.reponse3.fr.texte = value!,
             ),
             TextFormField(
               style: MyTextStyle.labelM,
@@ -200,7 +205,7 @@ class _QuestionAjoutState extends State<QuestionAjout> {
               textInputAction: TextInputAction.done,
               validator: (value) => MyValidators()
                   .limiteValidator(value, limite: 200),
-              onSaved: (value) => newQr.reponse4.texte = value!,
+              onSaved: (value) => newQr.reponse4.fr.texte = value!,
             ),
             PrimaryButton(texte: _trad.btn_save, fonction: () => _submit()),
           ][i],

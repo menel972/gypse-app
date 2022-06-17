@@ -1,7 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bible_quiz/services/enums/couleur.dart';
+import 'package:bible_quiz/services/models/r_lang.dart';
 import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 import '../../../services/models/reponse_model.dart';
 
@@ -21,6 +24,9 @@ class ReponseTrueCard extends StatelessWidget {
   // <> Build
   @override
   Widget build(BuildContext context) {
+    // = Locale
+    final _locale = AppLocalizations.of(context)!.localeName;
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: Card(
@@ -50,7 +56,7 @@ class ReponseTrueCard extends StatelessWidget {
               Flexible(
                 flex: 4,
                 child: AutoSizeText(
-                  rep.texte,
+                  RLang.getLang(rep, _locale).texte,
                   minFontSize: 12,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,

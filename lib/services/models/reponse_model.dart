@@ -62,8 +62,8 @@ class Reponse {
         es: json['es'] != null ? RLang.fromJson(json['es']) : null,
       );
 
-  Map<String, dynamic> toJson() => {
-        "id": id,
+  Map<String, dynamic> toJson(String rid) => {
+        "id": rid,
         "questionId": questionId,
         "confirme": confirme,
         "fr": fr.toJson(),

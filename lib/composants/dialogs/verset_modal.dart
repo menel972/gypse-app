@@ -1,9 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bible_quiz/services/enums/couleur.dart';
+import 'package:bible_quiz/services/models/r_lang.dart';
 import 'package:bible_quiz/services/models/reponse_model.dart';
 import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class VersetModal extends StatefulWidget {
   // =
@@ -34,9 +36,13 @@ class VersetModal extends StatefulWidget {
 
 // <> _VersetModalState()
 class _VersetModalState extends State<VersetModal> {
+  
   // <> Build
   @override
   Widget build(BuildContext context) {
+    // = Locale
+    final String _locale = AppLocalizations.of(context)!.localeName;
+    
     return Blur(
       blur: 3,
       blurColor: Couleur.bleuClair,
@@ -53,7 +59,7 @@ class _VersetModalState extends State<VersetModal> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             AutoSizeText(
-              widget.rep.texte,
+              RLang.getLang(widget.rep, _locale).texte,
               style: MyTextStyle.textBleuM,
               textAlign: TextAlign.justify,
               maxLines: 1,
@@ -61,13 +67,14 @@ class _VersetModalState extends State<VersetModal> {
             ),
             const SizedBox(height: 30),
             AutoSizeText(
-              widget.rep.verset!,
+              RLang.getLang(widget.rep, _locale).verset!,
               style: MyTextStyle.textBleuM,
               textAlign: TextAlign.justify,
               maxLines: 15,
             ),
             const SizedBox(height: 20),
-            Text(widget.rep.versetRef!, style: MyTextStyle.textBleuM),
+            Text(RLang.getLang(widget.rep, _locale).versetRef!,
+                style: MyTextStyle.textBleuM),
           ],
         ),
       ),
