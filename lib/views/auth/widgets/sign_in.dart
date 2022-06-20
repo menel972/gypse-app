@@ -199,8 +199,7 @@ class _SignInState extends State<SignIn> {
                             print(1);
                             // print(await AuthCrud.googleSignIn.isSignedIn());
                             await AuthCrud.googleSignIn
-                                .signIn()
-                                .catchError((e) => print(e));
+                                .signIn();
                           },
                           icon: const Icon(FontAwesomeIcons.google)),
                     ],

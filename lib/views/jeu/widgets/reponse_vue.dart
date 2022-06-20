@@ -1,7 +1,8 @@
+// ignore_for_file: avoid_print
+
 import 'package:bible_quiz/composants/bouttons/basic_button.dart';
 import 'package:bible_quiz/composants/bouttons/primary_fab_button.dart';
 import 'package:bible_quiz/composants/dialogs/verset_modal.dart';
-import 'package:bible_quiz/composants/stream/error_stream.dart';
 import 'package:bible_quiz/composants/stream/loading_data.dart';
 import 'package:bible_quiz/services/BLoC/provided/select_reponse_bloc.dart';
 import 'package:bible_quiz/services/crud/reponse_crud.dart';
@@ -154,12 +155,9 @@ class ReponseVue extends StatelessWidget {
                       }),
                 ));
           } else if (!snapshot.hasData) {
-            return const LoadingData(message: 'No Data');
+            return const LoadingData(message: 'Reponse : No Data');
           } else if (snapshot.hasError) {
-            // ignore: avoid_print
             print('stream error : ' + snapshot.error.toString());
-            return ErrorStream(
-                message: 'reponse_vue get reponse ', flux: snapshot);
           }
           return const LoadingData();
         });

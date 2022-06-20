@@ -84,17 +84,15 @@ class _JeuVueState extends State<JeuVue> {
 
                     // <> Body
                     body: Container(
-                      padding: const EdgeInsets.only(top: 25),
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/images/jeu_bkg.png'),
-                          fit: BoxFit.cover,
+                        padding: const EdgeInsets.only(top: 25),
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('assets/images/jeu_bkg.png'),
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
-                      // <!> QuetionVue()
-                        child:
-                            NoData(texte: _trad.err_no_que)
-                    ),
+                        // <!> QuetionVue()
+                        child: NoData(texte: _trad.err_no_que)),
                   );
                 } else if (snapshot.hasData) {
                   return Scaffold(
@@ -142,7 +140,7 @@ class _JeuVueState extends State<JeuVue> {
               });
         } else if (!snap.hasData) {
           return const LoadingData(
-            message: 'No User',
+            message: 'Jeu vue : No User',
           );
         } else if (snap.hasError) {
           print('Get user errors : ' + snap.error.toString());

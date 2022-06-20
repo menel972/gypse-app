@@ -57,7 +57,7 @@ class Reponse {
         id: json['id'],
         questionId: json['questionId'],
         confirme: json['confirme'],
-        fr: json['fr'],
+        fr: RLang.fromJson(json['fr']),
         en: json['en'] != null ? RLang.fromJson(json['en']) : null,
         es: json['es'] != null ? RLang.fromJson(json['es']) : null,
       );
