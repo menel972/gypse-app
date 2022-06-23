@@ -39,7 +39,7 @@ class LivresVue extends StatelessWidget {
         ),
         // <!> LivresRecherche()
         child: BlocProvider<LivreListeBloc>(
-          bloc: LivreListeBloc(),
+          bloc: LivreListeBloc(_trad.localeName),
           child: const LivresRecherche(),
         ),
       ),

@@ -7,11 +7,6 @@ import 'package:bible_quiz/services/models/reponse_model.dart';
 import 'package:flutter/material.dart';
 
 
-
-
-
-
-
 class Envoi extends StatefulWidget {
   const Envoi({Key? key}) : super(key: key);
 
@@ -149,20 +144,8 @@ class _EnvoiState extends State<Envoi> {
 
   @override
   void initState() {
-    // for (var i = 0; i != Send().gen.length; i++) {
-    //   test(Send().gen[i]);
-    // }
-    // for (var i = 0; i != Send().ap.length; i++) {
-    //   test(Send().ap[i]);
-    // }
-    // for (var i = 0; i != Send().lc.length; i++) {
-    //   test(Send().lc[i]);
-    // }
-    // for (var i = 0; i != Send().prov.length; i++) {
-    //   test(Send().prov[i]);
-    // }
-    // for (var i = 0; i != Send().esa.length; i++) {
-    //   test(Send().esa[i]);
+    // for (var i = 0; i != Send().jacq.length; i++) {
+    //   test(Send().jacq[i]);
     // }
     super.initState();
   }

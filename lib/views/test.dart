@@ -13,7 +13,7 @@ class Send {
         id: "",
         fr: QLang(
           texte: "Quel jour a été crée l'homme ?",
-          livre: Livres.gen,
+          livre: LivresFr.gen,
         ),
         en: QLang(
           texte: "",
@@ -33,7 +33,7 @@ class Send {
           link: "https://bible.com/fr/bible/93/gen.1.27-31.LSG",
           versetRef: "Gen 1:27-31",
           verset:
-              "Dieu créa l’homme à son image[...] il créa l’homme et la femme. [...] ce fut le sixième jour",
+              "Dieu créa l'homme à son image[...] il créa l'homme et la femme. [...] ce fut le sixième jour",
         ),
         en: RLang(
           texte: "",
@@ -97,7 +97,7 @@ class Send {
         id: "",
         fr: QLang(
           texte: "Quels sont les noms des fils de Noé ?",
-          livre: Livres.gen,
+          livre: LivresFr.gen,
         ),
         en: QLang(
           texte: "",
@@ -180,8 +180,8 @@ class Send {
         id: "",
         fr: QLang(
           texte:
-              "Comment s’appelle la ville où les hommes ont tenté de bâtir une tour touchant le ciel ?",
-          livre: Livres.gen,
+              "Comment s'appelle la ville où les hommes ont tenté de bâtir une tour touchant le ciel ?",
+          livre: LivresFr.gen,
         ),
         en: QLang(
           texte: "",
@@ -200,7 +200,7 @@ class Send {
           texte: "Babel",
           link: "https://bible.com/fr/bible/93/gen.11.9.LSG",
           versetRef: "Gen 11:9",
-          verset: "C’est pourquoi on l’appela du nom de Babel",
+          verset: "C'est pourquoi on l'appela du nom de Babel",
         ),
         en: RLang(
           texte: "",
@@ -265,7 +265,7 @@ class Send {
         fr: QLang(
           texte:
               "Qui sont les habitants de Sodome qui ont frappé à la porte de Lot pour connaître les anges de passage chez lui ?",
-          livre: Livres.gen,
+          livre: LivresFr.gen,
         ),
         en: QLang(
           texte: "",
@@ -281,11 +281,11 @@ class Send {
         questionId: "",
         confirme: true,
         fr: RLang(
-          texte: "Les enfants jusqu’aux vieillards",
+          texte: "Les enfants jusqu'aux vieillards",
           link: "https://bible.com/fr/bible/93/gen.19.4-5.LSG",
           versetRef: "Gen 19:4-5",
           verset:
-              "Les gens de Sodome entourèrent la maison, depuis les enfants jusqu’aux vieillard [...] Fais les sortir vers nous, pour que nous les connaissions",
+              "Les gens de Sodome entourèrent la maison, depuis les enfants jusqu'aux vieillard [...] Fais les sortir vers nous, pour que nous les connaissions",
         ),
         en: RLang(
           texte: "",
@@ -348,8 +348,8 @@ class Send {
       "question": Question(
         id: "",
         fr: QLang(
-          texte: "Quel est le nom du fils unique d’Abraham ?",
-          livre: Livres.gen,
+          texte: "Quel est le nom du fils unique d'Abraham ?",
+          livre: LivresFr.gen,
         ),
         en: QLang(
           texte: "",
@@ -432,7 +432,7 @@ class Send {
         id: "",
         fr: QLang(
           texte: "Quel est le nom du premier fils de Rachel ?",
-          livre: Livres.gen,
+          livre: LivresFr.gen,
         ),
         en: QLang(
           texte: "",
@@ -516,7 +516,7 @@ class Send {
         id: "",
         fr: QLang(
           texte: "Combien de fils a eu Jacob ?",
-          livre: Livres.gen,
+          livre: LivresFr.gen,
         ),
         en: QLang(
           texte: "",
@@ -600,7 +600,7 @@ class Send {
         fr: QLang(
           texte:
               "Quelle est la signification des vaches grasses dans le rêve de Pharaon ?",
-          livre: Livres.gen,
+          livre: LivresFr.gen,
         ),
         en: QLang(
           texte: "",
@@ -616,11 +616,11 @@ class Send {
         questionId: "",
         confirme: true,
         fr: RLang(
-          texte: "Sept années d’abondance",
+          texte: "Sept années d'abondance",
           link: "https://bible.com/fr/bible/93/gen.41.26-29.LSG",
           versetRef: "Gen 41:26-29",
           verset:
-              "Les sept vaches belles sont sept années [...] Voici, il y aura sept années de grande abondance dans tout le pays d’Égypte",
+              "Les sept vaches belles sont sept années [...] Voici, il y aura sept années de grande abondance dans tout le pays d'Égypte",
         ),
         en: RLang(
           texte: "",
@@ -654,7 +654,7 @@ class Send {
         questionId: "",
         confirme: false,
         fr: RLang(
-          texte: "Sept mois d’abondance",
+          texte: "Sept mois d'abondance",
         ),
         en: RLang(
           texte: "",
@@ -684,7 +684,7 @@ class Send {
         id: "",
         fr: QLang(
           texte: "Dans quel pays a été enterré Israël ?",
-          livre: Livres.gen,
+          livre: LivresFr.gen,
         ),
         en: QLang(
           texte: "",
@@ -704,7 +704,7 @@ class Send {
           link: "https://bible.com/fr/bible/93/gen.50.5.LSG",
           versetRef: "Gen 50:5",
           verset:
-              "Tu m’enterreras dans le sépulcre que je me suis acheté au pays de Canaan",
+              "Tu m'enterreras dans le sépulcre que je me suis acheté au pays de Canaan",
         ),
         en: RLang(
           texte: "",
@@ -724,7 +724,7 @@ class Send {
         questionId: "",
         confirme: false,
         fr: RLang(
-          texte: "Au pays d’Égypte",
+          texte: "Au pays d'Égypte",
         ),
         en: RLang(
           texte: "",
@@ -738,7 +738,7 @@ class Send {
         questionId: "",
         confirme: false,
         fr: RLang(
-          texte: "Au pays d’Éden",
+          texte: "Au pays d'Éden",
         ),
         en: RLang(
           texte: "",
@@ -752,7 +752,7 @@ class Send {
         questionId: "",
         confirme: false,
         fr: RLang(
-          texte: "Au pays d’Assyrie",
+          texte: "Au pays d'Assyrie",
         ),
         en: RLang(
           texte: "",
@@ -767,8 +767,8 @@ class Send {
       "question": Question(
         id: "",
         fr: QLang(
-          texte: "Combien d’années a vécu Joseph ?",
-          livre: Livres.gen,
+          texte: "Combien d'années a vécu Joseph ?",
+          livre: LivresFr.gen,
         ),
         en: QLang(
           texte: "",
@@ -854,8 +854,8 @@ class Send {
         id: "",
         fr: QLang(
           texte:
-              "Je crie dans les rues, et j’élève la voix dans les places. Qui suis-je ?",
-          livre: Livres.prov,
+              "Je crie dans les rues, et j'élève la voix dans les places. Qui suis-je ?",
+          livre: LivresFr.prov,
         ),
         en: QLang(
           texte: "",
@@ -909,7 +909,7 @@ class Send {
         questionId: "",
         confirme: false,
         fr: RLang(
-          texte: "L’envie",
+          texte: "L'envie",
         ),
         en: RLang(
           texte: "",
@@ -939,8 +939,8 @@ class Send {
         id: "",
         fr: QLang(
           texte:
-              "Je suis amère comme l’absinthe. Je ne sais pas où je vais. Et mes pas atteignent le séjour des morts. Qui suis-je ?",
-          livre: Livres.prov,
+              "Je suis amère comme l'absinthe. Je ne sais pas où je vais. Et mes pas atteignent le séjour des morts. Qui suis-je ?",
+          livre: LivresFr.prov,
         ),
         en: QLang(
           texte: "",
@@ -960,7 +960,7 @@ class Send {
           link: "https://bible.com/fr/bible/93/pro.5.3-6.LSG",
           versetRef: "Prov 5:3-6",
           verset:
-              "Car les lèvres de l’étrangère distillent le miel [...] Mais à la fin elle est amère comme l’absinthe [...] Ses pas atteignent le séjour des morts [...] elle ne sait où elle va",
+              "Car les lèvres de l'étrangère distillent le miel [...] Mais à la fin elle est amère comme l'absinthe [...] Ses pas atteignent le séjour des morts [...] elle ne sait où elle va",
         ),
         en: RLang(
           texte: "",
@@ -1024,8 +1024,8 @@ class Send {
         id: "",
         fr: QLang(
           texte:
-              "Parmi les choses suivantes, quelle est celle que l’Éternel a en horreur ?",
-          livre: Livres.prov,
+              "Parmi les choses suivantes, quelle est celle que l'Éternel a en horreur ?",
+          livre: LivresFr.prov,
         ),
         en: QLang(
           texte: "",
@@ -1045,7 +1045,7 @@ class Send {
           link: "https://bible.com/fr/bible/93/pro.6.17.LSG",
           versetRef: "Prov 6:17",
           verset:
-              "Il y a six choses que hait l’Éternel, et même sept qu’il a en horreur : les yeux hautains",
+              "Il y a six choses que hait l'Éternel, et même sept qu'il a en horreur : les yeux hautains",
         ),
         en: RLang(
           texte: "",
@@ -1065,7 +1065,7 @@ class Send {
         questionId: "",
         confirme: false,
         fr: RLang(
-          texte: "L’humanité",
+          texte: "L'humanité",
         ),
         en: RLang(
           texte: "",
@@ -1108,8 +1108,8 @@ class Send {
       "question": Question(
         id: "",
         fr: QLang(
-          texte: "Le commencement de la sagesse c’est :",
-          livre: Livres.prov,
+          texte: "Le commencement de la sagesse c'est :",
+          livre: LivresFr.prov,
         ),
         en: QLang(
           texte: "",
@@ -1125,11 +1125,11 @@ class Send {
         questionId: "",
         confirme: true,
         fr: RLang(
-          texte: "La crainte de l’Éternel",
+          texte: "La crainte de l'Éternel",
           link: "https://bible.com/fr/bible/93/pro.9.10.LSG",
           versetRef: "Prov 9:10",
           verset:
-              "Le commencement de la sagesse, c’est la crainte de l’Eternel",
+              "Le commencement de la sagesse, c'est la crainte de l'Éternel",
         ),
         en: RLang(
           texte: "",
@@ -1149,7 +1149,7 @@ class Send {
         questionId: "",
         confirme: false,
         fr: RLang(
-          texte: "Le début de l’orgueil",
+          texte: "Le début de l'orgueil",
         ),
         en: RLang(
           texte: "",
@@ -1192,8 +1192,8 @@ class Send {
       "question": Question(
         id: "",
         fr: QLang(
-          texte: "Quel est l’effet d’une bonne parole sur le cœur de l’homme ?",
-          livre: Livres.prov,
+          texte: "Quel est l'effet d'une bonne parole sur le cœur de l'homme ?",
+          livre: LivresFr.prov,
         ),
         en: QLang(
           texte: "",
@@ -1213,7 +1213,7 @@ class Send {
           link: "https://bible.com/fr/bible/93/pro.12.25.LSG",
           versetRef: "Prov 12:25",
           verset:
-              "L’inquiétude dans le coeur de l’homme l’abat, mais une bonne parole le réjouit",
+              "L'inquiétude dans le coeur de l'homme l'abat, mais une bonne parole le réjouit",
         ),
         en: RLang(
           texte: "",
@@ -1233,7 +1233,7 @@ class Send {
         questionId: "",
         confirme: false,
         fr: RLang(
-          texte: "Cela l’attriste",
+          texte: "Cela l'attriste",
         ),
         en: RLang(
           texte: "",
@@ -1247,7 +1247,7 @@ class Send {
         questionId: "",
         confirme: false,
         fr: RLang(
-          texte: "Cela l’effraie",
+          texte: "Cela l'effraie",
         ),
         en: RLang(
           texte: "",
@@ -1261,7 +1261,7 @@ class Send {
         questionId: "",
         confirme: false,
         fr: RLang(
-          texte: "Cela l’affaiblit",
+          texte: "Cela l'affaiblit",
         ),
         en: RLang(
           texte: "",
@@ -1277,7 +1277,7 @@ class Send {
         id: "",
         fr: QLang(
           texte: "Que représentent les cheveux blancs ?",
-          livre: Livres.prov,
+          livre: LivresFr.prov,
         ),
         en: QLang(
           texte: "",
@@ -1293,10 +1293,10 @@ class Send {
         questionId: "",
         confirme: true,
         fr: RLang(
-          texte: "Une couronne d’honneur",
+          texte: "Une couronne d'honneur",
           link: "https://bible.com/fr/bible/93/pro.16.31.LSG",
           versetRef: "Prov 16:31",
-          verset: "Les cheveux blancs sont une couronne d’honneur",
+          verset: "Les cheveux blancs sont une couronne d'honneur",
         ),
         en: RLang(
           texte: "",
@@ -1344,7 +1344,7 @@ class Send {
         questionId: "",
         confirme: false,
         fr: RLang(
-          texte: "L’onction de Dieu",
+          texte: "L'onction de Dieu",
         ),
         en: RLang(
           texte: "",
@@ -1359,8 +1359,8 @@ class Send {
       "question": Question(
         id: "",
         fr: QLang(
-          texte: "Répondre avant d’avoir écouté est...",
-          livre: Livres.prov,
+          texte: "Répondre avant d'avoir écouté est...",
+          livre: LivresFr.prov,
         ),
         en: QLang(
           texte: "",
@@ -1380,7 +1380,7 @@ class Send {
           link: "https://bible.com/fr/bible/93/pro.18.13.LSG",
           versetRef: "Prov 18:13",
           verset:
-              "Celui qui répond avant d’avoir écouté fait un acte de folie et s’attire la confusion",
+              "Celui qui répond avant d'avoir écouté fait un acte de folie et s'attire la confusion",
         ),
         en: RLang(
           texte: "",
@@ -1443,8 +1443,8 @@ class Send {
       "question": Question(
         id: "",
         fr: QLang(
-          texte: "Au jour de la bataille, qui peut délivrer de l’ennemi ?",
-          livre: Livres.prov,
+          texte: "Au jour de la bataille, qui peut délivrer de l'ennemi ?",
+          livre: LivresFr.prov,
         ),
         en: QLang(
           texte: "",
@@ -1460,11 +1460,11 @@ class Send {
         questionId: "",
         confirme: true,
         fr: RLang(
-          texte: "L’Éternel",
+          texte: "L'Éternel",
           link: "https://bible.com/fr/bible/93/pro.21.31.LSG",
           versetRef: "Prov 21:31",
           verset:
-              "Le cheval est équipé pour le jour de la bataille, mais la délivrance appartient à l’Éternel",
+              "Le cheval est équipé pour le jour de la bataille, mais la délivrance appartient à l'Éternel",
         ),
         en: RLang(
           texte: "",
@@ -1484,7 +1484,7 @@ class Send {
         questionId: "",
         confirme: false,
         fr: RLang(
-          texte: "L’être humain par ses forces",
+          texte: "L'être humain par ses forces",
         ),
         en: RLang(
           texte: "",
@@ -1527,8 +1527,8 @@ class Send {
       "question": Question(
         id: "",
         fr: QLang(
-          texte: "Si un ennemi a faim ou soif, qu’est-il conseillé de faire ?",
-          livre: Livres.prov,
+          texte: "Si un ennemi a faim ou soif, qu'est-il conseillé de faire ?",
+          livre: LivresFr.prov,
         ),
         en: QLang(
           texte: "",
@@ -1544,11 +1544,11 @@ class Send {
         questionId: "",
         confirme: true,
         fr: RLang(
-          texte: "Lui donner du pain et de l’eau",
+          texte: "Lui donner du pain et de l'eau",
           link: "https://bible.com/fr/bible/93/pro.25.21.LSG",
           versetRef: "Prov 25:21",
           verset:
-              "Si ton ennemi a faim, donne lui du pain à manger; s’il a soif, donne-lui de l’eau à boire.",
+              "Si ton ennemi a faim, donne lui du pain à manger; s'il a soif, donne-lui de l'eau à boire.",
         ),
         en: RLang(
           texte: "",
@@ -1568,7 +1568,7 @@ class Send {
         questionId: "",
         confirme: false,
         fr: RLang(
-          texte: "L’empoisonner",
+          texte: "L'empoisonner",
         ),
         en: RLang(
           texte: "",
@@ -1582,7 +1582,7 @@ class Send {
         questionId: "",
         confirme: false,
         fr: RLang(
-          texte: "L’ignorer",
+          texte: "L'ignorer",
         ),
         en: RLang(
           texte: "",
@@ -1612,7 +1612,7 @@ class Send {
         id: "",
         fr: QLang(
           texte: "Quels sont les quatre petits animaux les plus sages ?",
-          livre: Livres.prov,
+          livre: LivresFr.prov,
         ),
         en: QLang(
           texte: "",
@@ -1699,7 +1699,7 @@ class Send {
         id: "",
         fr: QLang(
           texte: "À quel arbre est comparé Israël ?",
-          livre: Livres.es,
+          livre: LivresFr.es,
         ),
         en: QLang(
           texte: "",
@@ -1718,7 +1718,7 @@ class Send {
           texte: "À une vigne",
           link: "https://bible.com/fr/bible/93/isa.5.7.LSG",
           versetRef: "Es 5:7",
-          verset: "La vigne de l’Éternel des armées, c’est la maison d’Israël",
+          verset: "La vigne de l'Éternel des armées, c'est la maison d'Israël",
         ),
         en: RLang(
           texte: "",
@@ -1783,7 +1783,7 @@ class Send {
         fr: QLang(
           texte:
               "Lors de sa rencontre avec le Seigneur, quel type de créature Esaïe voit-il ?",
-          livre: Livres.es,
+          livre: LivresFr.es,
         ),
         en: QLang(
           texte: "",
@@ -1867,8 +1867,8 @@ class Send {
         id: "",
         fr: QLang(
           texte:
-              "Parmi les attributs suivants, lequel est associé à l’esprit de Dieu ?",
-          livre: Livres.es,
+              "Parmi les attributs suivants, lequel est associé à l'esprit de Dieu ?",
+          livre: LivresFr.es,
         ),
         en: QLang(
           texte: "",
@@ -1884,11 +1884,11 @@ class Send {
         questionId: "",
         confirme: true,
         fr: RLang(
-          texte: "Esprit de sagesse et d’intelligence",
+          texte: "Esprit de sagesse et d'intelligence",
           link: "https://bible.com/fr/bible/93/isa.11.2.LSG",
           versetRef: "Es 11:2",
           verset:
-              "Esprit de sagesse et d’intelligence, Esprit de conseil et de force, Esprit de connaissance et de crainte de l’Éternel",
+              "Esprit de sagesse et d'intelligence, Esprit de conseil et de force, Esprit de connaissance et de crainte de l'Éternel",
         ),
         en: RLang(
           texte: "",
@@ -1908,7 +1908,7 @@ class Send {
         questionId: "",
         confirme: false,
         fr: RLang(
-          texte: "Esprit de vanité et d’orgueil",
+          texte: "Esprit de vanité et d'orgueil",
         ),
         en: RLang(
           texte: "",
@@ -1952,8 +1952,8 @@ class Send {
         id: "",
         fr: QLang(
           texte:
-              "Pendant combien de temps la ville de Tyr est-elle tombée dans l’oubli ?",
-          livre: Livres.es,
+              "Pendant combien de temps la ville de Tyr est-elle tombée dans l'oubli ?",
+          livre: LivresFr.es,
         ),
         en: QLang(
           texte: "",
@@ -1972,7 +1972,7 @@ class Send {
           texte: "Pendant 70 ans",
           link: "https://bible.com/fr/bible/93/isa.23.15.LSG",
           versetRef: "Es 23:15",
-          verset: "En ce temps-là, tyr tombera dans l’oubli 70 ans",
+          verset: "En ce temps-là, tyr tombera dans l'oubli 70 ans",
         ),
         en: RLang(
           texte: "",
@@ -2036,7 +2036,7 @@ class Send {
         id: "",
         fr: QLang(
           texte: "Quel est le serpent fuyard et tortueux ?",
-          livre: Livres.es,
+          livre: LivresFr.es,
         ),
         en: QLang(
           texte: "",
@@ -2056,7 +2056,7 @@ class Send {
           link: "https://bible.com/fr/bible/93/isa.27.1.LSG",
           versetRef: "Es 27:1",
           verset:
-              "En ce jour, l’Éternel frappera de sa dure, grande et forte épée, le léviathan, serpent fuyard, le léviathan, serpent tortueux",
+              "En ce jour, l'Éternel frappera de sa dure, grande et forte épée, le léviathan, serpent fuyard, le léviathan, serpent tortueux",
         ),
         en: RLang(
           texte: "",
@@ -2120,7 +2120,7 @@ class Send {
         id: "",
         fr: QLang(
           texte: "Quel est le trésor de Sion ?",
-          livre: Livres.es,
+          livre: LivresFr.es,
         ),
         en: QLang(
           texte: "",
@@ -2136,10 +2136,10 @@ class Send {
         questionId: "",
         confirme: true,
         fr: RLang(
-          texte: "La crainte de l’Éternel",
+          texte: "La crainte de l'Éternel",
           link: "https://bible.com/fr/bible/93/isa.33.6.LSG",
           versetRef: "Es 33:6",
-          verset: "La crainte de l’Éternel, c’est le trésor de Sion",
+          verset: "La crainte de l'Éternel, c'est le trésor de Sion",
         ),
         en: RLang(
           texte: "",
@@ -2203,8 +2203,8 @@ class Send {
         id: "",
         fr: QLang(
           texte:
-              "Dans le camp des Assyriens, combien d’hommes ont été frappé par l’ange de l’Éternel ?",
-          livre: Livres.es,
+              "Dans le camp des Assyriens, combien d'hommes ont été frappé par l'ange de l'Éternel ?",
+          livre: LivresFr.es,
         ),
         en: QLang(
           texte: "",
@@ -2224,7 +2224,7 @@ class Send {
           link: "https://bible.com/fr/bible/93/isa.37.36.LSG",
           versetRef: "Es 37:36",
           verset:
-              "L’ange de l’Éternel sortit, et frappa le camp des Assyriens 185 000 hommes",
+              "L'ange de l'Éternel sortit, et frappa le camp des Assyriens 185 000 hommes",
         ),
         en: RLang(
           texte: "",
@@ -2288,8 +2288,8 @@ class Send {
         id: "",
         fr: QLang(
           texte:
-              "De combien d’année la vie du roi Ézéchias a -t-elle été prolongée ?",
-          livre: Livres.es,
+              "De combien d'année la vie du roi Ézéchias a -t-elle été prolongée ?",
+          livre: LivresFr.es,
         ),
         en: QLang(
           texte: "",
@@ -2309,7 +2309,7 @@ class Send {
           link: "https://bible.com/fr/bible/93/isa.38.5.LSG",
           versetRef: "Es 38:5",
           verset:
-              "J’ai entendu ta prière, j’ai vu tes larmes. Voici j’ajouterai à tes jours 15 années",
+              "J'ai entendu ta prière, j'ai vu tes larmes. Voici j'ajouterai à tes jours 15 années",
         ),
         en: RLang(
           texte: "",
@@ -2374,7 +2374,7 @@ class Send {
         fr: QLang(
           texte:
               "Complète la phrase suivante : \"Je répandrai ... sur ta race\"",
-          livre: Livres.es,
+          livre: LivresFr.es,
         ),
         en: QLang(
           texte: "",
@@ -2458,7 +2458,7 @@ class Send {
         id: "",
         fr: QLang(
           texte: "Quel est le jeûne auquel Dieu prend plaisir ?",
-          livre: Livres.es,
+          livre: LivresFr.es,
         ),
         en: QLang(
           texte: "",
@@ -2498,7 +2498,7 @@ class Send {
         questionId: "",
         confirme: false,
         fr: RLang(
-          texte: "Un jeûne où on s’autoflagelle",
+          texte: "Un jeûne où on s'autoflagelle",
         ),
         en: RLang(
           texte: "",
@@ -2545,8 +2545,8 @@ class Send {
         id: "",
         fr: QLang(
           texte:
-              "Que s’est-il passé dans la vie de Zacharie, père de Jean-Baptiste, lorsqu’il n’a pas cru en l’annonce d’avoir un enfant ?",
-          livre: Livres.lc,
+              "Que s'est-il passé dans la vie de Zacharie, père de Jean-Baptiste, lorsqu'il n'a pas cru en l'annonce d'avoir un enfant ?",
+          livre: LivresFr.lc,
         ),
         en: QLang(
           texte: "",
@@ -2566,7 +2566,7 @@ class Send {
           link: "https://bible.com/fr/bible/93/luk.1.20.LSG",
           versetRef: "Lc 1:20",
           verset:
-              "Et voici, tu seras muet, tu ne pourras pas parler jusqu’ai jour où ces choses arriveront, parce que tu n’as pas cru à mes paroles, qui s’accompliront en leur temps.",
+              "Et voici, tu seras muet, tu ne pourras pas parler jusqu'ai jour où ces choses arriveront, parce que tu n'as pas cru à mes paroles, qui s'accompliront en leur temps.",
         ),
         en: RLang(
           texte: "",
@@ -2630,8 +2630,8 @@ class Send {
         id: "",
         fr: QLang(
           texte:
-              "À quel animal est associé le Saint-Esprit lorsqu’il est descendu sur Jésus ?",
-          livre: Livres.lc,
+              "À quel animal est associé le Saint-Esprit lorsqu'il est descendu sur Jésus ?",
+          livre: LivresFr.lc,
         ),
         en: QLang(
           texte: "",
@@ -2651,7 +2651,7 @@ class Send {
           link: "https://bible.com/fr/bible/93/luk.3.22.LSG",
           versetRef: "Lc 3:22",
           verset:
-              "Le ciel s’ouvrit, et le Saint-Esprit descendit sur lui sous une forme corporelle, comme une colombe",
+              "Le ciel s'ouvrit, et le Saint-Esprit descendit sur lui sous une forme corporelle, comme une colombe",
         ),
         en: RLang(
           texte: "",
@@ -2715,7 +2715,7 @@ class Send {
         id: "",
         fr: QLang(
           texte: "Qui est le maître du Sabbat ?",
-          livre: Livres.lc,
+          livre: LivresFr.lc,
         ),
         en: QLang(
           texte: "",
@@ -2731,10 +2731,10 @@ class Send {
         questionId: "",
         confirme: true,
         fr: RLang(
-          texte: "Le fils de l’homme",
+          texte: "Le fils de l'homme",
           link: "https://bible.com/fr/bible/93/luk.6.5.LSG",
           versetRef: "Lc 6:5",
-          verset: "Et il leur dit : Le Fils de l’homme est le maître du Sabbat",
+          verset: "Et il leur dit : Le Fils de l'homme est le maître du Sabbat",
         ),
         en: RLang(
           texte: "",
@@ -2754,7 +2754,7 @@ class Send {
         questionId: "",
         confirme: false,
         fr: RLang(
-          texte: "L’homme",
+          texte: "L'homme",
         ),
         en: RLang(
           texte: "",
@@ -2799,7 +2799,7 @@ class Send {
         fr: QLang(
           texte:
               "Dans le lieu désert, avec quels aliments Jésus a-t-il miraculeusement nourri la foule ?",
-          livre: Livres.lc,
+          livre: LivresFr.lc,
         ),
         en: QLang(
           texte: "",
@@ -2819,7 +2819,7 @@ class Send {
           link: "https://bible.com/fr/bible/93/luk.9.16.LSG",
           versetRef: "Lc 9:16",
           verset:
-              "Jésus prit les cinq pains et les deux poissons [...] et les donna à ses disciples afin qu’ils les distribuassent à la foule.",
+              "Jésus prit les cinq pains et les deux poissons [...] et les donna à ses disciples afin qu'ils les distribuassent à la foule.",
         ),
         en: RLang(
           texte: "",
@@ -2883,8 +2883,8 @@ class Send {
         id: "",
         fr: QLang(
           texte:
-              "Complète la phrase suivante : « Cherchez plutôt ... et toutes ces choses vous seront données par-dessus »",
-          livre: Livres.lc,
+              "Complète la phrase suivante : \"Cherchez plutôt ... et toutes ces choses vous seront données par-dessus\"",
+          livre: LivresFr.lc,
         ),
         en: QLang(
           texte: "",
@@ -2938,7 +2938,7 @@ class Send {
         questionId: "",
         confirme: false,
         fr: RLang(
-          texte: "L’amour de soi",
+          texte: "L'amour de soi",
         ),
         en: RLang(
           texte: "",
@@ -2952,7 +2952,7 @@ class Send {
         questionId: "",
         confirme: false,
         fr: RLang(
-          texte: "L’amour des autres",
+          texte: "L'amour des autres",
         ),
         en: RLang(
           texte: "",
@@ -2968,7 +2968,7 @@ class Send {
         id: "",
         fr: QLang(
           texte: "Avec qui Jésus est-il accusé de manger ?",
-          livre: Livres.lc,
+          livre: LivresFr.lc,
         ),
         en: QLang(
           texte: "",
@@ -3052,8 +3052,8 @@ class Send {
         id: "",
         fr: QLang(
           texte:
-              "Que se passe t-il dans le ciel lorsqu’un seul pêcheur se repent ?",
-          livre: Livres.lc,
+              "Que se passe t-il dans le ciel lorsqu'un seul pêcheur se repent ?",
+          livre: LivresFr.lc,
         ),
         en: QLang(
           texte: "",
@@ -3138,7 +3138,7 @@ class Send {
         fr: QLang(
           texte:
               "A qui faut-il être semblable pour entrer dans le royaume de Dieu ?",
-          livre: Livres.lc,
+          livre: LivresFr.lc,
         ),
         en: QLang(
           texte: "",
@@ -3223,7 +3223,7 @@ class Send {
         fr: QLang(
           texte:
               "Pour quelle raison ceux qui auront cru en Jésus seront-ils persécutés ?",
-          livre: Livres.lc,
+          livre: LivresFr.lc,
         ),
         en: QLang(
           texte: "",
@@ -3243,7 +3243,7 @@ class Send {
           link: "https://bible.com/fr/bible/93/luk.21.12.LSG",
           versetRef: "Lc 21:12",
           verset:
-              "On mettra les mains sur vous, et l’on vous persécutera ; [...] à cause de mon nom",
+              "On mettra les mains sur vous, et l'on vous persécutera ; [...] à cause de mon nom",
         ),
         en: RLang(
           texte: "",
@@ -3306,8 +3306,8 @@ class Send {
       "question": Question(
         id: "",
         fr: QLang(
-          texte: "Qu’est devenu Jésus le troisième jour ?",
-          livre: Livres.lc,
+          texte: "Qu'est devenu Jésus le troisième jour ?",
+          livre: LivresFr.lc,
         ),
         en: QLang(
           texte: "",
@@ -3326,7 +3326,7 @@ class Send {
           texte: "Il est ressuscité",
           link: "https://bible.com/fr/bible/93/luk.24.6.LSG",
           versetRef: "Lc 24:6",
-          verset: "Il n’est point ici, mais il est ressuscité",
+          verset: "Il n'est point ici, mais il est ressuscité",
         ),
         en: RLang(
           texte: "",
@@ -3374,7 +3374,177 @@ class Send {
         questionId: "",
         confirme: false,
         fr: RLang(
-          texte: "Il s’est vengé de ses persécuteurs",
+          texte: "Il s'est vengé de ses persécuteurs",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+    },
+    // 11
+    {
+      "question": Question(
+        id: "",
+        fr: QLang(
+          texte:
+              "Dans quelle ville Jésus a-t-il ressuscité le fils unique d'une veuve ?",
+          livre: LivresFr.lc,
+        ),
+        en: QLang(
+          texte: "",
+          livre: "",
+        ),
+        es: QLang(
+          texte: "",
+          livre: "",
+        ),
+      ),
+      "reponse 1": Reponse(
+        id: "",
+        questionId: "",
+        confirme: true,
+        fr: RLang(
+          texte: "Naïn",
+          link: "https://bible.com/fr/bible/93/luk.7.11-15.LSG",
+          versetRef: "Lc 7:11-15",
+          verset:
+              "Jésus alla dans une ville appelée Naïn [...] on portait en terre un mort, fils unique de sa mère, qui était veuve ; [...] Il dit : “Jeune homme, je te le dis lève-toi !” Et le mort s'assit, et se mit à parler.",
+        ),
+        en: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+        es: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+      ),
+      "reponse 2": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Jérusalem",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 3": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Béthanie",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 4": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Capernaüm",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+    },
+    // 12
+    {
+      "question": Question(
+        id: "",
+        fr: QLang(
+          texte:
+              "Quel ange a annoncé la naissance de Jean-Baptiste à ses parents, Zacharie et Élisabeth ?",
+          livre: LivresFr.lc,
+        ),
+        en: QLang(
+          texte: "",
+          livre: "",
+        ),
+        es: QLang(
+          texte: "",
+          livre: "",
+        ),
+      ),
+      "reponse 1": Reponse(
+        id: "",
+        questionId: "",
+        confirme: true,
+        fr: RLang(
+          texte: "Gabriel, le héros de Dieu",
+          link: "https://bible.com/fr/bible/93/luk.1.18-19.LSG",
+          versetRef: "Lc 1:18-19",
+          verset:
+              "L’ange lui répondit: Je suis Gabriel, je me tiens devant Dieu ; j’ai été envoyé pour te parler, et pour t’annoncer cette bonne nouvelle.",
+        ),
+        en: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+        es: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+      ),
+      "reponse 2": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Lucifer, le porteur de Lumière",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 3": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Michel, celui qui est comme Dieu",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 4": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Apollyon, l'ange des abîmes",
         ),
         en: RLang(
           texte: "",
@@ -3393,8 +3563,8 @@ class Send {
         id: "",
         fr: QLang(
           texte:
-              "À combien d’église est envoyé le livre de la révélation de Jean ?",
-          livre: Livres.ap,
+              "À combien d'église est envoyé le livre de la révélation de Jean ?",
+          livre: LivresFr.ap,
         ),
         en: QLang(
           texte: "",
@@ -3478,7 +3648,7 @@ class Send {
         id: "",
         fr: QLang(
           texte: "Quel est le pouvoir donné au cheval roux ?",
-          livre: Livres.ap,
+          livre: LivresFr.ap,
         ),
         en: QLang(
           texte: "",
@@ -3494,11 +3664,11 @@ class Send {
         questionId: "",
         confirme: true,
         fr: RLang(
-          texte: "D’enlever la paix de la terre",
+          texte: "D'enlever la paix de la terre",
           link: "https://bible.com/fr/bible/93/rev.6.4.LSG",
           versetRef: "Ap 6:4",
           verset:
-              "Et il sortit un autre cheval roux. Celui qui le montait reçut le pouvoir d’enlever la paix de la terre[...]",
+              "Et il sortit un autre cheval roux. Celui qui le montait reçut le pouvoir d'enlever la paix de la terre[...]",
         ),
         en: RLang(
           texte: "",
@@ -3546,7 +3716,7 @@ class Send {
         questionId: "",
         confirme: false,
         fr: RLang(
-          texte: "D’enlever toute trace d’eau",
+          texte: "D'enlever toute trace d'eau",
         ),
         en: RLang(
           texte: "",
@@ -3562,7 +3732,7 @@ class Send {
         id: "",
         fr: QLang(
           texte: "Qui sont ceux revêtus de robes blanches ?",
-          livre: Livres.ap,
+          livre: LivresFr.ap,
         ),
         en: QLang(
           texte: "",
@@ -3582,7 +3752,7 @@ class Send {
           link: "https://bible.com/fr/bible/93/rev.7.13-14.LSG",
           versetRef: "Ap 7:13-14",
           verset:
-              "Ceux qui sont revêtus de robes blanches, qui sont-ils, et d’où viennent-ils ? [...] Ce sont ceux qui viennent de la grande tribulation ; [...] ils les ont blanchies dans le sang de l’agneau",
+              "Ceux qui sont revêtus de robes blanches, qui sont-ils, et d'où viennent-ils ? [...] Ce sont ceux qui viennent de la grande tribulation ; [...] ils les ont blanchies dans le sang de l'agneau",
         ),
         en: RLang(
           texte: "",
@@ -3646,8 +3816,8 @@ class Send {
         id: "",
         fr: QLang(
           texte:
-              "Quel pouvoir a été donné aux sauterelles sorties du puits de l’abîme ?",
-          livre: Livres.ap,
+              "Quel pouvoir a été donné aux sauterelles sorties du puits de l'abîme ?",
+          livre: LivresFr.ap,
         ),
         en: QLang(
           texte: "",
@@ -3667,7 +3837,7 @@ class Send {
           link: "https://bible.com/fr/bible/93/rev.9.4-5.LSG",
           versetRef: "Ap 9:4-5",
           verset:
-              "seulement aux hommes qui n’avaient pas le sceau de Dieu sur le front. Il leur fut donné [...] de les tourmenter pendant cinq mois",
+              "seulement aux hommes qui n'avaient pas le sceau de Dieu sur le front. Il leur fut donné [...] de les tourmenter pendant cinq mois",
         ),
         en: RLang(
           texte: "",
@@ -3732,7 +3902,7 @@ class Send {
         fr: QLang(
           texte:
               "Quelle bête Michel et les anges combattent-ils dans le ciel ?",
-          livre: Livres.ap,
+          livre: LivresFr.ap,
         ),
         en: QLang(
           texte: "",
@@ -3817,7 +3987,7 @@ class Send {
         fr: QLang(
           texte:
               "Sur quelle partie du corps est inscrite la marque de la bête ?",
-          livre: Livres.ap,
+          livre: LivresFr.ap,
         ),
         en: QLang(
           texte: "",
@@ -3902,7 +4072,7 @@ class Send {
         fr: QLang(
           texte:
               "Lorsque la deuxième coupe de la colère de Dieu est versée, en quoi se change la mer ?",
-          livre: Livres.ap,
+          livre: LivresFr.ap,
         ),
         en: QLang(
           texte: "",
@@ -3986,7 +4156,7 @@ class Send {
         id: "",
         fr: QLang(
           texte: "Quelle est la nature des jugements de Dieu ?",
-          livre: Livres.ap,
+          livre: LivresFr.ap,
         ),
         en: QLang(
           texte: "",
@@ -4006,7 +4176,7 @@ class Send {
           link: "https://bible.com/fr/bible/93/rev.19.2.LSG",
           versetRef: "Ap 19:2",
           verset:
-              "l’honneur et la puissance sont au Seigneur notre Dieu, parce que ses jugements sont véritables et justes",
+              "l'honneur et la puissance sont au Seigneur notre Dieu, parce que ses jugements sont véritables et justes",
         ),
         en: RLang(
           texte: "",
@@ -4069,8 +4239,8 @@ class Send {
       "question": Question(
         id: "",
         fr: QLang(
-          texte: "Qu’est-ce qui n’existera plus dans la nouvelle terre ?",
-          livre: Livres.ap,
+          texte: "Qu'est-ce qui n'existera plus dans la nouvelle terre ?",
+          livre: LivresFr.ap,
         ),
         en: QLang(
           texte: "",
@@ -4090,7 +4260,7 @@ class Send {
           link: "https://bible.com/fr/bible/93/rev.21.4.LSG",
           versetRef: "Ap 21:4",
           verset:
-              "Il essuiera toute larme de leurs yeux, et la mort ne sera plus, et il n’y aura plus ni deuil, ni cri, ni douleur",
+              "Il essuiera toute larme de leurs yeux, et la mort ne sera plus, et il n'y aura plus ni deuil, ni cri, ni douleur",
         ),
         en: RLang(
           texte: "",
@@ -4154,8 +4324,8 @@ class Send {
         id: "",
         fr: QLang(
           texte:
-              "Sans soleil ni lune, qu’est-ce qui éclairera les habitants de la nouvelle Jérusalem ?",
-          livre: Livres.ap,
+              "Sans soleil ni lune, qu'est-ce qui éclairera les habitants de la nouvelle Jérusalem ?",
+          livre: LivresFr.ap,
         ),
         en: QLang(
           texte: "",
@@ -4175,7 +4345,7 @@ class Send {
           link: "https://bible.com/fr/bible/93/rev.22.5.LSG",
           versetRef: "Ap 22:5",
           verset:
-              "Il n’y aura plus de nuit : et ils n’auront besoin ni de lampe ni de lumière, parce que le Seigneur Dieu les éclairera.",
+              "Il n'y aura plus de nuit : et ils n'auront besoin ni de lampe ni de lumière, parce que le Seigneur Dieu les éclairera.",
         ),
         en: RLang(
           texte: "",
@@ -4209,7 +4379,7 @@ class Send {
         questionId: "",
         confirme: false,
         fr: RLang(
-          texte: "Le pouvoir de l’amitié",
+          texte: "Le pouvoir de l'amitié",
         ),
         en: RLang(
           texte: "",
@@ -4243,7 +4413,7 @@ class Send {
         fr: QLang(
           texte:
               "Complète la phrase suivante : \"Honore ton père et ta mère...\"",
-          livre: Livres.ex,
+          livre: LivresFr.ex,
         ),
         en: QLang(
           texte: "",
@@ -4296,7 +4466,7 @@ class Send {
         questionId: "",
         confirme: false,
         fr: RLang(
-          texte: "Afin d’être honoré en retour",
+          texte: "Afin d'être honoré en retour",
         ),
         en: RLang(
           texte: "",
@@ -4328,8 +4498,8 @@ class Send {
       "question": Question(
         id: "",
         fr: QLang(
-          texte: "Qu’est-ce que le jubilé ?",
-          livre: Livres.lev,
+          texte: "Qu'est-ce que le jubilé ?",
+          livre: LivresFr.lev,
         ),
         en: QLang(
           texte: "",
@@ -4398,6 +4568,1495 @@ class Send {
         confirme: false,
         fr: RLang(
           texte: "Rien de biblique",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+    },
+  ];
+
+  List<dynamic> deut = [
+    // 1
+    {
+      "question": Question(
+        id: "",
+        fr: QLang(
+          texte:
+              "Que pense Dieu du fait d'exercer le métier de devin, d'interroger les morts etc... ?",
+          livre: LivresFr.deut,
+        ),
+        en: QLang(
+          texte: "",
+          livre: "",
+        ),
+        es: QLang(
+          texte: "",
+          livre: "",
+        ),
+      ),
+      "reponse 1": Reponse(
+        id: "",
+        questionId: "",
+        confirme: true,
+        fr: RLang(
+          texte: "C'est une abomination",
+          link: "https://bible.com/fr/bible/93/deu.18.10-12.LSG",
+          versetRef: "Deut 18:10-12",
+          verset:
+              "Qu'on ne trouve chez toi personne qui fasse passer son fils ou sa fille par le feu [...], personne qui exerce le métier de devin [...], personne qui interroge les morts",
+        ),
+        en: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+        es: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+      ),
+      "reponse 2": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Ça ne le dérange pas",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 3": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "C'est une aide de sa part",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 4": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "C'est déconseillé",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+    },
+  ];
+
+  List<dynamic> jos = [
+    // 1
+    {
+      "question": Question(
+        id: "",
+        fr: QLang(
+          texte:
+              "Pendant combien de jour, les hommes de guerre d'Israël, ont-il fait le tour de la ville de Jéricho ?",
+          livre: LivresFr.jos,
+        ),
+        en: QLang(
+          texte: "",
+          livre: "",
+        ),
+        es: QLang(
+          texte: "",
+          livre: "",
+        ),
+      ),
+      "reponse 1": Reponse(
+        id: "",
+        questionId: "",
+        confirme: true,
+        fr: RLang(
+          texte: "Pendant 7 jours",
+          link: "https://bible.com/fr/bible/93/jos.6.3-4.LSG",
+          versetRef: "Jos 6:3-4",
+          verset:
+              "[...] faites une fois le tour de la ville. Tu feras ainsi pendant six jours. [...] le septième jour, vous ferez sept fois le tour de la ville.",
+        ),
+        en: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+        es: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+      ),
+      "reponse 2": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Pendant 7 semaines",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 3": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Pendant 5 jours",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 4": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Pendant 5 semaines",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+    },
+  ];
+
+  List<dynamic> jug = [
+    // 1
+    {
+      "question": Question(
+        id: "",
+        fr: QLang(
+          texte:
+              "Quel outrage les hommes de Guibea ont-ils commis ? Ils ont ...",
+          livre: LivresFr.jug,
+        ),
+        en: QLang(
+          texte: "",
+          livre: "",
+        ),
+        es: QLang(
+          texte: "",
+          livre: "",
+        ),
+      ),
+      "reponse 1": Reponse(
+        id: "",
+        questionId: "",
+        confirme: true,
+        fr: RLang(
+          texte: "Violenté la concubine d'un lévite",
+          link: "https://bible.com/fr/bible/93/jug.20.5.LSG",
+          versetRef: "Jug 20:5",
+          verset:
+              "Les habitants de Guibea se sont soulevés contre moi, et ont entouré pendant la nuit la maison où j'étais. Ils avaient l'intention de me tuer, et ils ont fait violence à ma concubine.",
+        ),
+        en: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+        es: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+      ),
+      "reponse 2": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Découpé en morceau un étranger",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 3": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Consommé des aliments impurs",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 4": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Attaqué les Lévites",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+    },
+  ];
+
+  List<dynamic> ruth = [
+    // 1
+    {
+      "question": Question(
+        id: "",
+        fr: QLang(
+          texte:
+              "Quel est le nom de la belle-fille de Naomi qui est revenue avec elle à Bethléhem ?",
+          livre: LivresFr.ruth,
+        ),
+        en: QLang(
+          texte: "",
+          livre: "",
+        ),
+        es: QLang(
+          texte: "",
+          livre: "",
+        ),
+      ),
+      "reponse 1": Reponse(
+        id: "",
+        questionId: "",
+        confirme: true,
+        fr: RLang(
+          texte: "Ruth",
+          link: "https://bible.com/fr/bible/93/rut.1.22.LSG",
+          versetRef: "Ruth 1:22",
+          verset:
+              "Ainsi revinrent du pays de Moab Naomi, et sa belle-fille, Ruth la Moabite.",
+        ),
+        en: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+        es: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+      ),
+      "reponse 2": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Orpa",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 3": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Rahab",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 4": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Jézabel",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+    },
+  ];
+
+  List<dynamic> sam1 = [
+    // 1
+    {
+      "question": Question(
+        id: "",
+        fr: QLang(
+          texte: "Comment s'appelle la mère du prophète Samuel ?",
+          livre: LivresFr.sam1,
+        ),
+        en: QLang(
+          texte: "",
+          livre: "",
+        ),
+        es: QLang(
+          texte: "",
+          livre: "",
+        ),
+      ),
+      "reponse 1": Reponse(
+        id: "",
+        questionId: "",
+        confirme: true,
+        fr: RLang(
+          texte: "Anne",
+          link: "https://bible.com/fr/bible/93/1sa.1.20.LSG",
+          versetRef: "1 Sam 1:20",
+          verset:
+              "Anne devint enceinte, et elle enfanta un fils, qu'elle nomma Samuel",
+        ),
+        en: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+        es: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+      ),
+      "reponse 2": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Anabelle",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 3": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Anna",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 4": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Anaé",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+    },
+  ];
+
+  List<dynamic> roi1 = [
+    // 1
+    {
+      "question": Question(
+        id: "",
+        fr: QLang(
+          texte:
+              "Afin de régner correctement, quelle a été la demande du roi Salomon à Dieu ?",
+          livre: LivresFr.roi1,
+        ),
+        en: QLang(
+          texte: "",
+          livre: "",
+        ),
+        es: QLang(
+          texte: "",
+          livre: "",
+        ),
+      ),
+      "reponse 1": Reponse(
+        id: "",
+        questionId: "",
+        confirme: true,
+        fr: RLang(
+          texte: "Un coeur intelligent",
+          link: "https://bible.com/fr/bible/93/1ki.3.9.LSG",
+          versetRef: "1 Rois 3:9",
+          verset:
+              "Accorde à ton serviteur un coeur intelligent pour juger ton peuple, pour discerner le bien du mal",
+        ),
+        en: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+        es: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+      ),
+      "reponse 2": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Une grande richesse",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 3": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Une grande postérité",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 4": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "La mort de ses ennemis",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+    },
+  ];
+
+  List<dynamic> est = [
+    // 1
+    {
+      "question": Question(
+        id: "",
+        fr: QLang(
+          texte: "Que sait-on sur les parents d'Esther ?",
+          livre: LivresFr.est,
+        ),
+        en: QLang(
+          texte: "",
+          livre: "",
+        ),
+        es: QLang(
+          texte: "",
+          livre: "",
+        ),
+      ),
+      "reponse 1": Reponse(
+        id: "",
+        questionId: "",
+        confirme: true,
+        fr: RLang(
+          texte: "Ils sont morts",
+          link: "https://bible.com/fr/bible/93/1ki.3.9.LSG",
+          versetRef: "Est 2:7",
+          verset:
+              "Car elle n'avait ni père, ni mère [...] À la mort de sont père et dee sa mère, Mardochée l'avait adoptée pour fille.",
+        ),
+        en: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+        es: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+      ),
+      "reponse 2": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Ils sont captifs",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 3": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Ils sont commerçants",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 4": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Ils sont séparés",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+    },
+  ];
+
+  List<dynamic> job = [
+    // 1
+    {
+      "question": Question(
+        id: "",
+        fr: QLang(
+          texte:
+              "Qui a dit : \" Mon oreille avait entendu parler de toi, maintenant mon œil t'a vu.\" ?",
+          livre: LivresFr.job,
+        ),
+        en: QLang(
+          texte: "",
+          livre: "",
+        ),
+        es: QLang(
+          texte: "",
+          livre: "",
+        ),
+      ),
+      "reponse 1": Reponse(
+        id: "",
+        questionId: "",
+        confirme: true,
+        fr: RLang(
+          texte: "Job",
+          link: "https://bible.com/fr/bible/93/job.42.5.LSG",
+          versetRef: "Job 42:5",
+          verset:
+              "Mon oreille avait entendu parler de toi ; maintenant mes yeux t'ont vu.",
+        ),
+        en: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+        es: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+      ),
+      "reponse 2": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Eliphaz, ami de Job",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 3": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Namaan",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 4": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Le prophète Nathan",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+    },
+  ];
+
+  List<dynamic> ps = [
+    // 1
+    {
+      "question": Question(
+        id: "",
+        fr: QLang(
+          texte:
+              "Dans le psaume 23, cantique de David, à quelle fonction est associé Dieu ?",
+          livre: LivresFr.ps,
+        ),
+        en: QLang(
+          texte: "",
+          livre: "",
+        ),
+        es: QLang(
+          texte: "",
+          livre: "",
+        ),
+      ),
+      "reponse 1": Reponse(
+        id: "",
+        questionId: "",
+        confirme: true,
+        fr: RLang(
+          texte: "Berger",
+          link: "https://bible.com/fr/bible/93/psa.23.1.LSG",
+          versetRef: "Ps 23:1",
+          verset: "L'Éternel est mon berger.",
+        ),
+        en: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+        es: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+      ),
+      "reponse 2": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Potier",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 3": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Charpentier",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 4": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Chemin",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+    },
+  ];
+
+  List<dynamic> jon = [
+    // 1
+    {
+      "question": Question(
+        id: "",
+        fr: QLang(
+          texte:
+              "Après que Dieu ait dit à Jonas d'aller à Ninive, comment ce dernier a-t-il réagi ?",
+          livre: LivresFr.jon,
+        ),
+        en: QLang(
+          texte: "",
+          livre: "",
+        ),
+        es: QLang(
+          texte: "",
+          livre: "",
+        ),
+      ),
+      "reponse 1": Reponse(
+        id: "",
+        questionId: "",
+        confirme: true,
+        fr: RLang(
+          texte: "Il s'est enfui",
+          link: "https://bible.com/fr/bible/93/jon.1.3.LSG",
+          versetRef: "Jon 1:3",
+          verset:
+              "Et jonas se leva pour s'enfuir à Tarsis, loin de la face de l'Éternel.",
+        ),
+        en: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+        es: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+      ),
+      "reponse 2": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Il est allé à Ninive",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 3": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Il a discuté avec Dieu",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 4": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Il a pleuré",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+    },
+  ];
+
+  List<dynamic> mat = [
+    // 1
+    {
+      "question": Question(
+        id: "",
+        fr: QLang(
+          texte:
+              "Qui a dit : \"Voici je vous envoie comme des brebis au milieu des loups. Soyez donc prudents comme les serpents, et simples comme les colombes\"",
+          livre: LivresFr.mat,
+        ),
+        en: QLang(
+          texte: "",
+          livre: "",
+        ),
+        es: QLang(
+          texte: "",
+          livre: "",
+        ),
+      ),
+      "reponse 1": Reponse(
+        id: "",
+        questionId: "",
+        confirme: true,
+        fr: RLang(
+          texte: "Jésus",
+          link: "https://bible.com/fr/bible/93/mat.10.5-6.LSG",
+          versetRef: "Mat 10:5-6",
+          verset:
+              "Tels sont les douze que Jésus envoya après leur avoir donné les instructions suivantes [...] Voici je vous envoie comme des brebis au milieu des loups.",
+        ),
+        en: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+        es: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+      ),
+      "reponse 2": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Marc",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 3": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Jean-Baptiste",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 4": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Matthieu",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+    },
+  ];
+
+  List<dynamic> mc = [
+    // 1
+    {
+      "question": Question(
+        id: "",
+        fr: QLang(
+          texte:
+              "Qui est l'auteur de ces actions : \" il le jette par terre; l'enfant écume, grince des dents, et devient tout raide\" ?",
+          livre: LivresFr.mc,
+        ),
+        en: QLang(
+          texte: "",
+          livre: "",
+        ),
+        es: QLang(
+          texte: "",
+          livre: "",
+        ),
+      ),
+      "reponse 1": Reponse(
+        id: "",
+        questionId: "",
+        confirme: true,
+        fr: RLang(
+          texte: "Un esprit muet",
+          link: "https://bible.com/fr/bible/93/mrk.9.17-18.LSG",
+          versetRef: "Mat 10:5-6",
+          verset:
+              "Maître, j'ai amené auprès de toi mon fils, qui est possédé par un esprit muet. En quelque lieu qu'il le saisisse, il le jette par terre; l'enfant écume, grince des dents, et devient tout raide.",
+        ),
+        en: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+        es: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+      ),
+      "reponse 2": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Belzebul",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 3": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Un sacrificateur",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 4": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Un passant",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+    },
+  ];
+
+  List<dynamic> jn = [
+    // 1
+    {
+      "question": Question(
+        id: "",
+        fr: QLang(
+          texte:
+              "Complète la phrase suivante : \"Au commencement était la Parole, et la Parole était avec Dieu, ...\"",
+          livre: LivresFr.jn,
+        ),
+        en: QLang(
+          texte: "",
+          livre: "",
+        ),
+        es: QLang(
+          texte: "",
+          livre: "",
+        ),
+      ),
+      "reponse 1": Reponse(
+        id: "",
+        questionId: "",
+        confirme: true,
+        fr: RLang(
+          texte: "Et la Parole était Dieu",
+          link: "https://bible.com/fr/bible/93/jhn.1.1.LSG",
+          versetRef: "Jn 1:1",
+          verset:
+              "Au commencement était la Parole, la Parole était avec Dieu, la Parole était Dieu..",
+        ),
+        en: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+        es: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+      ),
+      "reponse 2": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Et la Parole a été faite chair",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 3": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Et toutes choses ont été faites par elle",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 4": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Et Dieu était avec la Parole",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+    },
+  ];
+
+  List<dynamic> act = [
+    // 1
+    {
+      "question": Question(
+        id: "",
+        fr: QLang(
+          texte:
+              "Que s'est-il passé pour Philippe après avoir baptisé l'éthiopien ?",
+          livre: LivresFr.act,
+        ),
+        en: QLang(
+          texte: "",
+          livre: "",
+        ),
+        es: QLang(
+          texte: "",
+          livre: "",
+        ),
+      ),
+      "reponse 1": Reponse(
+        id: "",
+        questionId: "",
+        confirme: true,
+        fr: RLang(
+          texte: "Il a été comme téléporté",
+          link: "https://bible.com/fr/bible/93/act.8.39-40.LSG",
+          versetRef: "Act 8:39-40",
+          verset:
+              "Quand ils furent sortis de l'eau, l'Esprit du Seigneur enleva Philippe, et l'eunuque ne le vit plus [...] Philippe se trouva dans Azot",
+        ),
+        en: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+        es: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+      ),
+      "reponse 2": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Il a marché jusqu'à Azot",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 3": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Un oiseau l'a déplacé",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 4": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Il a pris la mer",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+    },
+  ];
+
+  List<dynamic> cor1 = [
+    // 1
+    {
+      "question": Question(
+        id: "",
+        fr: QLang(
+          texte:
+              "Dans la première épître aux Corinthiens, Paul dit : \"Recherchez ...\"",
+          livre: LivresFr.cor1,
+        ),
+        en: QLang(
+          texte: "",
+          livre: "",
+        ),
+        es: QLang(
+          texte: "",
+          livre: "",
+        ),
+      ),
+      "reponse 1": Reponse(
+        id: "",
+        questionId: "",
+        confirme: true,
+        fr: RLang(
+          texte: "La charité",
+          link: "https://bible.com/fr/bible/93/1co.14.1.LSG",
+          versetRef: "1 Cor 14:1",
+          verset: "Recherchez la charité.",
+        ),
+        en: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+        es: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+      ),
+      "reponse 2": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "La patience",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 3": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "La justice",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 4": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "La vérité",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+    },
+  ];
+
+  List<dynamic> eph = [
+    // 1
+    {
+      "question": Question(
+        id: "",
+        fr: QLang(
+          texte: "Comment les maris doivent-ils aimer leur femme ?",
+          livre: LivresFr.eph,
+        ),
+        en: QLang(
+          texte: "",
+          livre: "",
+        ),
+        es: QLang(
+          texte: "",
+          livre: "",
+        ),
+      ),
+      "reponse 1": Reponse(
+        id: "",
+        questionId: "",
+        confirme: true,
+        fr: RLang(
+          texte: "Comme Christ a aimé l'Église",
+          link: "https://bible.com/fr/bible/93/eph.5.25.LSG",
+          versetRef: "Eph 5:25",
+          verset: "Maris, aimez vos femmes, comme Christ a aimé l'Église",
+        ),
+        en: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+        es: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+      ),
+      "reponse 2": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Dans la soumission",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 3": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Avec passion",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 4": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "Avec persévérance",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+    },
+  ];
+
+  List<dynamic> jacq = [
+    // 1
+    {
+      "question": Question(
+        id: "",
+        fr: QLang(
+          texte: "À quel élément est associé la langue ?",
+          livre: LivresFr.jacq,
+        ),
+        en: QLang(
+          texte: "",
+          livre: "",
+        ),
+        es: QLang(
+          texte: "",
+          livre: "",
+        ),
+      ),
+      "reponse 1": Reponse(
+        id: "",
+        questionId: "",
+        confirme: true,
+        fr: RLang(
+          texte: "Au feu, qui peut embraser une forêt",
+          link: "https://bible.com/fr/bible/93/jas.3.5-6.LSG",
+          versetRef: "Jacq 3:5-6",
+          verset:
+              "Voici comme un petit feu peut embraser une grande forêt ! La langue aussi est un feu.",
+        ),
+        en: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+        es: RLang(
+          texte: "",
+          link: "",
+          versetRef: "",
+          verset: "",
+        ),
+      ),
+      "reponse 2": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "À la terre, indomptable et robuste",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 3": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "À l'air, légère mais puissante",
+        ),
+        en: RLang(
+          texte: "",
+        ),
+        es: RLang(
+          texte: "",
+        ),
+      ),
+      "reponse 4": Reponse(
+        id: "",
+        questionId: "",
+        confirme: false,
+        fr: RLang(
+          texte: "À l'eau, douce comme une rivière",
         ),
         en: RLang(
           texte: "",
