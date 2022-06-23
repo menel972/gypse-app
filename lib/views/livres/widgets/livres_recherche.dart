@@ -41,7 +41,7 @@ class _LivresRechercheState extends State<LivresRecherche> {
                 TextFormField(
                   style: MyTextStyle.textM,
                   controller: _controller,
-                  onChanged: (value) => _bloc.filtre(value),
+                  onChanged: (value) => _bloc.filtre(value, _trad.localeName),
                   decoration: InputDecoration(
                     label: Text('${_trad.title_book}...',
                         style: MyTextStyle.textS),
@@ -49,7 +49,7 @@ class _LivresRechercheState extends State<LivresRecherche> {
                         ? IconButton(
                             onPressed: () => {
                               _controller.clear(),
-                              _bloc.clearFiltre(),
+                              _bloc.clearFiltre(_trad.localeName),
                             },
                             icon: const Icon(Icons.clear, color: Couleur.blanc),
                           )

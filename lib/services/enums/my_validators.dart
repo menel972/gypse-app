@@ -8,7 +8,7 @@ class MyValidators {
 
   String? livreValidator(value) {
     if (value!.isEmpty) return 'Vous devez entrer un livre';
-    if (!Livres.livres.contains(value)) {
+    if (!LivresFr.livres.contains(value)) {
       return 'Ce livre n\'est pas dans la bible (vérifiez l\'orthographe)';
     }
     return null;

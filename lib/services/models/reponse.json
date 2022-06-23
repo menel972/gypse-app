@@ -1,0 +1,20 @@
+{
+	"id": "",
+	"questionId": "",
+	"confirme": true,
+	"fr": {
+		"texte":"",
+		"versetRef":"",
+		"verset":""
+	},
+	"en": {
+		"texte":"",
+		"versetRef":"",
+		"verset":""
+	},
+	"es": {
+		"texte":"",
+		"versetRef":"",
+		"verset":""
+	}
+}

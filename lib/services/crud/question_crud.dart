@@ -1,9 +1,10 @@
+import 'package:bible_quiz/services/models/q_lang.dart';
 import 'package:bible_quiz/services/models/question_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class QuestionCrud {
   static final CollectionReference<Map<String, dynamic>> db =
-      FirebaseFirestore.instance.collection('questions');
+      FirebaseFirestore.instance.collection('question');
 
   // {} Create
   static Future addQuestion(Question question) async {
@@ -40,14 +41,14 @@ class QuestionCrud {
   }
 
   static Stream<Question> fetchFirstQuestionByUser(
-      List<dynamic> userQ, String? livre) {
+      List<dynamic> userQ, String? livre, String locale) {
     return fetchQuestionByUser(userQ).map((questions) => questions
         .where((question) {
           if (livre == null) {
             return true;
           }
           if (livre != '') {
-            return question.livre.contains(livre);
+            return QLang.getLang(question, locale).livre.contains(livre);
           }
           return true;
         })
@@ -56,10 +57,12 @@ class QuestionCrud {
   }
 
   static Stream<Map<String, int>> fetchQuestionByBook(
-      String livre, List<dynamic> userQ) {
+      String livre, List<dynamic> userQ, String locale) {
     return fetchAllQuestion()
         .map((questions) =>
-            questions.where((question) => question.livre == livre).toList())
+            questions
+            .where((question) => QLang.getLang(question, locale).livre == livre)
+            .toList())
         .map((questions) => {
               'nbQ': questions.length,
               'nbR': questions

@@ -1,8 +1,11 @@
 import 'package:bible_quiz/services/crud/question_crud.dart';
 import 'package:bible_quiz/services/crud/reponse_crud.dart';
+import 'package:bible_quiz/services/models/q_lang.dart';
 import 'package:bible_quiz/services/models/question_model.dart';
+import 'package:bible_quiz/services/models/r_lang.dart';
 import 'package:bible_quiz/services/models/reponse_model.dart';
 import 'package:flutter/material.dart';
+
 
 class Envoi extends StatefulWidget {
   const Envoi({Key? key}) : super(key: key);
@@ -12,12 +15,88 @@ class Envoi extends StatefulWidget {
 }
 
 class _EnvoiState extends State<Envoi> {
-  Question ques = Question(id: 'id', texte: 'q1', livre: 'Jean');
-  Reponse rep1 = Reponse(
-      id: 'id',
-      questionId: 'questionId',
-      texte: 'texte rep 1',
-      confirme: false);
+  final model = {
+    'question': Question(
+      id: '',
+      fr: QLang(
+        texte: '',
+        livre: '',
+      ),
+      en: QLang(
+        texte: '',
+        livre: '',
+      ),
+      es: QLang(
+        texte: '',
+        livre: '',
+      ),
+    ),
+    'reponse 1': Reponse(
+      id: '',
+      questionId: '',
+      confirme: true,
+      fr: RLang(
+        texte: '',
+        link: '',
+        versetRef: '',
+        verset: '',
+      ),
+      en: RLang(
+        texte: '',
+        link: '',
+        versetRef: '',
+        verset: '',
+      ),
+      es: RLang(
+        texte: '',
+        link: '',
+        versetRef: '',
+        verset: '',
+      ),
+    ),
+    'reponse 2': Reponse(
+      id: '',
+      questionId: '',
+      confirme: false,
+      fr: RLang(
+        texte: '',
+      ),
+      en: RLang(
+        texte: '',
+      ),
+      es: RLang(
+        texte: '',
+      ),
+    ),
+    'reponse 3': Reponse(
+      id: '',
+      questionId: '',
+      confirme: false,
+      fr: RLang(
+        texte: '',
+      ),
+      en: RLang(
+        texte: '',
+      ),
+      es: RLang(
+        texte: '',
+      ),
+    ),
+    'reponse 4': Reponse(
+      id: '',
+      questionId: '',
+      confirme: false,
+      fr: RLang(
+        texte: '',
+      ),
+      en: RLang(
+        texte: '',
+      ),
+      es: RLang(
+        texte: '',
+      ),
+    ),
+  };
 
   final qr = [
 //     {
@@ -56,17 +135,17 @@ class _EnvoiState extends State<Envoi> {
   ];
 
   void test(Map<String, Object> qr) {
-    String text = QuestionCrud.addQuestionId(qr['question'] as Question);
-    ReponseCrud.addReponseId(qr['reponse 1'] as Reponse, text);
-    ReponseCrud.addReponseId(qr['reponse 2'] as Reponse, text);
-    ReponseCrud.addReponseId(qr['reponse 3'] as Reponse, text);
-    ReponseCrud.addReponseId(qr['reponse 4'] as Reponse, text);
+    String qid = QuestionCrud.addQuestionId(qr['question'] as Question);
+    ReponseCrud.addReponseId(qr['reponse 1'] as Reponse, qid);
+    ReponseCrud.addReponseId(qr['reponse 2'] as Reponse, qid);
+    ReponseCrud.addReponseId(qr['reponse 3'] as Reponse, qid);
+    ReponseCrud.addReponseId(qr['reponse 4'] as Reponse, qid);
   }
 
   @override
   void initState() {
-    // for (var i = 0; i != qr.length; i++) {
-    //   test(qr[i]);
+    // for (var i = 0; i != Send().jacq.length; i++) {
+    //   test(Send().jacq[i]);
     // }
     super.initState();
   }

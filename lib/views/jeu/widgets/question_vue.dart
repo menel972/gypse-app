@@ -7,6 +7,7 @@ import 'package:bible_quiz/services/BLoC/bloc_provider.dart';
 
 import 'package:bible_quiz/services/crud/user_crud.dart';
 import 'package:bible_quiz/services/enums/couleur.dart';
+import 'package:bible_quiz/services/models/q_lang.dart';
 import 'package:bible_quiz/services/models/question_model.dart';
 import 'package:bible_quiz/services/models/settings_model.dart';
 import 'package:bible_quiz/styles/my_text_style.dart';
@@ -72,7 +73,7 @@ class QuestionVue extends StatelessWidget {
               });
     }
 
-    if (question.texte == '') {
+    if (QLang.getLang(question, _trad.localeName).texte == '') {
       return Center(
         child: Text(
           _trad.err_no_que,
@@ -130,7 +131,7 @@ class QuestionVue extends StatelessWidget {
                             Flexible(
                               flex: 5,
                               child: Text(
-                                question.texte,
+                                QLang.getLang(question, _trad.localeName).texte,
                                 style: MyTextStyle.textL,
                               ),
                             ),
