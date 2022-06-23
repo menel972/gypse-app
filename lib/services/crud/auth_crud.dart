@@ -3,6 +3,7 @@
 import 'dart:async';
 
 import 'package:bible_quiz/services/crud/user_crud.dart';
+import 'package:bible_quiz/services/enums/couleur.dart';
 import 'package:bible_quiz/services/models/settings_model.dart';
 import 'package:bible_quiz/services/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -11,6 +12,7 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../views/auth/auth_vue.dart';
+import '../BLoC/bloc_router.dart';
 import '../providers/user_provider.dart';
 
 class AuthCrud {
@@ -24,8 +26,12 @@ class AuthCrud {
         .then((value) => value == null ? false : true);
   }
 
-  static Future signOut() async {
+  static Future signOut(BuildContext context) async {
     await auth.signOut();
+    Navigator.push(
+      context,
+      BlocRouter().authRoute(),
+    );
   }
 
   static Future deleteAccount() async {
@@ -102,9 +108,19 @@ class AuthCrud {
     }
   }
 
-  static Future updatePassword() async {
+  static Future updatePassword(BuildContext context) async {
     try {
       await auth.sendPasswordResetEmail(email: auth.currentUser!.email!);
+
+      // TODO : AJOUTER LA TRADUCTION
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('Un mail vous a été envoyé. Vous allez être déconnecté'),
+        backgroundColor: Couleur.secondary,
+        duration: Duration(seconds: 3),
+      ));
+
+      await Future.delayed(const Duration(seconds: 4));
+      signOut(context);
     } on FirebaseAuthException catch (e) {
       print(e.code);
     }
@@ -115,6 +131,7 @@ class AuthCrud {
     'email',
     'https://www.googleapis.com/auth/contacts.readonly',
   ]);
+
   gglSignIn() async {
     try {
       GoogleSignInAccount? log = await googleSignIn.signIn();
@@ -124,7 +141,7 @@ class AuthCrud {
       auth.signInWithCredential(
           GoogleAuthProvider.credential(accessToken: acces));
     } on FirebaseAuthException catch (e) {
-      print(e.message);
+      print('HERE : ${e.message}');
     }
   }
 

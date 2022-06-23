@@ -2,7 +2,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bible_quiz/composants/bouttons/basic_button.dart';
 import 'package:bible_quiz/composants/cards/info_card.dart';
 import 'package:bible_quiz/composants/dialogs/delete_dialog.dart';
-import 'package:bible_quiz/services/BLoC/bloc_router.dart';
 import 'package:bible_quiz/services/crud/auth_crud.dart';
 import 'package:bible_quiz/services/enums/my_size.dart';
 import 'package:flutter/material.dart';
@@ -88,7 +87,7 @@ class Compte extends StatelessWidget {
             icon: Icons.lock_outline,
             label: 'Mot de passe :',
             data: TextButton(
-              onPressed: () => AuthCrud.updatePassword(),
+              onPressed: () => AuthCrud.updatePassword(context),
               child: AutoSizeText(
                 'Changer de mot de passe',
                 style: MyTextStyle.labelOrangeM,
@@ -114,11 +113,7 @@ class Compte extends StatelessWidget {
                 child: PrimaryButton(
                   texte: 'Déconnexion',
                   fonction: () => {
-                    AuthCrud.signOut(),
-                    Navigator.push(
-                      context,
-                      BlocRouter().authRoute(),
-                    )
+                    AuthCrud.signOut(context),
                   },
                 ),
               ),
