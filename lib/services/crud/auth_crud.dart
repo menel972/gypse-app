@@ -102,6 +102,14 @@ class AuthCrud {
     }
   }
 
+  static Future updatePassword() async {
+    try {
+      await auth.sendPasswordResetEmail(email: auth.currentUser!.email!);
+    } on FirebaseAuthException catch (e) {
+      print(e.code);
+    }
+  }
+
   // {} Google
   static final GoogleSignIn googleSignIn = GoogleSignIn(scopes: [
     'email',

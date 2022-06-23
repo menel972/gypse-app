@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bible_quiz/composants/bouttons/basic_button.dart';
 import 'package:bible_quiz/composants/cards/info_card.dart';
 import 'package:bible_quiz/composants/dialogs/delete_dialog.dart';
@@ -10,6 +11,7 @@ import 'package:provider/provider.dart';
 
 import '../../composants/bouttons/primary_button.dart';
 import '../../services/providers/user_provider.dart';
+import '../../styles/my_text_style.dart';
 
 
 
@@ -51,22 +53,50 @@ class Compte extends StatelessWidget {
           InfoCard(
             icon: Icons.person_outline,
             label: 'Nom d\'utilisateur :',
-            data: AuthCrud.currentUser.displayName!,
+            data: AutoSizeText(
+              AuthCrud.currentUser.displayName!,
+              style: MyTextStyle.labelM,
+              minFontSize: 16,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
           InfoCard(
             icon: Icons.connect_without_contact_outlined,
             label: 'Type de connexion :',
-            data: method,
+            data: AutoSizeText(
+              method,
+              style: MyTextStyle.labelM,
+              minFontSize: 16,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
           InfoCard(
             icon: Icons.alternate_email_outlined,
             label: 'Adresse mail :',
-            data: AuthCrud.currentUser.email!,
+            data: AutoSizeText(
+              AuthCrud.currentUser.email!,
+              style: MyTextStyle.labelM,
+              minFontSize: 16,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ), 
+            
           ),
-          const InfoCard(
+          InfoCard(
             icon: Icons.lock_outline,
             label: 'Mot de passe :',
-            data: 'Changer de mot de passe',
+            data: TextButton(
+              onPressed: () => AuthCrud.updatePassword(),
+              child: AutoSizeText(
+                'Changer de mot de passe',
+                style: MyTextStyle.labelOrangeM,
+                minFontSize: 16,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
           ),
           Row(
             children: [
