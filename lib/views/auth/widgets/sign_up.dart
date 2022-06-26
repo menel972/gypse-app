@@ -71,7 +71,7 @@ class _SignUpState extends State<SignUp> {
           return Form(
             key: _signUpKey,
             child: Container(
-              height: _size.height * 0.64,
+              height: _size.height * 0.65,
               width: _size.width * 0.8,
               alignment: Alignment.center,
               decoration: BoxDecoration(
@@ -108,7 +108,7 @@ class _SignUpState extends State<SignUp> {
               ),
               padding: EdgeInsets.symmetric(
                   horizontal: _size.width * 0.03,
-                  vertical: _size.height * 0.05),
+                  vertical: _size.height * 0.04),
               child: ListView.separated(
                 itemCount: 6,
                 separatorBuilder: (context, i) {
