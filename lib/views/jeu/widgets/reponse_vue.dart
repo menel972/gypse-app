@@ -1,7 +1,8 @@
+// ignore_for_file: avoid_print
+
 import 'package:bible_quiz/composants/bouttons/basic_button.dart';
 import 'package:bible_quiz/composants/bouttons/primary_fab_button.dart';
 import 'package:bible_quiz/composants/dialogs/verset_modal.dart';
-import 'package:bible_quiz/composants/stream/error_stream.dart';
 import 'package:bible_quiz/composants/stream/loading_data.dart';
 import 'package:bible_quiz/services/BLoC/provided/select_reponse_bloc.dart';
 import 'package:bible_quiz/services/crud/reponse_crud.dart';
@@ -16,6 +17,7 @@ import 'package:blur/blur.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../services/providers/user_provider.dart';
 
@@ -39,6 +41,8 @@ class ReponseVue extends StatelessWidget {
   // <> Build
   @override
   Widget build(BuildContext context) {
+    final _trad = AppLocalizations.of(context)!;
+
     // = Provider
     Setting settings = Provider.of<UserProvider>(context).userSettings;
 
@@ -118,7 +122,7 @@ class ReponseVue extends StatelessWidget {
                                           context,
                                           reponses[trueIndex],
                                         ),
-                                        texte: 'Voir le verset',
+                                        texte: _trad.btn_verset,
                                         couleur: 'bleu',
                                       ),
                                     ),
@@ -151,12 +155,9 @@ class ReponseVue extends StatelessWidget {
                       }),
                 ));
           } else if (!snapshot.hasData) {
-            return const LoadingData(message: 'No Data');
+            return const LoadingData(message: 'Reponse : No Data');
           } else if (snapshot.hasError) {
-            // ignore: avoid_print
             print('stream error : ' + snapshot.error.toString());
-            return ErrorStream(
-                message: 'reponse_vue get reponse ', flux: snapshot);
           }
           return const LoadingData();
         });

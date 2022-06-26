@@ -6,6 +6,7 @@ import 'package:bible_quiz/styles/my_input_style.dart';
 import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../services/BLoC/bloc_router.dart';
 import '../../../services/crud/auth_crud.dart';
@@ -55,6 +56,7 @@ class _SignUpState extends State<SignUp> {
 
   @override
   Widget build(BuildContext context) {
+    final _trad = AppLocalizations.of(context)!;
     Size _size = MySize().size(context);
     // = Provider
     void setPrivateUser() async =>
@@ -119,24 +121,24 @@ class _SignUpState extends State<SignUp> {
                 },
                 itemBuilder: (context, i) => [
                   Text(
-                    'Création du compte',
+                    _trad.txt_signup,
                     style: MyTextStyle.titleM,
                     textAlign: TextAlign.center,
                   ),
                   TextFormField(
                     style: MyTextStyle.labelM,
                     decoration: MyInputStyle.ajoutInputStyle(
-                        'Nom d\'utilisateur', Icons.person_outline),
+                        _trad.label_name, Icons.person_outline),
                     textInputAction: TextInputAction.next,
                     validator: (value) =>
                         MyValidators()
-                        .isEmpty(value, texte: 'un nom d\'utilisateur'),
+                        .isEmpty(value),
                     onSaved: (value) => credential['userName'] = value!,
                   ),
                   TextFormField(
                     style: MyTextStyle.labelM,
                     decoration: MyInputStyle.ajoutInputStyle(
-                        'E-mail', Icons.alternate_email),
+                        _trad.label_mail, Icons.alternate_email),
                     keyboardType: TextInputType.emailAddress,
                     textInputAction: TextInputAction.next,
                     validator: (value) => MyValidators().emailValidator(value),
@@ -145,7 +147,7 @@ class _SignUpState extends State<SignUp> {
                   TextFormField(
                     style: MyTextStyle.labelM,
                     decoration: MyInputStyle.mdpInputStyle(
-                      'Mot de passe',
+                      _trad.label_mdp,
                       IconButton(
                         onPressed: () => _bloc.switchBoolean(),
                         icon: Icon(
@@ -162,7 +164,7 @@ class _SignUpState extends State<SignUp> {
                     onSaved: (value) => credential['mdp'] = value!,
                   ),
                   SecondaryButton(
-                    texte: 'S\'enregistrer',
+                    texte: _trad.btn_signup,
                     fonction: () async {
                       final String? _isValid = await _submit();
                       if (_isValid != null && _isValid != '') {
@@ -179,9 +181,9 @@ class _SignUpState extends State<SignUp> {
                         setPrivateUser();
                         _signUpKey.currentState!.reset();
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
+                          SnackBar(
                               content: Text(
-                                  'Profile enregistré, vous êtes connecté'),
+                                  _trad.snack_save_profile),
                               backgroundColor: Couleur.secondary),
                         );
                         Navigator.push(context, BlocRouter().homeRoute());
@@ -194,7 +196,7 @@ class _SignUpState extends State<SignUp> {
                         flex: 7,
                         child: FittedBox(
                           child: Text(
-                            'Déjà un compte ?',
+                            _trad.txt_yes_account,
                             style: MyTextStyle.textS,
                           ),
                         ),
@@ -205,7 +207,7 @@ class _SignUpState extends State<SignUp> {
                             onPressed: () => widget.setHasAccount(),
                             child: FittedBox(
                               child: Text(
-                                'Connectez-vous',
+                                _trad.txt_signin,
                                 style: MyTextStyle.textOrangeS,
                               ),
                             )),

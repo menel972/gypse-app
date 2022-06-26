@@ -7,6 +7,7 @@ import 'package:bible_quiz/services/BLoC/bloc_provider.dart';
 
 import 'package:bible_quiz/services/crud/user_crud.dart';
 import 'package:bible_quiz/services/enums/couleur.dart';
+import 'package:bible_quiz/services/models/q_lang.dart';
 import 'package:bible_quiz/services/models/question_model.dart';
 import 'package:bible_quiz/services/models/settings_model.dart';
 import 'package:bible_quiz/styles/my_text_style.dart';
@@ -15,6 +16,7 @@ import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../services/BLoC/provided/select_reponse_bloc.dart';
 import '../../../services/models/user_model.dart';
@@ -47,6 +49,8 @@ class QuestionVue extends StatelessWidget {
   // <> Build
   @override
   Widget build(BuildContext context) {
+    final _trad = AppLocalizations.of(context)!;
+
     // = BLoC
     final bloc = BlocProvider.of<SelectReponseBloc>(context);
 
@@ -69,10 +73,10 @@ class QuestionVue extends StatelessWidget {
               });
     }
 
-    if (question.texte == '') {
+    if (QLang.getLang(question, _trad.localeName).texte == '') {
       return Center(
         child: Text(
-          'no more data',
+          _trad.err_no_que,
           style: MyTextStyle.textM,
         ),
       );
@@ -108,7 +112,7 @@ class QuestionVue extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'Question',
+                              _trad.title_que,
                               style: MyTextStyle.textM,
                             ),
                             SvgPicture.asset(
@@ -127,7 +131,7 @@ class QuestionVue extends StatelessWidget {
                             Flexible(
                               flex: 5,
                               child: Text(
-                                question.texte,
+                                QLang.getLang(question, _trad.localeName).texte,
                                 style: MyTextStyle.textL,
                               ),
                             ),

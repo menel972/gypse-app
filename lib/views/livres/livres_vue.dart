@@ -3,6 +3,8 @@ import 'package:bible_quiz/services/BLoC/provided/livre_liste_bloc.dart';
 import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:bible_quiz/views/livres/widgets/livres_recherche.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 
 class LivresVue extends StatelessWidget {
@@ -12,6 +14,8 @@ class LivresVue extends StatelessWidget {
   // <> Build
   @override
   Widget build(BuildContext context) {
+    final _trad = AppLocalizations.of(context)!;
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       // <> AppBar
@@ -22,7 +26,7 @@ class LivresVue extends StatelessWidget {
               Navigator.pop(context);
             },
             icon: const Icon(Icons.arrow_back_ios)),
-        title: Text('Livres', style: MyTextStyle.titleM),
+        title: Text(_trad.title_book, style: MyTextStyle.titleM),
       ),
       // <> Body
       body: Container(
@@ -35,7 +39,7 @@ class LivresVue extends StatelessWidget {
         ),
         // <!> LivresRecherche()
         child: BlocProvider<LivreListeBloc>(
-          bloc: LivreListeBloc(),
+          bloc: LivreListeBloc(_trad.localeName),
           child: const LivresRecherche(),
         ),
       ),

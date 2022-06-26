@@ -7,6 +7,7 @@ import 'package:bible_quiz/services/crud/auth_crud.dart';
 import 'package:bible_quiz/services/crud/question_crud.dart';
 import 'package:bible_quiz/services/crud/user_crud.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../services/enums/couleur.dart';
 import '../../services/models/user_model.dart';
@@ -26,7 +27,8 @@ class LivresListCard extends StatelessWidget {
   // <> Build
   @override
   Widget build(BuildContext context) {
-    // = Provider
+    // = Locale
+    final _locale = AppLocalizations.of(context)!.localeName;
 
     return StreamBuilder<MyUser>(
         stream: UserCrud.getConnectedUser(AuthCrud.currentUser.uid),
@@ -35,7 +37,7 @@ class LivresListCard extends StatelessWidget {
             MyUser dbUser = snap.data!;
             List<dynamic> uQ = dbUser.questions.map((uQ) => uQ.qId).toList();
             return StreamBuilder<Map<String, int>>(
-                stream: QuestionCrud.fetchQuestionByBook(livre, uQ),
+                stream: QuestionCrud.fetchQuestionByBook(livre, uQ, _locale),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     final int nbQ = snapshot.data!['nbQ']!;

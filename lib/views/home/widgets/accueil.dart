@@ -1,8 +1,8 @@
 import 'package:bible_quiz/composants/carousels/carousel.dart';
-import 'package:bible_quiz/services/enums/livres.dart';
 import 'package:bible_quiz/views/jeu/jeu_vue.dart';
 import 'package:bible_quiz/views/livres/livres_vue.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../composants/bouttons/basic_button.dart';
 import '../../../composants/bouttons/secondary_button.dart';
@@ -10,18 +10,19 @@ import '../../../composants/bouttons/secondary_button.dart';
 class Accueil extends StatelessWidget {
   const Accueil({Key? key}) : super(key: key);
 
-  // = Livres du Carousel
-  static final List<String> livres = [
-    Livres.gen,
-    Livres.pro,
-    Livres.esa,
-    Livres.luc,
-    Livres.apo,
-  ];
 
   // <> Build
   @override
   Widget build(BuildContext context) {
+    final _trad = AppLocalizations.of(context)!;
+    // = Livres du Carousel
+    final List<String> livres = [
+      _trad.gen,
+      _trad.prov,
+      _trad.es,
+      _trad.lc,
+      _trad.ap,
+    ];
     return Column(
       children: [
         SizedBox(
@@ -40,19 +41,17 @@ class Accueil extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 // <!> JeuVue()
-                        SecondaryButton(
-                            texte: 'Commencer une partie',
-                  fonction: () => 
-                                  Navigator.pushNamed(context, JeuVue.route,
-                                      arguments: ''),
+                SecondaryButton(
+                  texte: _trad.btn_start,
+                  fonction: () =>
+                      Navigator.pushNamed(context, JeuVue.route, arguments: ''),
                 ),
                 const SizedBox(height: 25),
                 // <!> LivresVue()
                 BasicButton(
-                    texte: 'Choisir un livre',
-                    couleur: 'orange',
-                  fonction: () =>
-                                  Navigator.pushNamed(context, LivresVue.route),
+                  texte: _trad.btn_livre,
+                  couleur: 'orange',
+                  fonction: () => Navigator.pushNamed(context, LivresVue.route),
                 ),
               ],
             ),

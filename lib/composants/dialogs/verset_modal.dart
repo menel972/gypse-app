@@ -1,11 +1,14 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bible_quiz/services/enums/couleur.dart';
+import 'package:bible_quiz/services/models/r_lang.dart';
 import 'package:bible_quiz/services/models/reponse_model.dart';
 import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
-class VersetModal extends StatefulWidget {
+class VersetModal extends StatelessWidget {
   // =
   final Reponse rep;
   // {} show verset modal
@@ -28,15 +31,19 @@ class VersetModal extends StatefulWidget {
     required this.rep,
   }) : super(key: key);
 
-  @override
-  State<VersetModal> createState() => _VersetModalState();
-}
+  Future<void> _launchVerse(String url) async {
+    if (!await launchUrlString(url)) throw 'Problem url';
+  }
 
-// <> _VersetModalState()
-class _VersetModalState extends State<VersetModal> {
   // <> Build
   @override
   Widget build(BuildContext context) {
+    // = Locale
+    final String _locale = AppLocalizations.of(context)!.localeName;
+
+    final String _url = RLang.getLang(rep, _locale).link!;
+
+
     return Blur(
       blur: 3,
       blurColor: Couleur.bleuClair,
@@ -53,7 +60,7 @@ class _VersetModalState extends State<VersetModal> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             AutoSizeText(
-              widget.rep.texte,
+              RLang.getLang(rep, _locale).texte,
               style: MyTextStyle.textBleuM,
               textAlign: TextAlign.justify,
               maxLines: 1,
@@ -61,13 +68,17 @@ class _VersetModalState extends State<VersetModal> {
             ),
             const SizedBox(height: 30),
             AutoSizeText(
-              widget.rep.verset!,
+              RLang.getLang(rep, _locale).verset!,
               style: MyTextStyle.textBleuM,
               textAlign: TextAlign.justify,
               maxLines: 15,
             ),
             const SizedBox(height: 20),
-            Text(widget.rep.versetRef!, style: MyTextStyle.textBleuM),
+            GestureDetector(
+              onTap: () => _launchVerse(_url),
+              child: Text(RLang.getLang(rep, _locale).versetRef!,
+                  style: MyTextStyle.textOrangeM),
+            ),
           ],
         ),
       ),

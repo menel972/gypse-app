@@ -142,6 +142,13 @@ class MyTextStyle {
     letterSpacing: 1,
     color: Couleur.primary,
   );
+
+  static TextStyle textOrangeM = const TextStyle(
+    fontFamily: 'NotoSansDisplay',
+    fontSize: 20,
+    letterSpacing: 1,
+    color: Couleur.secondary,
+  );
 // L
   static TextStyle textL = const TextStyle(
     fontFamily: 'NotoSansDisplay',

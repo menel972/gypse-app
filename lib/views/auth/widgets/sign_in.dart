@@ -13,6 +13,7 @@ import 'package:bible_quiz/styles/my_input_style.dart';
 import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../services/BLoC/bloc_router.dart';
 import '../../../services/crud/user_crud.dart';
@@ -61,6 +62,7 @@ class _SignInState extends State<SignIn> {
   // <> Build
   @override
   Widget build(BuildContext context) {
+    final _trad = AppLocalizations.of(context)!;
     Size _size = MySize().size(context);
     // = Provider
     void setPrivateUser() async =>
@@ -127,14 +129,14 @@ class _SignInState extends State<SignIn> {
                 },
                 itemBuilder: (context, i) => [
                   Text(
-                    'Connexion',
+                    _trad.btn_signin,
                     style: MyTextStyle.titleM,
                     textAlign: TextAlign.center,
                   ),
                   TextFormField(
                     style: MyTextStyle.labelM,
                     decoration: MyInputStyle.ajoutInputStyle(
-                        'E-mail', Icons.alternate_email),
+                        _trad.label_mail, Icons.alternate_email),
                     keyboardType: TextInputType.emailAddress,
                     textInputAction: TextInputAction.next,
                     validator: (value) => MyValidators().emailValidator(value),
@@ -143,7 +145,7 @@ class _SignInState extends State<SignIn> {
                   TextFormField(
                     style: MyTextStyle.labelM,
                     decoration: MyInputStyle.mdpInputStyle(
-                      'Mot de passe',
+                      _trad.label_mdp,
                       IconButton(
                         onPressed: () => _bloc.switchBoolean(),
                         icon: Icon(
@@ -160,7 +162,7 @@ class _SignInState extends State<SignIn> {
                     onSaved: (value) => credential['mdp'] = value!,
                   ),
                   SecondaryButton(
-                    texte: 'Connexion',
+                    texte: _trad.btn_signin,
                     fonction: () async {
                       final String? _isValid = await _submit();
 
@@ -175,8 +177,8 @@ class _SignInState extends State<SignIn> {
                       if (_isValid == null) {
                         _signInKey.currentState!.reset();
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                              content: Text('Bienvenue'),
+                          SnackBar(
+                              content: Text(_trad.snack_welcome),
                               backgroundColor: Couleur.secondary),
                         );
                         setPrivateUser();
@@ -184,13 +186,30 @@ class _SignInState extends State<SignIn> {
                       }
                     },
                   ),
+                  Text(
+                    _trad.txt_connect_autre,
+                    style: MyTextStyle.textS,
+                    textAlign: TextAlign.center,
+                  ),
+                  Row(
+                    children: [
+                      IconButton(
+                          onPressed: () async {
+                            print(1);
+                            // print(await AuthCrud.googleSignIn.isSignedIn());
+                            await AuthCrud.googleSignIn
+                                .signIn();
+                          },
+                          icon: const Icon(FontAwesomeIcons.google)),
+                    ],
+                  ),
                   Row(
                     children: [
                       Flexible(
                         flex: 7,
                         child: FittedBox(
                           child: Text(
-                            'Pas encore de compte ?',
+                            _trad.txt_no_account,
                             style: MyTextStyle.textS,
                           ),
                         ),
@@ -201,7 +220,7 @@ class _SignInState extends State<SignIn> {
                             onPressed: () => widget.setHasAccount(),
                             child: FittedBox(
                               child: Text(
-                                'Créer un compte',
+                                _trad.txt_signup,
                                 style: MyTextStyle.textOrangeS,
                               ),
                             )),

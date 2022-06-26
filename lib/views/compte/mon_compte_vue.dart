@@ -5,6 +5,7 @@ import 'package:bible_quiz/views/compte/question_ajout.dart';
 import 'package:bible_quiz/views/compte/question_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
 class MonCompteVue extends StatefulWidget {
@@ -19,6 +20,8 @@ class MonCompteVue extends StatefulWidget {
 class _MonCompteVueState extends State<MonCompteVue> {
   @override
   Widget build(BuildContext context) {
+    final _trad = AppLocalizations.of(context)!;
+
     // = Provider
     final _myUser = Provider.of<UserProvider>(context).user;
     
@@ -29,12 +32,12 @@ class _MonCompteVueState extends State<MonCompteVue> {
           TabBar(
             tabs: _myUser.isAdmin
                 ? [
-              Text('Mon profile', style: MyTextStyle.titleS),
-              Text('Questions', style: MyTextStyle.titleS),
-                    Text('Ajout', style: MyTextStyle.titleS),
+                    Text(_trad.redir_profile, style: MyTextStyle.titleS),
+                    Text(_trad.title_ques, style: MyTextStyle.titleS),
+                    Text(_trad.title_add_que, style: MyTextStyle.titleS),
                   ]
                 : [
-                    Text('Mon profile', style: MyTextStyle.titleS),
+                    Text(_trad.redir_profile, style: MyTextStyle.titleS),
                   ],
             isScrollable: true,
           ),

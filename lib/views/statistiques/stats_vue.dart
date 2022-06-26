@@ -3,6 +3,7 @@ import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:bible_quiz/views/statistiques/widgets/stats_gauge.dart';
 import 'package:bible_quiz/views/statistiques/widgets/stats_line.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class StatsVue extends StatelessWidget {
   final MyUser user;
@@ -79,6 +80,7 @@ class StatsVue extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _trad = AppLocalizations.of(context)!;
     return Center(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0),
@@ -86,7 +88,7 @@ class StatsVue extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              uQs.length.toString() + ' questions répondue.s :',
+              '${uQs.length} ${_trad.txt_que_rep} :',
               style: MyTextStyle.titleS,
             ),
             const SizedBox(height: 15),
@@ -101,7 +103,7 @@ class StatsVue extends StatelessWidget {
                         // <!> Total()
                         StatsGauge(
                           data: dataTotal,
-                          legende: 'Total : ' + uQs.length.toString(),
+                          legende: '${_trad.txt_total} : ${uQs.length}',
                           nbR: nbGood,
                           nbP: nbBad,
                         ),
@@ -110,7 +112,7 @@ class StatsVue extends StatelessWidget {
                         StatsGauge(
                           data: dataNiv3,
                           legende:
-                              'Difficile : ' + (nbPniv3 + nbRniv3).toString(),
+                              '${_trad.label_hard} :  ${(nbPniv3 + nbRniv3)}',
                           nbR: nbRniv3,
                           nbP: nbPniv3,
                         ),
@@ -118,7 +120,8 @@ class StatsVue extends StatelessWidget {
                         // <!> Niv2()
                         StatsGauge(
                           data: dataNiv2,
-                          legende: 'Moyen : ' + (nbPniv2 + nbRniv2).toString(),
+                          legende:
+                              '${_trad.label_medium} : ${(nbPniv2 + nbRniv2)}',
                           nbR: nbRniv2,
                           nbP: nbPniv2,
                         ),
@@ -126,7 +129,8 @@ class StatsVue extends StatelessWidget {
                         // <!> Niv1()
                         StatsGauge(
                           data: dataNiv1,
-                          legende: 'Facile : ' + (nbPniv1 + nbRniv1).toString(),
+                          legende:
+                              '${_trad.label_easy} :  ${(nbPniv1 + nbRniv1)}',
                           nbR: nbRniv1,
                           nbP: nbPniv1,
                         ),
@@ -141,7 +145,7 @@ class StatsVue extends StatelessWidget {
             Expanded(
               child: StatsLine(
                 data: dataGlobale,
-                legende: 'Evolution des résultats',
+                legende: _trad.txt_evo,
               ),
             ),
           ],
