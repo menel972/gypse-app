@@ -3,13 +3,16 @@
 import 'dart:async';
 
 import 'package:bible_quiz/services/crud/user_crud.dart';
+import 'package:bible_quiz/services/enums/couleur.dart';
 import 'package:bible_quiz/services/models/settings_model.dart';
 import 'package:bible_quiz/services/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../views/auth/auth_vue.dart';
+import '../BLoC/bloc_router.dart';
 import '../providers/user_provider.dart';
 
 class AuthCrud {
@@ -23,8 +26,12 @@ class AuthCrud {
         .then((value) => value == null ? false : true);
   }
 
-  static Future signOut() async {
+  static Future signOut(BuildContext context) async {
     await auth.signOut();
+    Navigator.push(
+      context,
+      BlocRouter().authRoute(),
+    );
   }
 
   static Future deleteAccount() async {
@@ -101,10 +108,80 @@ class AuthCrud {
     }
   }
 
+  static Future updatePassword(BuildContext context) async {
+    try {
+      await auth.sendPasswordResetEmail(email: auth.currentUser!.email!);
+
+      // TODO : AJOUTER LA TRADUCTION
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('Un mail vous a été envoyé. Vous allez être déconnecté'),
+        backgroundColor: Couleur.secondary,
+        duration: Duration(seconds: 3),
+      ));
+
+      await Future.delayed(const Duration(seconds: 4));
+      signOut(context);
+    } on FirebaseAuthException catch (e) {
+      print(e.code);
+    }
+  }
+
   // {} Google
   static final GoogleSignIn googleSignIn = GoogleSignIn(scopes: [
     'email',
     'https://www.googleapis.com/auth/contacts.readonly',
   ]);
+
+  gglSignIn() async {
+    try {
+      GoogleSignInAccount? log = await googleSignIn.signIn();
+      String? acces =
+          await log!.authentication.then((value) => value.accessToken);
+
+      auth.signInWithCredential(
+          GoogleAuthProvider.credential(accessToken: acces));
+    } on FirebaseAuthException catch (e) {
+      print('HERE : ${e.message}');
+    }
+  }
+
   static GoogleSignInAccount? googleUser = googleSignIn.currentUser;
+
+  // {} Facebook
+  Future fbSignIn() async {
+    try {
+      final LoginResult loginResult = await FacebookAuth.instance
+          .login(permissions: ['email', 'public_profile']);
+
+      print('HERE : ${loginResult.status.name}');
+
+      await FacebookAuth.instance
+          .getUserData()
+          .then((value) => print(value['email']));
+
+      final OAuthCredential fbCredential =
+          FacebookAuthProvider.credential(loginResult.accessToken!.token);
+
+      print(fbCredential);
+      await auth.signInWithCredential(fbCredential);
+    } on FirebaseAuthException catch (e) {
+      print(e.message);
+    }
+  }
+
+  fb() async {
+    AccessToken? access = await FacebookAuth.instance.accessToken;
+    OAuthCredential cr = FacebookAuthProvider.credential(access!.userId);
+
+    try {
+      auth.signInWithCredential(cr);
+    } on FirebaseAuthException catch (e) {
+      print('${e.credential} - ${e.message}');
+    }
+  }
+
+  Future fbSignOut() async {
+    FacebookAuth.instance.getUserData().then((value) => print(value['name']));
+    await FacebookAuth.instance.logOut();
+  }
 }

@@ -1,7 +1,7 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bible_quiz/composants/bouttons/basic_button.dart';
 import 'package:bible_quiz/composants/cards/info_card.dart';
 import 'package:bible_quiz/composants/dialogs/delete_dialog.dart';
-import 'package:bible_quiz/services/BLoC/bloc_router.dart';
 import 'package:bible_quiz/services/crud/auth_crud.dart';
 import 'package:bible_quiz/services/enums/my_size.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +11,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../composants/bouttons/primary_button.dart';
 import '../../services/providers/user_provider.dart';
+import '../../styles/my_text_style.dart';
 
 
 
@@ -86,11 +87,7 @@ class Compte extends StatelessWidget {
                 child: PrimaryButton(
                   texte: _trad.btn_logout,
                   fonction: () => {
-                    AuthCrud.signOut(),
-                    Navigator.push(
-                      context,
-                      BlocRouter().authRoute(),
-                    )
+                    AuthCrud.signOut(context),
                   },
                 ),
               ),

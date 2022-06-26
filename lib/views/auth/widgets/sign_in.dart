@@ -12,7 +12,6 @@ import 'package:bible_quiz/services/providers/user_provider.dart';
 import 'package:bible_quiz/styles/my_input_style.dart';
 import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -80,7 +79,7 @@ class _SignInState extends State<SignIn> {
           return Form(
             key: _signInKey,
             child: Container(
-              height: _size.height * 0.65,
+              height: _size.height * 0.57,
               width: _size.width * 0.8,
               margin: EdgeInsets.symmetric(
                   vertical: _size.height * 0.00, horizontal: 0),
@@ -119,9 +118,9 @@ class _SignInState extends State<SignIn> {
               ),
               padding: EdgeInsets.symmetric(
                   horizontal: _size.width * 0.03,
-                  vertical: _size.height * 0.05),
+                  vertical: _size.height * 0.04),
               child: ListView.separated(
-                itemCount: 7,
+                itemCount: 5,
                 separatorBuilder: (context, i) {
                   if (i == 0) return SizedBox(height: _size.height * 0.03);
                   if (i == 2) return SizedBox(height: _size.height * 0.04);
