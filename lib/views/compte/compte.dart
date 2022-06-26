@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bible_quiz/composants/bouttons/basic_button.dart';
 import 'package:bible_quiz/composants/cards/info_card.dart';
 import 'package:bible_quiz/composants/dialogs/delete_dialog.dart';
+import 'package:bible_quiz/services/BLoC/bloc_router.dart';
 import 'package:bible_quiz/services/crud/auth_crud.dart';
 import 'package:bible_quiz/services/enums/my_size.dart';
 import 'package:flutter/material.dart';
@@ -54,22 +55,49 @@ class Compte extends StatelessWidget {
           InfoCard(
             icon: Icons.person_outline,
             label: '${_trad.label_name} :',
-            data: AuthCrud.currentUser.displayName!,
+            data: AutoSizeText(
+              AuthCrud.currentUser.displayName!,
+              style: MyTextStyle.labelM,
+              minFontSize: 16,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
           InfoCard(
             icon: Icons.connect_without_contact_outlined,
             label: '${_trad.label_connect_type} :',
-            data: method,
+            data: AutoSizeText(
+              method,
+              style: MyTextStyle.labelM,
+              minFontSize: 16,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
           InfoCard(
             icon: Icons.alternate_email_outlined,
             label: '${_trad.label_mail} :',
-            data: AuthCrud.currentUser.email!,
+            data: AutoSizeText(
+              AuthCrud.currentUser.email!,
+              style: MyTextStyle.labelM,
+              minFontSize: 16,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ), 
           ),
           InfoCard(
             icon: Icons.lock_outline,
             label: '${_trad.label_mdp} :',
-            data: _trad.txt_change_mdp,
+            data: TextButton(
+              onPressed: () => AuthCrud.updatePassword(context),
+              child: AutoSizeText(
+                'Changer de mot de passe',
+                style: MyTextStyle.labelOrangeM,
+                minFontSize: 16,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
           ),
           Row(
             children: [
@@ -88,6 +116,10 @@ class Compte extends StatelessWidget {
                   texte: _trad.btn_logout,
                   fonction: () => {
                     AuthCrud.signOut(context),
+                    Navigator.push(
+                      context,
+                      BlocRouter().authRoute(),
+                    )
                   },
                 ),
               ),

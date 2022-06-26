@@ -186,23 +186,6 @@ class _SignInState extends State<SignIn> {
                       }
                     },
                   ),
-                  Text(
-                    _trad.txt_connect_autre,
-                    style: MyTextStyle.textS,
-                    textAlign: TextAlign.center,
-                  ),
-                  Row(
-                    children: [
-                      IconButton(
-                          onPressed: () async {
-                            print(1);
-                            // print(await AuthCrud.googleSignIn.isSignedIn());
-                            await AuthCrud.googleSignIn
-                                .signIn();
-                          },
-                          icon: const Icon(FontAwesomeIcons.google)),
-                    ],
-                  ),
                   Row(
                     children: [
                       Flexible(
