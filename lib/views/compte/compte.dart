@@ -91,7 +91,7 @@ class Compte extends StatelessWidget {
             data: TextButton(
               onPressed: () => AuthCrud.updatePassword(context),
               child: AutoSizeText(
-                'Changer de mot de passe',
+                _trad.txt_change_mdp,
                 style: MyTextStyle.labelOrangeM,
                 minFontSize: 16,
                 maxLines: 1,
