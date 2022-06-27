@@ -1,3 +1,4 @@
+import 'package:bible_quiz/services/enums/my_locales.dart';
 import 'package:bible_quiz/services/models/user_model.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +15,9 @@ class UserProvider with ChangeNotifier {
   // NOTE : User mock
   MyUser user = MyUser(
     id: 'id',
+    userName: '',
+    locale: MyLocales.fr,
+    isConnected: true,
     questions: [],
     settings: Setting(
       niveau: 3,
@@ -37,10 +41,10 @@ class UserProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void saveAnsweredQuestion(String questionId) {
-    user.questions.add(questionId);
-    notifyListeners();
-  }
+  // void saveAnsweredQuestion(String questionId) {
+  //   user.questions.add();
+  //   notifyListeners();
+  // }
 
   void saveNewSettings(Setting newSet) {
     user.settings = newSet;

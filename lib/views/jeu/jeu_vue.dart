@@ -57,6 +57,8 @@ class _JeuVueState extends State<JeuVue> {
       builder: (context, snap) {
         if (snap.hasData) {
           MyUser dbUser = snap.data!;
+          print(dbUser.locale);
+          print(dbUser.isConnected);
           List<dynamic> uQ = dbUser.questions.map((uQ) => uQ.qId).toList();
           return StreamBuilder<Question>(
               stream: QuestionCrud.fetchFirstQuestionByUser(

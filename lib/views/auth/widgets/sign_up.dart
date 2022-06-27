@@ -1,6 +1,7 @@
 import 'package:bible_quiz/composants/bouttons/secondary_button.dart';
 import 'package:bible_quiz/services/BLoC/bloc_provider.dart';
 import 'package:bible_quiz/services/BLoC/provided/boolean_bloc.dart';
+import 'package:bible_quiz/services/enums/my_locales.dart';
 import 'package:bible_quiz/services/enums/my_size.dart';
 import 'package:bible_quiz/styles/my_input_style.dart';
 import 'package:bible_quiz/styles/my_text_style.dart';
@@ -32,7 +33,7 @@ class _SignUpState extends State<SignUp> {
 
   Map<String, String> credential = {'mail': '', 'mdp': '', 'userName': ''};
 
-  Future<String?> _submit() async {
+  Future<String?> _submit(MyLocales locale) async {
     bool isValid = _signUpKey.currentState!.validate();
     if (!isValid) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -47,7 +48,9 @@ class _SignUpState extends State<SignUp> {
     return await AuthCrud.addUser(
         mail: credential['mail']!,
         mdp: credential['mdp']!,
-        userName: credential['userName']!);
+      userName: credential['userName']!,
+      locale: locale,
+    );
   }
 
   Future<MyUser> myUse() async {
@@ -166,7 +169,8 @@ class _SignUpState extends State<SignUp> {
                   SecondaryButton(
                     texte: _trad.btn_signup,
                     fonction: () async {
-                      final String? _isValid = await _submit();
+                      final String? _isValid =
+                          await _submit(MyLocale().toLocale(_trad.localeName));
                       if (_isValid != null && _isValid != '') {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
