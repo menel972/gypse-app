@@ -184,4 +184,10 @@ class MyTextStyle {
     letterSpacing: 0.5,
     color: Couleur.blanc,
   );
+  static TextStyle labelOrangeM = const TextStyle(
+    fontFamily: 'NotoSansDisplay',
+    fontSize: 18,
+    letterSpacing: 0.5,
+    color: Couleur.secondary,
+  );
 }

@@ -25,6 +25,7 @@ Future<void> main() async {
 
 class Gypse extends StatelessWidget {
   const Gypse({Key? key}) : super(key: key);
+  final String version = '0.5.0';
 
   // <> Build
   @override
@@ -47,7 +48,7 @@ class Gypse extends StatelessWidget {
         ),
 
         // home: const GoogleTest(),
-        home: const Splashscreen(),
+        home: Splashscreen(version: version),
         // home: const Envoi(),
 
         // <> Routes
@@ -72,7 +73,7 @@ class Gypse extends StatelessWidget {
               );
             case Splashscreen.route:
               return MaterialPageRoute(
-                builder: (context) => const Splashscreen(),
+                builder: (context) => Splashscreen(version: version),
               );
           }
           return null;

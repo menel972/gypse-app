@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +6,7 @@ import '../../services/enums/couleur.dart';
 class InfoCard extends StatelessWidget {
   final IconData icon;
   final String label;
-  final String data;
+  final Widget data;
   const InfoCard({
     Key? key,
     required this.icon,
@@ -39,13 +38,7 @@ class InfoCard extends StatelessWidget {
                 const SizedBox(width: 15),
                 Flexible(
                   flex: 6,
-                  child: AutoSizeText(
-                    data,
-                    style: MyTextStyle.labelM,
-                    minFontSize: 16,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
+                  child: data
                 ),
                 Flexible(
                   flex: 1,

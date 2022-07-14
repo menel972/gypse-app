@@ -35,7 +35,6 @@ class _CarouselState extends State<Carousel> {
       itemCount: widget.items.length,
       options: CarouselOptions(
         height: MediaQuery.of(context).size.height * 0.33,
-        // height: MediaQuery.of(context).size.height * 0.275,
         enableInfiniteScroll: true,
         showIndicator: false,
         viewportFraction: 0.55,

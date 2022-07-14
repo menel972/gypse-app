@@ -113,7 +113,7 @@
   "txt_evo": "Results evolution",
   "txt_confirm_quit": "Do you really want to quit the game ?",
   "txt_confirm_suppr": "Do you really want to delete your GYPSE profile ? This will be irreversible.",
-  "txt_change_mdp": "Change password",
+  "txt_change_mdp": "Reset password",
   "txt_connect_autre": "Or sign in with",
   "txt_no_account": "Don't have an account ?",
   "txt_yes_account": "Already have an account ?",
