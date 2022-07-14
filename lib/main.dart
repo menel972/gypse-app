@@ -25,7 +25,7 @@ Future<void> main() async {
 
 class Gypse extends StatelessWidget {
   const Gypse({Key? key}) : super(key: key);
-  final String version = 'dev_Account';
+  final String version = '0.5.0';
 
   // <> Build
   @override
