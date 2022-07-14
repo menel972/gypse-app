@@ -21,16 +21,21 @@ class MyUser {
     required this.questions,
   });
 
-  static MyUser fromJson(Map<String, dynamic> json) => MyUser(
+  static MyUser fromJson(Map<String, dynamic> json) {
+    List<UserQuestion> qs = [];
+
+    json['questions'].forEach((uQ) => qs.add(UserQuestion.fromJson(uQ)));
+
+    return MyUser(
         id: json['id'],
         userName: json['userName'],
         locale: MyLocale().toLocale(json['locale']),
         isConnected: json['isConnected'],
         isAdmin: json['isAdmin'],
         settings: Setting.fromJson(json['settings']),
-        questions:
-            json['question'].map((q) => UserQuestion.fromJson(q)).toList(),
-      );
+      questions: qs,
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         'id': id,

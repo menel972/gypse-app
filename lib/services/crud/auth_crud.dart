@@ -20,11 +20,8 @@ class AuthCrud {
   static final auth = FirebaseAuth.instance;
 
 // {} Connected
-  static Future<bool> isConnected() async {
-    return await auth
-        .authStateChanges()
-        .elementAt(0)
-        .then((value) => value == null ? false : true);
+  static bool isConnected() {
+    return auth.currentUser != null ? true : false;
   }
 
   static Future signOut(BuildContext context) async {
@@ -62,9 +59,9 @@ class AuthCrud {
   }
 
 // {} Email - Password
-  static Future<String?> addUser(
-      {required String mail,
-      required String mdp,
+  static Future<String?> addUser({
+    required String mail,
+    required String mdp,
     required String userName,
     required MyLocales locale,
   }) async {
