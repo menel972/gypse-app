@@ -2,7 +2,6 @@
 
 import 'dart:async';
 
-import 'package:bible_quiz/services/BLoC/bloc_router.dart';
 import 'package:bible_quiz/services/crud/auth_crud.dart';
 import 'package:bible_quiz/services/enums/couleur.dart';
 import 'package:bible_quiz/styles/my_text_style.dart';
@@ -10,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
+import '../../services/BLoC/bloc_router.dart';
 import '../../services/crud/user_crud.dart';
 import '../../services/models/user_model.dart';
 import '../../services/providers/user_provider.dart';
@@ -27,11 +27,14 @@ class Splashscreen extends StatefulWidget {
 class _SplashscreenState extends State<Splashscreen> {
   @override
   void initState() {
-    Future.delayed(
-        const Duration(seconds: 2),
-        () => AuthCrud.isConnected()
-            ? Navigator.push(context, BlocRouter().homeRoute())
-            : Navigator.push(context, BlocRouter().authRoute()));
+    Future.delayed(const Duration(seconds: 2), () {
+      if (AuthCrud.isConnected()) {
+        UserCrud.updateConnectedState(AuthCrud.currentUser.uid, true);
+        Navigator.push(context, BlocRouter().homeRoute());
+      } else {
+        Navigator.push(context, BlocRouter().authRoute());
+      }
+    });
     super.initState();
   }
 

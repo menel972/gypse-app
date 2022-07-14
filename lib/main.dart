@@ -1,3 +1,7 @@
+// ignore_for_file: avoid_print
+
+import 'package:bible_quiz/services/crud/auth_crud.dart';
+import 'package:bible_quiz/services/crud/user_crud.dart';
 import 'package:bible_quiz/services/enums/couleur.dart';
 import 'package:bible_quiz/services/providers/user_provider.dart';
 import 'package:bible_quiz/styles/my_appbar_style.dart';
@@ -23,9 +27,33 @@ Future<void> main() async {
   runApp(const Gypse());
 }
 
-class Gypse extends StatelessWidget {
+class Gypse extends StatefulWidget {
   const Gypse({Key? key}) : super(key: key);
+
+  @override
+  State<Gypse> createState() => _GypseState();
+}
+
+class _GypseState extends State<Gypse> with WidgetsBindingObserver {
   final String version = 'dev_refacto';
+
+  @override
+  void initState() {
+    WidgetsBinding.instance!.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    if (!AuthCrud.isConnected()) return;
+    if (state == AppLifecycleState.inactive) {
+      UserCrud.updateConnectedState(AuthCrud.currentUser.uid, false);
+    }
+    if (state == AppLifecycleState.resumed) {
+      UserCrud.updateConnectedState(AuthCrud.currentUser.uid, true);
+    }
+  }
 
   // <> Build
   @override
@@ -80,5 +108,11 @@ class Gypse extends StatelessWidget {
         },
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance!.removeObserver(this);
+    super.dispose();
   }
 }
