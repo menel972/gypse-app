@@ -4,6 +4,7 @@ import 'dart:async';
 
 import 'package:bible_quiz/services/crud/user_crud.dart';
 import 'package:bible_quiz/services/enums/couleur.dart';
+import 'package:bible_quiz/services/enums/my_locales.dart';
 import 'package:bible_quiz/services/models/settings_model.dart';
 import 'package:bible_quiz/services/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -19,11 +20,8 @@ class AuthCrud {
   static final auth = FirebaseAuth.instance;
 
 // {} Connected
-  static Future<bool> isConnected() async {
-    return await auth
-        .authStateChanges()
-        .elementAt(0)
-        .then((value) => value == null ? false : true);
+  static bool isConnected() {
+    return auth.currentUser != null ? true : false;
   }
 
   static Future signOut(BuildContext context) async {
@@ -61,10 +59,12 @@ class AuthCrud {
   }
 
 // {} Email - Password
-  static Future<String?> addUser(
-      {required String mail,
-      required String mdp,
-      required String userName}) async {
+  static Future<String?> addUser({
+    required String mail,
+    required String mdp,
+    required String userName,
+    required MyLocales locale,
+  }) async {
     try {
       await auth
           .createUserWithEmailAndPassword(email: mail, password: mdp)
@@ -75,9 +75,11 @@ class AuthCrud {
           MyUser(
             id: value.user!.uid,
             userName: '$userName#$_suffix',
-            questions: [],
-            settings: Setting(niveau: 2, chrono: 30),
+            locale: locale,
+            isConnected: true,
             isAdmin: false,
+            settings: Setting(niveau: 2, chrono: 30),
+            questions: [],
           ),
         );
       });

@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:bible_quiz/services/BLoC/bloc_router.dart';
 import 'package:bible_quiz/services/crud/auth_crud.dart';
 import 'package:bible_quiz/services/enums/couleur.dart';
+import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +16,8 @@ import '../../services/providers/user_provider.dart';
 
 class Splashscreen extends StatefulWidget {
   static const String route = './splashscreen';
-  const Splashscreen({Key? key}) : super(key: key);
+  final String version;
+  const Splashscreen({Key? key, required this.version}) : super(key: key);
 
   @override
   State<Splashscreen> createState() => _SplashscreenState();
@@ -25,15 +27,11 @@ class Splashscreen extends StatefulWidget {
 class _SplashscreenState extends State<Splashscreen> {
   @override
   void initState() {
-    Timer(const Duration(seconds: 2), () {
-      AuthCrud.isConnected().then((value) {
-        if (value) {
-          Navigator.push(context, BlocRouter().homeRoute());
-        } else {
-          Navigator.push(context, BlocRouter().authRoute());
-        }
-      });
-    });
+    Future.delayed(
+        const Duration(seconds: 2),
+        () => AuthCrud.isConnected()
+            ? Navigator.push(context, BlocRouter().homeRoute())
+            : Navigator.push(context, BlocRouter().authRoute()));
     super.initState();
   }
 
@@ -47,19 +45,26 @@ class _SplashscreenState extends State<Splashscreen> {
     void setPrivateUser() async =>
         Provider.of<UserProvider>(context, listen: false)
             .setUser(await myUse());
-    AuthCrud.isConnected().then((value) {
-      if (value) setPrivateUser();
-    });
-    
+
+    if (AuthCrud.isConnected()) setPrivateUser();
 
     return Scaffold(
       backgroundColor: Couleur.primary,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
-          child: SvgPicture.asset(
-            'assets/images/splashicon_gypse.svg',
-            height: 200,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SvgPicture.asset(
+                'assets/images/splashicon_gypse.svg',
+                height: 200,
+              ),
+              Text(
+                'app version : ${widget.version}',
+                style: MyTextStyle.labelS,
+              )
+            ],
           ),
         ),
       ),

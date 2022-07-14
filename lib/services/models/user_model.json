@@ -1,0 +1,18 @@
+
+
+{
+	"id": "",
+	"userName": "",
+	"locale": "",
+	"isConnected": true,
+	"isAdmin": "",
+	"settings": {
+		"niveau":1,
+		"chrono": 30
+	},
+	"questions": [{
+		"qId" : "",
+		"niveau": 1,
+		"valid": true
+	}]
+}
