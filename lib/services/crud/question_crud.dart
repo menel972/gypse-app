@@ -42,25 +42,42 @@ class QuestionCrud {
 
   static Stream<Question> fetchFirstQuestionByUser(
       List<dynamic> userQ, String? livre, String locale) {
-    return fetchQuestionByUser(userQ).map((questions) => questions
-        .where((question) {
-          if (livre == null) {
-            return true;
-          }
-          if (livre != '') {
-            return QLang.getLang(question, locale).livre.contains(livre);
-          }
+    return fetchQuestionByUser(userQ).map((questions) {
+      final t = questions.where((question) {
+        if (livre == null) {
           return true;
-        })
-        .toList()
-        .first);
+        }
+        if (livre != '') {
+          return QLang.getLang(question, locale).livre.contains(livre);
+        }
+        return true;
+      }).toList();
+
+      t.shuffle();
+      return t.first;
+    });
   }
+  // static Stream<Question> fetchFirstQuestionByUser(
+  //     List<dynamic> userQ, String? livre, String locale) {
+
+  //   return fetchQuestionByUser(userQ).map((questions) => questions
+  //       .where((question) {
+  //         if (livre == null) {
+  //           return true;
+  //         }
+  //         if (livre != '') {
+  //           return QLang.getLang(question, locale).livre.contains(livre);
+  //         }
+  //         return true;
+  //       })
+  //       .toList()
+  //       .first);
+  // }
 
   static Stream<Map<String, int>> fetchQuestionByBook(
       String livre, List<dynamic> userQ, String locale) {
     return fetchAllQuestion()
-        .map((questions) =>
-            questions
+        .map((questions) => questions
             .where((question) => QLang.getLang(question, locale).livre == livre)
             .toList())
         .map((questions) => {
