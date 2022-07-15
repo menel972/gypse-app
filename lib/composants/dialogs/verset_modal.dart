@@ -39,7 +39,8 @@ class VersetModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // = Locale
-    final String _locale = AppLocalizations.of(context)!.localeName;
+    final _trad = AppLocalizations.of(context)!;
+    final String _locale = _trad.localeName;
 
     final String _url = RLang.getLang(rep, _locale).link!;
 
@@ -57,18 +58,18 @@ class VersetModal extends StatelessWidget {
       overlay: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             AutoSizeText(
-              RLang.getLang(rep, _locale).texte,
-              style: MyTextStyle.textBleuM,
+              '${_trad.label_rep} : ${RLang.getLang(rep, _locale).texte}',
+              style: MyTextStyle.textBleuSLight,
               textAlign: TextAlign.justify,
               maxLines: 1,
               overflow: TextOverflow.fade,
             ),
             const SizedBox(height: 30),
             AutoSizeText(
-              RLang.getLang(rep, _locale).verset!,
+              '"${RLang.getLang(rep, _locale).verset!}"',
               style: MyTextStyle.textBleuM,
               textAlign: TextAlign.justify,
               maxLines: 15,
@@ -77,7 +78,7 @@ class VersetModal extends StatelessWidget {
             GestureDetector(
               onTap: () => _launchVerse(_url),
               child: Text(RLang.getLang(rep, _locale).versetRef!,
-                  style: MyTextStyle.textOrangeM),
+                  style: MyTextStyle.textOrangeMUnderline),
             ),
           ],
         ),
