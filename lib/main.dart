@@ -35,7 +35,7 @@ class Gypse extends StatefulWidget {
 }
 
 class _GypseState extends State<Gypse> with WidgetsBindingObserver {
-  final String version = '0.5.1';
+  final String version = 'dev_refacto';
 
   @override
   void initState() {
