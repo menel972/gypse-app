@@ -128,6 +128,14 @@ class MyTextStyle {
     letterSpacing: 1,
     color: Colors.white38,
   );
+
+  static TextStyle textBleuSLight = TextStyle(
+    fontFamily: 'NotoSansDisplay',
+    fontSize: 16,
+    letterSpacing: 1,
+    color: Couleur.primary.withOpacity(0.6),
+  );
+
   // M
   static TextStyle textM = const TextStyle(
     fontFamily: 'NotoSansDisplay',
@@ -149,6 +157,16 @@ class MyTextStyle {
     letterSpacing: 1,
     color: Couleur.secondary,
   );
+  
+  static TextStyle textOrangeMUnderline = const TextStyle(
+    fontFamily: 'NotoSansDisplay',
+    fontSize: 20,
+    letterSpacing: 1,
+    fontStyle: FontStyle.italic,
+    decoration: TextDecoration.underline,
+    color: Couleur.secondary,
+  );
+
 // L
   static TextStyle textL = const TextStyle(
     fontFamily: 'NotoSansDisplay',
@@ -187,6 +205,14 @@ class MyTextStyle {
   static TextStyle labelOrangeM = const TextStyle(
     fontFamily: 'NotoSansDisplay',
     fontSize: 18,
+    letterSpacing: 0.5,
+    color: Couleur.secondary,
+  );
+
+  static TextStyle labelOrangeMB = const TextStyle(
+    fontFamily: 'NotoSansDisplay',
+    fontSize: 18,
+    fontWeight: FontWeight.w700,
     letterSpacing: 0.5,
     color: Couleur.secondary,
   );

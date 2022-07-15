@@ -25,6 +25,7 @@ class AuthCrud {
   }
 
   static Future signOut(BuildContext context) async {
+    UserCrud.updateConnectedState(currentUser.uid, false);
     await auth.signOut();
     Navigator.push(
       context,
@@ -97,6 +98,7 @@ class AuthCrud {
   static Future<String?> loginMailMdp(String mail, String mdp) async {
     try {
       await auth.signInWithEmailAndPassword(email: mail, password: mdp);
+      UserCrud.updateConnectedState(currentUser.uid, true);
       return null;
     } on FirebaseAuthException catch (e) {
       switch (e.code) {

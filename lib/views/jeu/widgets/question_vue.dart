@@ -2,6 +2,7 @@
 
 import 'dart:async';
 
+import 'package:bible_quiz/composants/icones/niveau_icon.dart';
 import 'package:bible_quiz/composants/stream/loading_data.dart';
 import 'package:bible_quiz/services/BLoC/bloc_provider.dart';
 
@@ -14,7 +15,6 @@ import 'package:bible_quiz/styles/my_text_style.dart';
 import 'package:bible_quiz/views/jeu/widgets/reponse_vue.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -27,6 +27,7 @@ class QuestionVue extends StatelessWidget {
   final CountDownController countDownController;
   final Question question;
   final MyUser dbUser;
+  
   const QuestionVue({
     Key? key,
     required this.countDownController,
@@ -34,22 +35,11 @@ class QuestionVue extends StatelessWidget {
     required this.dbUser,
   }) : super(key: key);
 
-  // = image niveau
-  String getNivIcon(int niv) {
-    switch (niv) {
-      case 1:
-        return 'assets/images/facile.svg';
-      case 2:
-        return 'assets/images/moyen.svg';
-      default:
-        return 'assets/images/difficile.svg';
-    }
-  }
-
   // <> Build
   @override
   Widget build(BuildContext context) {
     final _trad = AppLocalizations.of(context)!;
+
 
     // = BLoC
     final bloc = BlocProvider.of<SelectReponseBloc>(context);
@@ -58,6 +48,8 @@ class QuestionVue extends StatelessWidget {
     Setting settings = Provider.of<UserProvider>(context).userSettings;
     void setPrivateUser(MyUser newUser) =>
         Provider.of<UserProvider>(context, listen: false).setUser(newUser);
+
+
 
     void switchFacteur(MyUser newUser) {
       bloc.increaseFacteur();
@@ -115,10 +107,7 @@ class QuestionVue extends StatelessWidget {
                               _trad.title_que,
                               style: MyTextStyle.textM,
                             ),
-                            SvgPicture.asset(
-                              getNivIcon(settings.niveau),
-                              height: 30,
-                            ),
+                            NiveauIcon(niveau: settings.niveau),
                           ],
                         ),
                         const Divider(

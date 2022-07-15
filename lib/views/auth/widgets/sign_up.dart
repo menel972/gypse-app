@@ -46,8 +46,8 @@ class _SignUpState extends State<SignUp> {
 
     _signUpKey.currentState!.save();
     return await AuthCrud.addUser(
-        mail: credential['mail']!,
-        mdp: credential['mdp']!,
+      mail: credential['mail']!,
+      mdp: credential['mdp']!,
       userName: credential['userName']!,
       locale: locale,
     );

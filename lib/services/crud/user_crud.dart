@@ -51,6 +51,15 @@ class UserCrud {
         .then((value) => print('settings updated'))
         .catchError((e) => print('update error : ' + e.toString()));
   }
+  
+  static Future updateConnectedState(String uid, bool state) async {
+    await db
+        .doc(uid)
+        .update({'isConnected': state})
+        .then((value) => print('switch connected state to : $state'))
+        .catchError((e) => print('update state error : ' + e.toString()));
+  }
+
 
   // {} Delete
   static Future deleteUser(String uid) async {
