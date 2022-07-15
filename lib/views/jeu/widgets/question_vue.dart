@@ -2,6 +2,7 @@
 
 import 'dart:async';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bible_quiz/composants/icones/niveau_icon.dart';
 import 'package:bible_quiz/composants/stream/loading_data.dart';
 import 'package:bible_quiz/services/BLoC/bloc_provider.dart';
@@ -119,9 +120,10 @@ class QuestionVue extends StatelessWidget {
                           children: [
                             Flexible(
                               flex: 5,
-                              child: Text(
+                              child: AutoSizeText(
                                 QLang.getLang(question, _trad.localeName).texte,
                                 style: MyTextStyle.textL,
+                                maxLines: 5,
                               ),
                             ),
                             const SizedBox(width: 10),

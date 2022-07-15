@@ -24,7 +24,7 @@ class QuitDialog extends StatelessWidget {
 
     return Center(
       child: Container(
-        height: MediaQuery.of(context).size.height * 0.3,
+        height: MediaQuery.of(context).size.height * 0.4,
         width: MediaQuery.of(context).size.width * 0.75,
         decoration: BoxDecoration(
             color: Couleur.bleuClair.withOpacity(0.4),
