@@ -8,6 +8,8 @@
 .buildlog/
 .history
 .svn/
+Gypse/
+logo gypse/
 
 # IntelliJ related
 *.iml
@@ -45,3 +47,4 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 /android/app/src/main/res/values/.strings.xml
+
